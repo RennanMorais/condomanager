@@ -17,6 +17,7 @@
 }
 .logo {
     float: left;
+    margin-top: 5px;
 }
 .topbar-menu {
     float: right;
@@ -35,11 +36,17 @@
     padding: 10px;
 }
 .topbar-menu ul li a:hover {
-    color: #00ff94;
+    color: #0099A0;
     transition: 0.2s;
 }
-.section-title {
-    background-color: #ccc;
+.section-banner {
+    background-color: #eee;
     height: 100%;
     padding-top: 100px;
+}
+
+.content-qs {
+    margin: auto;
+    width: 100%;
+    max-width: 1024px;
 }
