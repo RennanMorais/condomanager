@@ -1,5 +1,12 @@
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Calibri, Helvetica, sans-serif;
+}
+.topbar {
+    box-shadow: 0px 0px 30px 10px #aaa;
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    background-color: #fff;
 }
 .topbar-int {
     width: 100%;
@@ -10,6 +17,7 @@
 }
 .logo {
     float: left;
+    margin-top: 5px;
 }
 .topbar-menu {
     float: right;
@@ -20,8 +28,25 @@
 }
 .topbar-menu ul li {
     display: inline;
-    margin-right: 20px;
 }
 .topbar-menu ul li a {
     text-decoration: none;
+    font-weight: bold;
+    color: #444;
+    padding: 10px;
+}
+.topbar-menu ul li a:hover {
+    color: #0099A0;
+    transition: 0.2s;
+}
+.section-banner {
+    background-color: #eee;
+    height: 100%;
+    padding-top: 100px;
+}
+
+.content-qs {
+    margin: auto;
+    width: 100%;
+    max-width: 1024px;
 }
