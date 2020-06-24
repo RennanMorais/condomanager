@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 * {
     font-family: Calibri, Helvetica, sans-serif;
 }
+
 .topbar {
     box-shadow: 0px 0px 30px 10px #aaa;
     position: fixed;
@@ -9,6 +9,7 @@
     height: 100px;
     background-color: #fff;
 }
+
 .topbar-int {
     width: 100%;
     max-width: 1024px;
@@ -16,91 +17,174 @@
     height: 100px;
     line-height: 100px;
 }
+
 .logo {
     float: left;
     margin-top: 5px;
 }
+
 .topbar-menu {
     float: right;
 }
+
 .topbar-menu ul {
     list-style: none;
     margin-right: 50px;
 }
+
 .topbar-menu ul li {
     display: inline;
-}
-.topbar-menu ul li a {
     text-decoration: none;
     font-weight: bold;
     color: #444;
     padding: 10px;
+    cursor: pointer;
 }
-.topbar-menu ul li a:hover {
+
+.topbar-menu ul li:hover {
     color: #0099A0;
     transition: 0.2s;
-}
-.section-banner {
-    background-color: #eee;
-    height: 100%;
-    padding-top: 100px;
 }
 
 .content-qs {
     margin: auto;
     width: 100%;
     max-width: 1024px;
-=======
-* {
-    font-family: Calibri, Helvetica, sans-serif;
-}
-.topbar {
-    box-shadow: 0px 0px 30px 10px #aaa;
-    position: fixed;
-    width: 100%;
-    height: 100px;
-    background-color: #fff;
-}
-.topbar-int {
-    width: 100%;
-    max-width: 1024px;
-    margin: auto;
-    height: 100px;
-    line-height: 100px;
-}
-.logo {
-    float: left;
-    margin-top: 5px;
-}
-.topbar-menu {
-    float: right;
-}
-.topbar-menu ul {
-    list-style: none;
-    margin-right: 50px;
-}
-.topbar-menu ul li {
-    display: inline;
-}
-.topbar-menu ul li a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #444;
-    padding: 10px;
-}
-.topbar-menu ul li a:hover {
-    color: #0099A0;
-    transition: 0.2s;
-}
-.section-banner {
-    background-color: #eee;
-    height: 100%;
-    padding-top: 100px;
 }
 
-.content-qs {
+.section-banner{
+    width: 100%;
+    height: 100%;
+}
+
+ .bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /*apenas um -1 é necessário quando se trabalha com relative + absolute, sendo pai e filho*/
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* evita do video passar a altura desejada do .wrap */
+}
+
+
+
+ .bg-video > video {
+    width: 100%;
+    height: auto;
+}
+
+.conteiner-bg {
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+}
+
+.conteiner-bg > h1{
+    
+    padding-top: 100px;
+    font-size: 60px;
+    font-weight: 700;
+    text-shadow: 2px 2px #777;
+    text-align: center;
+    color: #fff;
+}
+
+
+.conteiner-bg > p{
+    padding-top: 100px;
+    text-align: center;
+    font-size: 40px;
+    color: #fff;
+    text-shadow: 2px 2px #777;
+}
+
+.classname {
+	-moz-box-shadow: 0px 10px 14px -7px #276873;
+	-webkit-box-shadow: 0px 10px 14px -7px #276873;
+	box-shadow: 0px 10px 14px -7px #276873;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0099A0), color-stop(1, #0099A0) );
+	background:-moz-linear-gradient( center top, #0099A0 5%, #0099A0 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0099A0', endColorstr='#0099A0');
+	background-color:#599bb3;
+	-webkit-border-top-left-radius:8px;
+	-moz-border-radius-topleft:8px;
+	border-top-left-radius:8px;
+	-webkit-border-top-right-radius:8px;
+	-moz-border-radius-topright:8px;
+	border-top-right-radius:8px;
+	-webkit-border-bottom-right-radius:8px;
+	-moz-border-radius-bottomright:8px;
+	border-bottom-right-radius:8px;
+	-webkit-border-bottom-left-radius:8px;
+	-moz-border-radius-bottomleft:8px;
+	border-bottom-left-radius:8px;
+text-indent:0;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+height:50px;
+	line-height:50px;
+width:160px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:0px 1px 0px #3d768a;
+}.classname:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.5, #408c99), color-stop(1, #599bb3) );
+	background:-moz-linear-gradient( center top, #408c99 5%, #599bb3 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#408c99', endColorstr='#599bb3');
+    background-color:#408c99;
+    color: #fff;
+    text-decoration: none;
+}.classname:active {
+	position:relative;
+	top:1px;
+}
+
+.center{
+    padding: 40px;
+    text-align: center;
+}
+
+.section-0 {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 200px;
+    background: url('../images/quemSomos.jpeg');
+}
+
+.section-0-content {
+    margin: auto;
+    width: 100%;
+    max-width: 700px;
+}
+
+.section-0-content h1 {
+    padding-top: 100px;
+    font-size: 60px;
+    font-weight: 700;
+    text-shadow: 2px 2px #777;
+    text-align: right;
+    color: #fff;
+}
+
+.section-0-content p {
+    padding-top: 100px;
+    text-align: right;
+    font-size: 30px;
+    color: #fff;
+    text-shadow: 2px 2px #777;
+}
+
+.section-1 {
     margin: auto;
     width: 100%;
     max-width: 1024px;
->>>>>>> refs/remotes/origin/master
+    height: 100%;
+    text-align: center;
+    padding-top: 200px;
 }

@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Condo System</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/template.css">
+    <link rel="stylesheet" href="assets\css\template.css">
 </head>
 <body>
     
@@ -14,11 +14,12 @@
             <div class="topbar-menu">
                 <nav class="menu">
                     <ul>
-                        <li><a href="/">Quem somos</a></li>
-                        <li><a href="/">O sistema</a></li>
-                        <li><a href="/">Funcionalidades</a></li>
-                        <li><a href="/">Sobre</a></li>
-                        <li><a href="/">Acesso ao sistema</a></li>
+                        <li onclick="scrollInicio()">Início</li>
+                        <li onclick="scrollQuemSomos()">Quem somos</li>
+                        <li onclick="scrollSistema()">O sistema</li>
+                        <li onclick="scrollFunc()">Funcionalidades</li>
+                        <li onclick="scrollSobre()">Sobre</li>
+                        <li onclick="scrollAcSis()">Acesso ao sistema</li>
                     </ul>
                 </nav>
             </div>
@@ -26,12 +27,42 @@
     </div>
 
     <section class="section-banner">
-        <div class="content-qs">
-            <h1>Logotipo CondoSoftware</h1>
-            <p>Somos uma empresa de soluções para condominios, apresentamos nosso sistema CondoSoftware. Um sistema web de facil utilização para os moradores e portaria.</p>
+        <div class="bg-video">
+            <video autoplay loop muted src="https://imobzi.storage.googleapis.com/accounts/ac-kpvx181030bf6z/public/video.mp4"></video>
+        </div><!--banner-video-->
+    
+        <div class="conteiner-bg">
+            <h1>Conheça a CondoSystem!</h1>
+
+            <p>Desenvolvemos a solução digital que facilita o dia a dia do seu condomínio.</p>
+
+            <div class="center"><a href="#" class="classname">Saiba Mais!</a> <!--Botão saiba mais--></div>
+
+            
+        </div><!--Conteúdo dentro do banner-->
+    </section>
+
+    <section class="section-0">
+        
+        <div class="section-0-content">
+            <h1>Quem somos nós?</h1>
+            <p>Somos uma empresa desenvolvedora do sistema CondoSystem, trazemos soluções digitais para condominios espalhados pelop Brasil.</p>
+        </div>
+        
+    </section>
+    
+    <section class="section-1">
+        <h1>Sistema responsivo, acesse de qualquer dispositivo.</h1>
+        <p>Nosso sistema foi desenhado para que voce não tenha complicações na hora de solicitar ou resolver seus problemas no seu apartamento.</p>
+        <div class="img-responsive-1">
+            <img src="assets/images/responsive.png">
         </div>
     </section>
+
+    
 
 </body>
 <script type="text/javascript" src="assets/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/script.js"></script>
+</html>
