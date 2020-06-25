@@ -29,7 +29,7 @@
 
 .topbar-menu ul {
     list-style: none;
-    margin-right: 50px;
+    margin-right: 10px;
 }
 
 .topbar-menu ul li {
@@ -152,39 +152,110 @@ width:160px;
 .section-0 {
     width: 100%;
     height: 100%;
-    text-align: center;
-    padding-top: 200px;
-    background: url('../images/quemSomos.jpeg');
+    display: flex;
+    background-color: #292929;
 }
 
 .section-0-content {
-    margin: auto;
     width: 100%;
-    max-width: 700px;
+    text-align: justify;
+    vertical-align: middle;
 }
 
 .section-0-content h1 {
     padding-top: 100px;
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 700;
-    text-shadow: 2px 2px #777;
-    text-align: right;
-    color: #fff;
+    color: #0099A0;
+    margin-top: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .section-0-content p {
-    padding-top: 100px;
-    text-align: right;
     font-size: 30px;
-    color: #fff;
-    text-shadow: 2px 2px #777;
+    color: #ccc;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.section-0-img {
+    width: 100%;
 }
 
 .section-1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: #292929;
+}
+
+.section-1-content {
+    width: 100%;
+    text-align: justify;
+    vertical-align: middle;
+}
+
+.section-1-content h1 {
+    padding-top: 100px;
+    font-size: 50px;
+    font-weight: 700;
+    color: #0099A0;
+    margin-top: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.section-1-content p {
+    font-size: 30px;
+    color: #ccc;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.section-1-img {
+    width: 100%;
+    background-color: #0099A0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+    flex-direction: row;
+    width: 100%;
+    height: 300px;
+}
+
+.footer-info-int {
+    display: flex;
+    justify-content: space-around;
     margin: auto;
     width: 100%;
     max-width: 1024px;
-    height: 100%;
+    padding-top: 50px;
+}
+
+.footer-info-1 {
     text-align: center;
-    padding-top: 200px;
+}
+
+.footer-info-1 h4 {
+    color: #0099A0;
+}
+
+.footer-info-2 {
+    text-align: center;
+}
+
+.footer-info-2 h4 {
+    color: #0099A0;
+}
+
+.footer-info-3 {
+    text-align: center;
+}
+
+.footer-info-3 h4 {
+    color: #0099A0;
 }
