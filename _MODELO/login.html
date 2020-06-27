@@ -3,15 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <title>CondoSystem | Login</title>
-    <meta name='generator' content='CRUDBooster'/>
-    <meta name='robots' content='noindex,nofollow'/>
-    <link rel="shortcut icon" href="https://xhost.net.br/condominioonline/public/vendor/crudbooster/assets/logo_crudbooster.png">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/all.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-    <link rel='stylesheet' href='assets/css/main.css' rel="stylesheet" type="text/css"/>
     <link rel='stylesheet' href='assets/css/login.css' rel="stylesheet" type="text/css"/>
 
   </head>
@@ -30,38 +26,41 @@
 
         <form action="" method="POST">    
 
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <input type="text" class="form-control" name='email' required placeholder="Email"/>
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                <div class="icon-input">
+                  <span class="fas fa-user"></span>
+                </div>
             </div>
             
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <input type="password" class="form-control" name='password' required placeholder="Password"/>
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <div class="icon-input">
+                  <span class="fas fa-lock"></span>
+                </div>
             </div>
 
             <div style="margin-bottom:10px" class='row'>
                 <div class='col-xs-12'>
-                    <button type="submit" class="btn btn-primary btn-block btn-flat btn-login"><i></i>Cadastrar</button>                
+                  <button type="submit" class="btn btn-primary btn-login"><span class="fas fa-lock"></span> Login</button>         
                 </div>
             </div>       
           
             <div class='row'>
-                <div class='col-xs-12 forgot-pass'><p>Esqueceu a senha? <a href='https://xhost.net.br/condominioonline/public/admin/forgot'>Clique aqui</a>   </p></div>
+                <div class='col-xs-12 forgot-pass'>
+                  <p>Esqueceu a senha? <a href='http://localhost/condosoftware/_MODELO/login.html'>Clique aqui</a></p>
+                  <p>Ainda não tem uma conta? <a href='http://localhost/condosoftware/_MODELO/login.html'>Registre-se</a></p>
+                </div>
             </div>
         </form>
 
-		<br/>
-        <!--a href="#">I forgot my password</a-->
+      </div>
 
-      </div><!-- /.login-box-body -->
-
-    </div><!-- /.login-box -->
-
-
+    </div>
 
     <script type="text/javascript" src="assets/js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/all.min.js"></script>
+    <script type="text/javascript" src="assets/js/fontawesome.min.js"></script>
     <script type="text/javascript" src="assets/js/script.js"></script> 
   </body>
 </html>
