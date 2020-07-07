@@ -1,0 +1,27 @@
+.login-page, .register-page {
+    background: #dddddd url('../images/background-login.jpg');
+    color: #ffffff !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.login-box, .register-box {
+  margin-bottom: 350px;
+}
+.login-box-body {
+  box-shadow: 0px 0px 50px rgba(0,0,0,0.8);              
+  background: rgba(255,255,255,0.9);
+  color: #666666 !important;
+  padding: 20px;
+}
+html,body {
+  overflow: hidden;
+}
+
+.btn-login {
+    margin-left: 15px;
+}
+
+.forgot-pass {
+    padding:20px 15px 5px 15px;
+}
