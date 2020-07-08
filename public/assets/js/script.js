@@ -1,3 +1,4 @@
+//animação do menu da landing page
 $("#btn-inicio").click(function(){
   
   var body = $("html, body");
@@ -5,7 +6,7 @@ $("#btn-inicio").click(function(){
 
   $(body).animate({
     scrollTop: target.offset().top
-  }, 2000);
+  }, 500);
 
 });
 
@@ -16,7 +17,7 @@ $("#btn-quemsomos").click(function(){
 
   $(body).animate({
     scrollTop: target.offset().top
-  }, 1000);
+  }, 500);
 
 });
 
@@ -27,7 +28,7 @@ $("#btn-sistema").click(function(){
 
   $(body).animate({
     scrollTop: target.offset().top
-  }, 1000);
+  }, 500);
 
 });
 
@@ -38,17 +39,40 @@ $("#btn-contato").click(function(){
 
   $(body).animate({
     scrollTop: target.offset().top
-  }, 1000);
+  }, 500);
 
 });
 
 $("#btn-banner").click(function(){
   
   var body = $("html, body");
-  var target = $(".section-2");
+  var target = $(".section-1");
 
   $(body).animate({
     scrollTop: target.offset().top
-  }, 1000);
+  }, 500);
 
+});
+
+//Script para alteração dinamica do modal
+$('#forgot-btn').on('click', function () {
+    $("button").click(function(){
+      $.ajax({url: "demo_test.txt", success: function(result){
+        $("#div1").html(result);
+      }});
+    });
+    $('#forgotreg-modal').show('fade');
+});
+
+$('#reg-btn').on('click', function () {
+  $("button").click(function(){
+    $.ajax({url: "demo_test.txt", success: function(result){
+      $("#div1").html(result);
+    }});
+  });
+  $('#forgotreg-modal').show('fade');
+});
+
+$('#modal-close').on('click', function() {
+    $('#forgotreg-modal').hide('fade');
 });

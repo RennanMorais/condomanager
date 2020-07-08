@@ -44,11 +44,28 @@
           
             <div class='row'>
                 <div class='col-xs-12 forgot-pass'>
-                  <p>Esqueceu a senha? <a href='http://localhost/condosoftware/_MODELO/login.html'>Clique aqui</a></p>
-                  <p>Ainda não tem uma conta? <a href='http://localhost/condosoftware/_MODELO/login.html'>Registre-se</a></p>
+                  <p>Esqueceu a senha? <a href="#" id="forgot-btn">Clique aqui</a></p>
+                  <p>Ainda não tem uma conta? <a href="#" id="reg-btn">Registre-se</a></p>
                 </div>
             </div>
         </form>
+
+        <div class="modal" tabindex="-1" role="dialog" id="forgotreg-modal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+
+                <p>Modal body text goes here.</p>
+
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info" id="modal-close">Fechar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
 
       </div>
 
