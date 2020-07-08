@@ -26,7 +26,11 @@
 		
         <p class='login-box-msg'>Faça o login para iniciar a sessão</p>
 
-        <form action="" method="POST">    
+        <?php if(!empty($flash)): ?>
+          <div class="flash alert alert-danger"><?php echo $flash; ?></div>
+        <?php endif; ?>
+
+        <form action="<?=$base;?>/login" method="POST">
 
             <div class="form-group">
               <input type="text" class="form-control" name='email' required placeholder="Email"/>
@@ -44,8 +48,10 @@
           
             <div class='row'>
                 <div class='col-xs-12 forgot-pass'>
+
                   <p>Esqueceu a senha? <a href="#" id="forgot-btn">Clique aqui</a></p>
                   <p>Ainda não tem uma conta? <a href="#" id="reg-btn">Registre-se</a></p>
+
                 </div>
             </div>
         </form>
