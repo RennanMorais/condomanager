@@ -56,21 +56,21 @@ $("#btn-banner").click(function(){
 
 //Script para alteração dinamica do modal
 $('#forgot-btn').on('click', function () {
-    $("button").click(function(){
-      $.ajax({url: "demo_test.txt", success: function(result){
-        $("#div1").html(result);
-      }});
-    });
+
+    $.ajax({url: "http://localhost/condosoftware/src/views/pages/forgotpass.php", success: function(result){
+      $("#modal-content").html(result);
+    }});
+
     $('#forgotreg-modal').show('fade');
 });
 
 $('#reg-btn').on('click', function () {
-  $("button").click(function(){
-    $.ajax({url: "demo_test.txt", success: function(result){
-      $("#div1").html(result);
+  
+    $.ajax({url: "http://localhost/condosoftware/src/views/pages/registro.php", success: function(result){
+      $("#modal-content").html(result);
     }});
-  });
-  $('#forgotreg-modal').show('fade');
+    
+    $('#forgotreg-modal').show('fade');
 });
 
 $('#modal-close').on('click', function() {

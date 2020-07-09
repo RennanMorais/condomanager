@@ -7,7 +7,7 @@ class Database {
     private static $_pdo;
     public static function getInstance() {
         if(!isset(self::$_pdo)) {
-            self::$_pdo = new \PDO(Config::DB_DRIVER.":dbname=".Config::DB_DATABASE.";host=".Config::DB_HOST, Config::DB_USER, Config::DB_PASS);
+            self::$_pdo = new \PDO(Config::DB_DRIVER.":dbname=".Config::DB_DATABASE.";host=".Config::DB_HOST, Config::DB_Users, Config::DB_PASS);
         }
         return self::$_pdo;
     }

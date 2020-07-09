@@ -1,3 +1,6 @@
+<?php $render('header'); ?>
+<?php $render('aside'); ?>
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -76,3 +79,4 @@
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <?php $render('footer'); ?>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>CondoSystem | Login</title>
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, Users-scalable=no' name='viewport'>
 
     <link href="<?=$base;?>/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?=$base;?>/assets/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -42,7 +42,7 @@
 
             <div style="margin-bottom:10px" class='row'>
                 <div class='col-xs-12'>
-                  <button type="submit" class="btn btn-primary btn-login"><span class="fas fa-lock"></span> Login</button>         
+                  <button type="submit" class="btn btn-info btn-login"><span class="fas fa-lock"></span> Login</button>         
                 </div>
             </div>       
           
@@ -59,9 +59,8 @@
         <div class="modal" tabindex="-1" role="dialog" id="forgotreg-modal">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-              <div class="modal-body">
 
-                <p>Modal body text goes here.</p>
+              <div class="modal-body" id="modal-content">
 
               </div>
 
