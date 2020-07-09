@@ -14,20 +14,24 @@
 
   <body class="login-page">
 
-    <div class="login-box">
-
-      <div class="login-logo">
-        <a href="<?=$base;?>">
-            <img title='CondoSystem' src='<?=$base;?>/assets/images/logo_condo.png' style='max-width: 50%;max-height:170px'/>
-        </a>
-      </div><!-- /.login-logo -->  
+    <div class="login-box">  
           
-      <div class="login-box-body">	
+      <div class="login-box-body">
+
+        <div class="login-logo">
+          <a href="<?=$base;?>">
+              <img title='CondoSystem' src='<?=$base;?>/assets/images/logo_condo.png' style='max-width: 50%;max-height:170px'/>
+          </a>
+        </div><!-- /.login-logo -->
 		
         <p class='login-box-msg'>Faça o login para iniciar a sessão</p>
 
-        <?php if(!empty($flash)): ?>
-          <div class="flash alert alert-danger"><?php echo $flash; ?></div>
+        <?php if(!empty($flashDanger)): ?>
+          <div class="flash alert alert-danger"><?php echo $flashDanger; ?></div>
+        <?php endif; ?>
+
+        <?php if(!empty($flashWarning)): ?>
+          <div class="flash alert alert-warning"><?php echo $flashWarning; ?></div>
         <?php endif; ?>
 
         <form action="<?=$base;?>/login" method="POST">

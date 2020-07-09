@@ -13,3 +13,4 @@ $router->post('/login/forgot', 'LoginController@forgotpass');
 
 //rotas do sistema
 $router->get('/condosystem', 'DashController@index');
+$router->get('/sair', 'LoginController@logout');

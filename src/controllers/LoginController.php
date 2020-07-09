@@ -7,13 +7,17 @@ use \src\handlers\UserHandler;
 class LoginController extends Controller {
 
     public function index() {
-        $flash = '';
-        if(!empty($_SESSION['flash'])) {
-            $flash = $_SESSION['flash'];
-            $_SESSION['flash'] = '';
+        $flashDanger = '';
+        $flashWarning = '';
+        if(!empty($_SESSION['flashDanger']) || !empty($_SESSION['flashWarning'])) {
+            $flashDanger = $_SESSION['flashDanger'];
+            $_SESSION['flashDanger'] = '';
+            $flashWarning = $_SESSION['flashWarning'];
+            $_SESSION['flashWarning'] = '';
         }
         $this->render('login', [
-            'flash' => $flash
+            'flashDanger' => $flashDanger,
+            'flashWarning' => $flashWarning
         ]);
     }
 
@@ -26,7 +30,7 @@ class LoginController extends Controller {
                 $_SESSION['token'] = $token;
                 $this->redirect('/condosystem');
             } else {
-                $_SESSION['flash'] = "E-mail e/ou senha inválidos.";
+                $_SESSION['flashDanger'] = "E-mail e/ou senha inválidos.";
                 $this->redirect('/login');
             }
         } else {
@@ -43,13 +47,27 @@ class LoginController extends Controller {
 
         if($name && $email && $phone && $password) {
 
-            $token = UserHandler::addUser($name, $email, $phone, $password);
-            $_SESSION['token'] = $token;
-            $this->redirect('/condosystem');
+            if(UserHandler::emailExists($email) === false) {
+
+                $token = UserHandler::addUser($name, $email, $phone, $password);
+                $_SESSION['token'] = $token;
+                $this->redirect('/condosystem');
+
+            } else {
+                $_SESSION['flashWarning'] = "E-mail já cadastrado, tente outro!";
+                $this->redirect('/login');
+            }
+
+            
             
         } else {
             $this->redirect('/login');
         }
+    }
+
+    public function logout() {
+        $_SESSION['token'] = '';
+        $this->redirect('/login');
     }
 
 }

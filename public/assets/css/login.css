@@ -6,7 +6,7 @@
     background-size: cover;
 }
 .login-box, .register-box {
-  margin-bottom: 350px;
+  margin-bottom: 100px
 }
 .login-box-body {
   box-shadow: 0px 0px 50px rgba(0,0,0,0.8);              

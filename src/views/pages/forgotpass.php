@@ -1,4 +1,4 @@
-<form action="<?=$base;?>/login/forgot" method="POST">
+<form action="http://localhost/condosoftware/login/forgot" method="POST">
 
     <h6>Insira o seu e-mail e vamos enviar um link de recuperação</h6>
 

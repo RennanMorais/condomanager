@@ -12,7 +12,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#" role="button" title="Sair"><i
+          <a class="nav-link" href="<?=$base;?>/sair" role="button" title="Sair"><i
               class="fa fa-power-off"></i></a>
         </li>
       </ul>
@@ -46,7 +46,7 @@
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link active">
+              <a href="<?=$base;?>/condosystem" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -58,7 +58,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-building"></i>
                 <p>
-                  Condominio
+                  Condominios
                   <i class="right fas fa-angle-right"></i>
                 </p>
               </a>
@@ -67,7 +67,7 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="far fa-building nav-icon"></i>
-                    <p>Cadastro de Condominios</p>
+                    <p>Condominio</p>
                   </a>
                 </li>
               </ul>
@@ -76,7 +76,7 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-city nav-icon"></i>
-                    <p>Cadastro de Prédios</p>
+                    <p>Prédios</p>
                   </a>
                 </li>
               </ul>
@@ -85,7 +85,7 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="far fa-address-book nav-icon"></i>
-                    <p>Cadastro de Morador</p>
+                    <p>Morador</p>
                   </a>
                 </li>
               </ul>
@@ -94,7 +94,7 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-plus-circle nav-icon"></i>
-                    <p>Cadastro de Área Comum</p>
+                    <p>Área Comum</p>
                   </a>
                 </li>
               </ul>
@@ -121,7 +121,7 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-car nav-icon"></i>
-                    <p>Cadastro de Veículo</p>
+                    <p>Veículos</p>
                   </a>
                 </li>
               </ul>
@@ -195,7 +195,7 @@
 
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-building"></i>
+                <i class="nav-icon fa fa-door-closed"></i>
                 <p>
                   Portaria
                   <i class="right fas fa-angle-right"></i>
@@ -205,35 +205,28 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="#" class="nav-link">
-                    <i class="far fa-building nav-icon"></i>
-                    <p>Categoria de Contas</p>
+                    <i class="fa fa-user-friends nav-icon"></i>
+                    <p>Visitantes</p>
                   </a>
                 </li>
               </ul>
 
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fa fa-city nav-icon"></i>
-                    <p>Contas a Pagar</p>
-                  </a>
-                </li>
-              </ul>
+            </li>
+
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-cog"></i>
+                <p>
+                  Configurações
+                  <i class="right fas fa-angle-right"></i>
+                </p>
+              </a>
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="#" class="nav-link">
-                    <i class="far fa-address-book nav-icon"></i>
-                    <p>Contas a Receber</p>
-                  </a>
-                </li>
-              </ul>
-
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fa fa-plus-circle nav-icon"></i>
-                    <p>Fornecedores</p>
+                    <i class="fa fa-users nav-icon"></i>
+                    <p>Usuários</p>
                   </a>
                 </li>
               </ul>
