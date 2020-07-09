@@ -5,7 +5,7 @@
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-bars"></i></a>
         </li>
       </ul>
 
@@ -22,8 +22,8 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-secondary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
-        <img src="assets/images/logo_condo.png" alt="AdminLTE Logo" width="100px" style='max-width: 50%;min-width: 60px;'>
+      <a href="<?=$base;?>/condosystem" class="brand-link">
+        <img src="<?=$base;?>/assets/images/logo_condo.png" alt="Condo System" width="100px" style='max-width: 50%;min-width: 60px;'>
         <span class="brand-text font-weight-light"></span>
       </a>
 
@@ -32,10 +32,10 @@
         <!-- Sidebar Users panel (optional) -->
         <div class="Users-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="assets/images/avatar.png" class="img-circle elevation-2" alt="Users Image">
+            <img src="<?=$base;?>/assets/images/avatar.png" class="img-circle elevation-2" alt="Users Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Rennan Morais</a>
+            <a href="#" class="d-block"><?=$loggedUser->name;?></a>
           </div>
         </div>
 
@@ -62,14 +62,182 @@
                   <i class="right fas fa-angle-right"></i>
                 </p>
               </a>
+
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="far fa-building nav-icon"></i>
-                    <p>Prédios</p>
+                    <p>Cadastro de Condominios</p>
                   </a>
                 </li>
               </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-city nav-icon"></i>
+                    <p>Cadastro de Prédios</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-address-book nav-icon"></i>
+                    <p>Cadastro de Morador</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-plus-circle nav-icon"></i>
+                    <p>Cadastro de Área Comum</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-glass-cheers nav-icon"></i>
+                    <p>Reserva de Área Comum</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-paw nav-icon"></i>
+                    <p>Cadastro de Pets</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-car nav-icon"></i>
+                    <p>Cadastro de Veículo</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-handshake nav-icon"></i>
+                    <p>Agenda de Assembleias</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-exclamation-circle nav-icon"></i>
+                    <p>Ocorrências</p>
+                  </a>
+                </li>
+              </ul>
+
+            </li>
+
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-dollar-sign"></i>
+                <p>
+                  Financeiro
+                  <i class="right fas fa-angle-right"></i>
+                </p>
+              </a>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-file-invoice-dollar nav-icon"></i>
+                    <p>Categoria de Contas</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-hand-holding-usd nav-icon"></i>
+                    <p>Contas a Pagar</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-funnel-dollar nav-icon"></i>
+                    <p>Contas a Receber</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-truck nav-icon"></i>
+                    <p>Fornecedores</p>
+                  </a>
+                </li>
+              </ul>
+
+            </li>
+
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-building"></i>
+                <p>
+                  Portaria
+                  <i class="right fas fa-angle-right"></i>
+                </p>
+              </a>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-building nav-icon"></i>
+                    <p>Categoria de Contas</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-city nav-icon"></i>
+                    <p>Contas a Pagar</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-address-book nav-icon"></i>
+                    <p>Contas a Receber</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-plus-circle nav-icon"></i>
+                    <p>Fornecedores</p>
+                  </a>
+                </li>
+              </ul>
+
             </li>
 
           </ul>

@@ -8,11 +8,11 @@
   <title> CondoSystem | Home</title>
 
   <!-- Boostrap 4 -->
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?=$base;?>/assets/css/bootstrap.min.css">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="assets/css/all.min.css">
+  <link rel="stylesheet" href="<?=$base;?>/assets/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="assets/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?=$base;?>/assets/css/AdminLTE.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>

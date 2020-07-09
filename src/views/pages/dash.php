@@ -1,5 +1,5 @@
 <?php $render('header'); ?>
-<?php $render('aside'); ?>
+<?php $render('aside', ['loggedUser' => $loggedUser]); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -22,7 +22,7 @@
           
           <div class="row">
             
-            <div class="col-lg-4 col-4">
+            <div class="col-lg-3 col-3">
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
@@ -38,7 +38,7 @@
             </div>
             <!-- ./col -->
 
-            <div class="col-lg-4 col-4">
+            <div class="col-lg-3 col-3">
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
@@ -54,13 +54,29 @@
             </div>
             <!-- ./col -->
 
-            <div class="col-lg-4 col-4">
+            <div class="col-lg-3 col-3">
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
                   <h3>44</h3>
   
                   <p>Moradores</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person-add"></i>
+                </div>
+                <a href="#" class="small-box-footer">Mais Informações <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+
+            <div class="col-lg-3 col-3">
+              <!-- small box -->
+              <div class="small-box bg-danger">
+                <div class="inner">
+                  <h3>3</h3>
+  
+                  <p>Ocorrências</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
