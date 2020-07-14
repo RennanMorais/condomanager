@@ -18,7 +18,7 @@
 
     <div style="margin-bottom:10px" class='row'>
         <div class='col-xs-12'>
-            <button type="submit" class="btn btn-info btn-login"><span class="fas fa-Users-plus"></span> Registrar</button>         
+            <button type="submit" class="btn btn-info btn-login"><span class="fa fa-user-plus"></span> Registrar</button>         
         </div>
     </div>
 

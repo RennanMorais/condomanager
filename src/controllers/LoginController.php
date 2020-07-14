@@ -12,9 +12,13 @@ class LoginController extends Controller {
         if(!empty($_SESSION['flashDanger']) || !empty($_SESSION['flashWarning'])) {
             $flashDanger = $_SESSION['flashDanger'];
             $_SESSION['flashDanger'] = '';
+        }
+
+        if(!empty($_SESSION['flashWarning'])) {
             $flashWarning = $_SESSION['flashWarning'];
             $_SESSION['flashWarning'] = '';
         }
+
         $this->render('login', [
             'flashDanger' => $flashDanger,
             'flashWarning' => $flashWarning
