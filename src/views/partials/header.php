@@ -15,6 +15,11 @@
   <link rel="stylesheet" href="<?=$base;?>/assets/css/AdminLTE.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Chart -->
+  <link href="<?=$base;?>/assets/css/Chart.min.css" rel="stylesheet">
+  <!-- Chart -->
+  <link href="<?=$base;?>/assets/css/app.css" rel="stylesheet">
+  
 </head>
 
 <body class="hold-transition sidebar-mini">

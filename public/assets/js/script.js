@@ -146,3 +146,34 @@ $('#reg-btn').on('click', function () {
 $('#modal-close').on('click', function() {
     $('#forgotreg-modal').hide('fade');
 });
+
+//Chart Visitantes
+
+var ctx = document.getElementById('visitor-chart').getContext('2d');
+var myChart = new Chart(ctx, {
+
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        datasets: [{
+            label: 'Visitantes',
+            data: [12, 19, 3, 5, 2, 3, 5, 6, 12, 25, 23, 21],
+            backgroundColor: [
+                '#C7E8ED'
+            ],
+            borderColor: [
+                '#148A9D'
+            ],
+            borderWidth: 3
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});

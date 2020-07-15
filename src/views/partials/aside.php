@@ -22,7 +22,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-secondary elevation-4">
       <!-- Brand Logo -->
-      <a href="<?=$base;?>/condosystem" class="brand-link">
+      <a href="<?=$base;?>/app" class="brand-link">
         <img src="<?=$base;?>/assets/images/logo_condo.png" alt="Condo System" width="100px" style='max-width: 50%;min-width: 60px;'>
         <span class="brand-text font-weight-light"></span>
       </a>
@@ -46,7 +46,7 @@
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview">
-              <a href="<?=$base;?>/condosystem" class="nav-link">
+              <a href="<?=$base;?>/app" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard

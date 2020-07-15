@@ -32,7 +32,7 @@ class LoginController extends Controller {
             $token = UserHandler::verifyLogin($email, $password);
             if($token) {
                 $_SESSION['token'] = $token;
-                $this->redirect('/condosystem');
+                $this->redirect('/app');
             } else {
                 $_SESSION['flashDanger'] = "E-mail e/ou senha inválidos.";
                 $this->redirect('/login');
@@ -55,7 +55,7 @@ class LoginController extends Controller {
 
                 $token = UserHandler::addUser($name, $email, $phone, $password);
                 $_SESSION['token'] = $token;
-                $this->redirect('/condosystem');
+                $this->redirect('/app');
 
             } else {
                 $_SESSION['flashWarning'] = "E-mail já cadastrado, tente outro!";

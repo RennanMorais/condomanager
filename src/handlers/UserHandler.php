@@ -13,6 +13,7 @@ class UserHandler {
                 $loggedUser = new User;
                 $loggedUser->id = $data['id'];
                 $loggedUser->name = $data['name'];
+                $loggedUser->access = $data['access'];
                 return $loggedUser;
             }
         }

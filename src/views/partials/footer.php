@@ -21,6 +21,10 @@
   <script src="assets/js/adminlte.min.js"></script>
   <!-- Font aewsome -->
   <script type="text/javascript" src="assets/js/all.min.js"></script>
+  <!-- Chart -->
+  <script type="text/javascript" src="assets/js/Chart.min.js"></script>
+  <!-- Page Script -->
+  <script type="text/javascript" src="assets/js/script.js"></script>
 
 </body>
 </html>

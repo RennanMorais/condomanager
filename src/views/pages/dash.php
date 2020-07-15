@@ -88,6 +88,33 @@
 
           </div>
 
+          <div class="row">
+              <h3>Gráfico de Visitantes</h3>
+              <canvas id="visitor-chart" width="100%"></canvas>
+          </div>
+
+          <div class="row">
+            <h3>Comunicados</h3>
+          </div>
+
+          <div class="row">
+              <form action="<?=$base;?>/app/send_statement" method="POST" class="form container">
+                  <textarea name="text-statement" class="form-control" id="text-statement" cols="50" rows="5" placeholder="Novo Comunicado"></textarea><br>
+                  <input type="submit" class="btn btn-info" value="Publicar">
+              </form>
+          </div>
+
+          <div class="container">
+            <?php foreach($statementsFeed as $statementsFeedItem):?>
+            <div class="statement-card">
+              <h5><?=$statementsFeedItem->name;?></h5>
+              <span>Em: <?php echo date('d/m/Y', strtotime($statementsFeedItem->date)); ?> às <?php echo date('H:i:s', strtotime($statementsFeedItem->date)); ?></span>
+              <hr>
+              <p><?php echo $statementsFeedItem->text; ?></p>
+            </div>
+            <?php endforeach;?>
+          </div>        
+
         </div>
         <!-- /.container-fluid -->
 

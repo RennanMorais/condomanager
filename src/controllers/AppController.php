@@ -2,10 +2,10 @@
 namespace src\controllers;
 
 use \core\Controller;
-use \src\models\User;
 use \src\handlers\UserHandler;
+use \src\handlers\StatementHandler;
 
-class DashController extends Controller {
+class AppController extends Controller {
 
     private $loggedUser;
     
@@ -17,9 +17,21 @@ class DashController extends Controller {
     }
 
     public function index() {
+        $statementsFeed = StatementHandler::getStatement();
         $this->render('dash', [
             'loggedUser' => $this->loggedUser,
+            'statementsFeed' => $statementsFeed
         ]);
+    }
+
+    public function send_statement() {
+        $text = filter_input(INPUT_POST, 'text-statement');
+
+        if($text) {
+            StatementHandler::addStatement($text);
+            $this->redirect('/app');
+        }
+
     }
 
 }
