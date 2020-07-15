@@ -27,6 +27,14 @@
     float: right;
 }
 
+.menu-mobile {
+    display: none;
+}
+
+.menu-mobile-btn {
+    display: none;
+}
+
 .topbar-menu ul {
     list-style: none;
     margin-right: 10px;
@@ -267,8 +275,12 @@ text-indent:0;
 /* Responsividade Tablet Deitado */
 @media only screen and (max-width:1024px) {
 
+    .menu-mobile {
+        display: none;
+    }
+
     .classname {
-        margin-top: 170px;
+        margin-top: 145px;
     }
 
     .conteiner-bg > h1{
@@ -298,15 +310,19 @@ text-indent:0;
 
 }
 
-/* Responsividade Tablet Deitado */
+/* Responsividade Tablet em pé */
 @media only screen and (max-width:768px) {
+
+    .menu-mobile {
+        display: none;
+    }
 
     .conteiner-bg {
         padding-top: 70px;
     }
 
     .classname {
-        margin-top: 170px;
+        margin-top: 200px;
         font-size:20px;
         height:60px;
         line-height:60px;
@@ -345,14 +361,16 @@ text-indent:0;
 
     .section-1 {
         flex-direction: column;
-        height: 900px;
+        height: 1000px;
     }
 
     .section-1-content {
         margin-top: -100px;
+        padding-bottom: 100px;
     }
 
     .section-1-img {
+        margin-top: 50px;
         height: 400px;
     }
 
@@ -365,7 +383,7 @@ text-indent:0;
     }
 
     .footer {
-        height: 350px;
+        height: 200px;
     }
     
     .footer-info-int {
@@ -378,23 +396,154 @@ text-indent:0;
 
 }
 
+/* Responsividade Celular em pé */
 @media only screen and (max-width:414px) {
 
     .menu {
         display: none;
     }
 
-    .bg-video video {
-        height: 500px;
+    .menu-mobile-btn {
+        display: none;
+        cursor: pointer;
     }
 
-    .conteiner-bg > h1{
-        font-size: 20px;
+    .menu-mobile {
+        display: none;
+        background-color: #fff;
+        list-style: none;
+        height: 200px;
+        width: 100%;
+        max-width: 1024px;
+    }
+
+    .menu-mobile li {
+        text-decoration: none;
+        font-weight: bold;
+        color: #444;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        cursor: pointer;
+    }
+
+    .menu-mobile li:hover {
+        color: #0099A0;
+        transition: 0.2s;
+    }
+
+    .bg-video {
+        margin-top: 100px;
+    }
+
+    .conteiner-bg > h1 {
+        font-size: 30px;
     }
     
+    
+    .conteiner-bg > p {
+        font-size: 10px;
+    }
+
+    .classname {
+        margin-top: 100px;
+    }
+
+    .menu-mobile-btn {
+        position: absolute;
+        display: block;
+        margin-left: 380px;
+        margin-top: 50px;
+    }
     
     .conteiner-bg > p{
         font-size: 10px;
+        padding-top: 50px;
+    }
+
+    .section-0-content h1 {
+        font-size: 20px;
+    }
+    
+    .section-0-content p {
+        font-size: 13px;
+    }
+
+    .section-1-content h1 {
+        font-size: 20px;
+    }
+    
+    .section-1-content p {
+        font-size: 13px;
+    }
+
+    .footer-info-int {
+        flex-direction: column;
+    }
+
+}
+
+/* Responsividade Celular menor em pé */
+@media only screen and (max-width:375px) {
+
+    .menu {
+        display: none;
+    }
+
+    .menu-mobile-btn {
+        display: none;
+        cursor: pointer;
+    }
+
+    .menu-mobile {
+        display: none;
+        background-color: #fff;
+        list-style: none;
+        height: 200px;
+        width: 100%;
+        max-width: 1024px;
+    }
+
+    .menu-mobile li {
+        text-decoration: none;
+        font-weight: bold;
+        color: #444;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        cursor: pointer;
+    }
+
+    .menu-mobile li:hover {
+        color: #0099A0;
+        transition: 0.2s;
+    }
+
+    .bg-video {
+        margin-top: 100px;
+    }
+
+    .conteiner-bg > h1 {
+        font-size: 30px;
+    }
+    
+    
+    .conteiner-bg > p {
+        font-size: 10px;
+    }
+
+    .classname {
+        margin-top: 100px;
+    }
+
+    .menu-mobile-btn {
+        position: absolute;
+        display: block;
+        margin-left: 330px;
+        margin-top: 45px;
+    }
+    
+    .conteiner-bg > p{
+        font-size: 10px;
+        padding-top: 50px;
     }
 
     .section-0-content h1 {
