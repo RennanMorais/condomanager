@@ -13,5 +13,6 @@ $router->post('/login/forgot', 'LoginController@forgotpass');
 
 //rotas do sistema
 $router->get('/app', 'AppController@index');
+$router->get('/app/condominios', 'AppController@condominio');
 $router->get('/sair', 'LoginController@logout');
 $router->post('/app/send_statement', 'AppController@send_statement');

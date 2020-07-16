@@ -14,17 +14,17 @@
 <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
-  <script src="assets/js/jquery.min.js"></script>
+  <script src="<?=$base;?>/assets/js/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="<?=$base;?>/assets/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="assets/js/adminlte.min.js"></script>
+  <script src="<?=$base;?>/assets/js/adminlte.min.js"></script>
   <!-- Font aewsome -->
-  <script type="text/javascript" src="assets/js/all.min.js"></script>
+  <script type="text/javascript" src="<?=$base;?>/assets/js/all.min.js"></script>
   <!-- Chart -->
-  <script type="text/javascript" src="assets/js/Chart.min.js"></script>
+  <script type="text/javascript" src="<?=$base;?>/assets/js/Chart.min.js"></script>
   <!-- Page Script -->
-  <script type="text/javascript" src="assets/js/script.js"></script>
+  <script type="text/javascript" src="<?=$base;?>/assets/js/app.js"></script>
 
 </body>
 </html>

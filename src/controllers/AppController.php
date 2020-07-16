@@ -34,4 +34,10 @@ class AppController extends Controller {
 
     }
 
+    public function condominio() {
+        $this->render('condominio', [
+            'loggedUser' => $this->loggedUser
+        ]);
+    }
+
 }

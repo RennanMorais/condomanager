@@ -1,5 +1,5 @@
 <?php $render('header'); ?>
-<?php $render('aside', ['loggedUser' => $loggedUser]); ?>
+<?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'dash']); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -28,12 +28,12 @@
                 <div class="inner">
                   <h3>54</h3>
   
-                  <p>Novos Visitantes</p>
+                  <p>Visitantes Hoje</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">Mais Informações <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Mais <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -49,7 +49,7 @@
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">Mais Informações <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Mais <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -65,7 +65,7 @@
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">Mais Informações <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Mais <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -81,7 +81,7 @@
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">Mais Informações <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Mais <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -89,12 +89,19 @@
           </div>
 
           <div class="row">
-              <h3>Gráfico de Visitantes</h3>
-              <canvas id="visitor-chart" width="100%"></canvas>
+              <div class="col-sm-6">
+                <h3>Gráfico de Visitantes</h3>
+                <canvas id="visitor-chart" width="100%"></canvas>
+              </div>
+
+              <div class="col-sm-6">
+                <h3>Gráfico de Ocorrências</h3>
+                <canvas id="occurrence-chart" width="100%"></canvas>
+              </div>
           </div>
 
           <div class="row">
-            <h3>Comunicados</h3>
+            <h3 style="margin-top: 10px;">Comunicados</h3>
           </div>
 
           <div class="row">
@@ -122,4 +129,4 @@
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <?php $render('footer'); ?>
+<?php $render('footer'); ?>

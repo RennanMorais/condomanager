@@ -462,100 +462,28 @@ text-indent:0;
 
     .section-0-content h1 {
         font-size: 20px;
+        margin-top: 30px;
     }
     
     .section-0-content p {
         font-size: 13px;
     }
 
-    .section-1-content h1 {
-        font-size: 20px;
-    }
-    
-    .section-1-content p {
-        font-size: 13px;
+    .section-0-img {
+        margin-top: -70px;
     }
 
-    .footer-info-int {
-        flex-direction: column;
+    .section-1 {
+        height: 650px;
     }
 
-}
-
-/* Responsividade Celular menor em pé */
-@media only screen and (max-width:375px) {
-
-    .menu {
-        display: none;
-    }
-
-    .menu-mobile-btn {
-        display: none;
-        cursor: pointer;
-    }
-
-    .menu-mobile {
-        display: none;
-        background-color: #fff;
-        list-style: none;
-        height: 200px;
-        width: 100%;
-        max-width: 1024px;
-    }
-
-    .menu-mobile li {
-        text-decoration: none;
-        font-weight: bold;
-        color: #444;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        cursor: pointer;
-    }
-
-    .menu-mobile li:hover {
-        color: #0099A0;
-        transition: 0.2s;
-    }
-
-    .bg-video {
-        margin-top: 100px;
-    }
-
-    .conteiner-bg > h1 {
-        font-size: 30px;
-    }
-    
-    
-    .conteiner-bg > p {
-        font-size: 10px;
-    }
-
-    .classname {
-        margin-top: 100px;
-    }
-
-    .menu-mobile-btn {
-        position: absolute;
-        display: block;
-        margin-left: 330px;
-        margin-top: 45px;
-    }
-    
-    .conteiner-bg > p{
-        font-size: 10px;
-        padding-top: 50px;
-    }
-
-    .section-0-content h1 {
-        font-size: 20px;
-    }
-    
-    .section-0-content p {
-        font-size: 13px;
+    .section-1-img {
+        height: 300px;
     }
 
     .section-1-content h1 {
         font-size: 20px;
+        margin-top: 50px;
     }
     
     .section-1-content p {

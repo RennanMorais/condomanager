@@ -12,7 +12,7 @@
     <div class="topbar">
         <div class="topbar-int">
             <a href="<?=$base;?>"><div class="logo"><img src="assets/images/logo_condo.png" width="150"></div></a>
-            <div class="menu-mobile-btn"><span class="fa fa-bars"></span></div>
+            <div class="menu-mobile-btn"><span class="fa fa-bars fa-lg"></span></div>
             <div class="topbar-menu">
                 <nav class="menu">
                     <ul>

@@ -46,7 +46,7 @@
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview">
-              <a href="<?=$base;?>/app" class="nav-link">
+              <a href="<?=$base;?>/app" class="nav-link <?= ($activeMenu == 'dash') ? 'active':''; ?>">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -54,8 +54,8 @@
               </a>
             </li>
 
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+            <li class="nav-item has-treeview <?= ($activeMenu == 'condominio' || $activeMenu == 'predio') ? 'menu-open':''; ?>">
+              <a href="<?=$base;?>/app/condominios" class="nav-link <?= ($activeMenu == 'condominio') ? 'active':''; ?>">
                 <i class="nav-icon fas fa-building"></i>
                 <p>
                   Condominios
@@ -65,7 +65,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/condominios" class="nav-link <?= ($activeMenu == 'condominio') ? 'active':''; ?>">
                     <i class="far fa-building nav-icon"></i>
                     <p>Condominio</p>
                   </a>
@@ -74,7 +74,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/predios" class="nav-link <?= ($activeMenu == 'predios') ? 'active':''; ?>">
                     <i class="fa fa-city nav-icon"></i>
                     <p>Prédios</p>
                   </a>
@@ -83,7 +83,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/morador" class="nav-link <?= ($activeMenu == 'morador') ? 'active':''; ?>">
                     <i class="far fa-address-book nav-icon"></i>
                     <p>Morador</p>
                   </a>
@@ -92,7 +92,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/area_comum" class="nav-link <?= ($activeMenu == 'area_comum') ? 'active':''; ?>">
                     <i class="fa fa-plus-circle nav-icon"></i>
                     <p>Área Comum</p>
                   </a>
@@ -101,7 +101,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/reservas_area_comum" class="nav-link <?= ($activeMenu == 'reserva_area') ? 'active':''; ?>">
                     <i class="fa fa-glass-cheers nav-icon"></i>
                     <p>Reserva de Área Comum</p>
                   </a>
@@ -110,7 +110,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/cad_pets" class="nav-link <?= ($activeMenu == 'pets') ? 'active':''; ?>">
                     <i class="fa fa-paw nav-icon"></i>
                     <p>Cadastro de Pets</p>
                   </a>
@@ -119,7 +119,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/veiculos" class="nav-link <?= ($activeMenu == 'veiculos') ? 'active':''; ?>">
                     <i class="fa fa-car nav-icon"></i>
                     <p>Veículos</p>
                   </a>
@@ -128,7 +128,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/assembleias" class="nav-link <?= ($activeMenu == 'assembleia') ? 'active':''; ?>">
                     <i class="fa fa-handshake nav-icon"></i>
                     <p>Agenda de Assembleias</p>
                   </a>
@@ -137,7 +137,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/ocorrencias" class="nav-link <?= ($activeMenu == 'ocorrencias') ? 'active':''; ?>">
                     <i class="fa fa-exclamation-circle nav-icon"></i>
                     <p>Ocorrências</p>
                   </a>
@@ -146,8 +146,8 @@
 
             </li>
 
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+            <li class="nav-item has-treeview <?= ($activeMenu == 'financeiro' || $activeMenu == 'categoria_contas') ? 'menu-open':''; ?>">
+              <a href="" class="nav-link <?= ($activeMenu == 'financeiro') ? 'active':''; ?>">
                 <i class="nav-icon fa fa-dollar-sign"></i>
                 <p>
                   Financeiro
@@ -157,7 +157,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/categoria_contas" class="nav-link <?= ($activeMenu == 'categoria_contas') ? 'active':''; ?>">
                     <i class="fa fa-file-invoice-dollar nav-icon"></i>
                     <p>Categoria de Contas</p>
                   </a>
@@ -166,7 +166,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/contas_pagar" class="nav-link <?= ($activeMenu == 'contas_pagar') ? 'active':''; ?>">
                     <i class="fa fa-hand-holding-usd nav-icon"></i>
                     <p>Contas a Pagar</p>
                   </a>
@@ -175,7 +175,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/contas_receber" class="nav-link <?= ($activeMenu == 'contas_receber') ? 'active':''; ?>">
                     <i class="fa fa-funnel-dollar nav-icon"></i>
                     <p>Contas a Receber</p>
                   </a>
@@ -184,7 +184,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/fornecedores" class="nav-link <?= ($activeMenu == 'fornecedores') ? 'active':''; ?>">
                     <i class="fa fa-truck nav-icon"></i>
                     <p>Fornecedores</p>
                   </a>
@@ -193,8 +193,8 @@
 
             </li>
 
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+            <li class="nav-item has-treeview <?= ($activeMenu == 'visitantes') ? 'menu-open':''; ?>">
+              <a href="" class="nav-link <?= ($activeMenu == 'visitantes') ? 'active':''; ?>">
                 <i class="nav-icon fa fa-door-closed"></i>
                 <p>
                   Portaria
@@ -204,7 +204,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/visitantes" class="nav-link <?= ($activeMenu == 'visitantes') ? 'active':''; ?>">
                     <i class="fa fa-user-friends nav-icon"></i>
                     <p>Visitantes</p>
                   </a>
@@ -213,8 +213,8 @@
 
             </li>
 
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+            <li class="nav-item has-treeview <?= ($activeMenu == 'usuarios') ? 'menu-open':''; ?>">
+              <a href="<?=$base;?>/app/config" class="nav-link <?= ($activeMenu == 'usuarios') ? 'active':''; ?>">
                 <i class="nav-icon fa fa-cog"></i>
                 <p>
                   Configurações
@@ -224,7 +224,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?=$base;?>/app/usuarios" class="nav-link <?= ($activeMenu == 'usuarios') ? 'active':''; ?>">
                     <i class="fa fa-users nav-icon"></i>
                     <p>Usuários</p>
                   </a>
