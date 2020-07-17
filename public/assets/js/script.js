@@ -127,7 +127,7 @@ $('.menu-mobile-btn').on('click', function(){
 //Script para alteração dinamica do modal
 $('#forgot-btn').on('click', function () {
 
-    $.ajax({url: "http://localhost/condosoftware/src/views/pages/forgotpass.php", success: function(result){
+    $.ajax({url: "http://localhost/condosoftware/src/views/pages/forms/forgotpass.php", success: function(result){
       $("#modal-content").html(result);
     }});
 
@@ -136,7 +136,7 @@ $('#forgot-btn').on('click', function () {
 
 $('#reg-btn').on('click', function () {
   
-    $.ajax({url: "http://localhost/condosoftware/src/views/pages/registro.php", success: function(result){
+    $.ajax({url: "http://localhost/condosoftware/src/views/pages/forms/registro.php", success: function(result){
       $("#modal-content").html(result);
     }});
     

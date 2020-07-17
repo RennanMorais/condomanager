@@ -6,10 +6,8 @@
         <input type="email" class="form-control" name='email' required placeholder="Email"/>
     </div>
 
-    <div style="margin-bottom:10px" class='row'>
-        <div class='col-xs-12'>
-            <button type="submit" class="btn btn-info btn-login"><span class="fas fa-paper-plane"></span> Enviar</button>         
-        </div>
+    <div class='form-group'>
+        <button type="submit" class="btn btn-info btn-forgot"><span class="fa fa-plane"></span> Enviar</button>         
     </div>
 
 </form>

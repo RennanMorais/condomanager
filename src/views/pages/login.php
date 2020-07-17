@@ -44,11 +44,10 @@
               <input type="password" class="form-control" name='password' required placeholder="Password"/>
             </div>
 
-            <div style="margin-bottom:10px" class='row'>
-                <div class='col-xs-12'>
-                  <button type="submit" class="btn btn-info btn-login"><span class="fas fa-lock"></span> Login</button>         
-                </div>
-            </div>       
+            <div class='form-group'>
+                <button type="submit" class="btn btn-info btn-login"><span class="fas fa-lock"></span> Login</button>         
+            </div>
+      
           
             <div class='row'>
                 <div class='col-xs-12 forgot-pass'>

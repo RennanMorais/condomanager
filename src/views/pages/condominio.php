@@ -22,7 +22,7 @@
           
             <div class="row">
                 <div class="col-sm-12">
-                    <button class="btn btn-success" style="margin-bottom:10px">Adicionar Novo</button>
+                    <button id="add-cond" class="btn btn-outline-success" style="margin-bottom:10px">Adicionar Novo</button>
                 </div>
             </div>
 
@@ -42,42 +42,32 @@
                                 </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Nome do condominio</td>
-                                <td>1234567891011</td>
-                                <td>Email@condominio.com</td>
-                                <td>Rua tal de alguma coisa</td>
-                                <td>123</td>
-                                <td>Sem complemento</td>
-                                <td>Algum bairro</td>
-                                <td><a href="#" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="#" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Nome do condominio</td>
-                                <td>1234567891011</td>
-                                <td>Email@condominio.com</td>
-                                <td>Rua tal de alguma coisa</td>
-                                <td>123</td>
-                                <td>Sem complemento</td>
-                                <td>Algum bairro</td>
-                                <td><a href="#" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="#" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Nome do condominio</td>
-                                <td>1234567891011</td>
-                                <td>Email@condominio.com</td>
-                                <td>Rua tal de alguma coisa</td>
-                                <td>123</td>
-                                <td>Sem complemento</td>
-                                <td>Algum bairro</td>
-                                <td><a href="#" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="#" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a></td>
-                            </tr>
+                            <?php foreach($condominios as $condominiosItem): ?>
+                                <tr>
+                                    <td><?=$condominiosItem->nome;?></td>
+                                    <td><?=$condominiosItem->cnpj;?></td>
+                                    <td><?=$condominiosItem->email;?></td>
+                                    <td><?=$condominiosItem->endereco;?></td>
+                                    <td><?=$condominiosItem->numero;?></td>
+                                    <td><?=$condominiosItem->complemento;?></td>
+                                    <td><?=$condominiosItem->bairro;?></td>
+                                    <td><a href="<?=$base;?>/app/condominios/edit_cond/<?=$condominiosItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="<?=$base;?>/app/condominios/delete_cond?id=<?=$condominiosItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <div class="modal" tabindex="-1" role="dialog" id="forgotreg-modal">
+            <?php if(empty($condominios)): ?>
+                
+                <div class="container-fluid">
+                    <h6 class="alert alert-secondary text-center">Nenhum Item Cadastrado!</h6>
+                </div>
+            
+            <?php endif;?>
+
+            <div class="modal" tabindex="-1" role="dialog" id="condominio-modal">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
 

@@ -1,5 +1,7 @@
 <form action="http://localhost/condosoftware/public/login/registro" method="POST">
 
+    <h6>Cadastro</h6>
+
     <div class="form-group">
         <input type="text" class="form-control" name='name' required placeholder="Nome"/>
     </div>
@@ -16,10 +18,8 @@
         <input type="password" class="form-control" name='password' required placeholder="Password"/>
     </div>
 
-    <div style="margin-bottom:10px" class='row'>
-        <div class='col-xs-12'>
-            <button type="submit" class="btn btn-info btn-login"><span class="fa fa-user-plus"></span> Registrar</button>         
-        </div>
+    <div class='form-group'>
+        <button type="submit" class="btn btn-info btn-reg"><span class="fa fa-user-plus"></span> Registrar</button>         
     </div>
 
 </form>
