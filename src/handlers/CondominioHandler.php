@@ -2,6 +2,7 @@
 namespace src\handlers;
 
 use \src\models\Condominio;
+use \src\models\Predio;
 
 class CondominioHandler {
 
@@ -55,6 +56,45 @@ class CondominioHandler {
         ->set('numero', $numero)
         ->set('complemento', $complemento)
         ->set('bairro', $bairro)->where('id', $id)->execute();
+        return true;
+    }
+
+    public function addPrd($predio, $condominio) {
+        Predio::insert([
+            'nome' => $predio,
+            'condominio' => $condominio
+        ])->execute();
+        return true;
+    }
+
+    public function getPredios() {
+        $prdList = Predio::select()->get();
+        $prd = [];
+        foreach($prdList as $prdItem) {
+            $newPrd = new Predio();
+            $newPrd->id = $prdItem['id'];
+            $newPrd->nome = $prdItem['nome'];
+            $newPrd->condominio = $prdItem['condominio'];
+            $prd[] = $newPrd;
+        }
+        return $prd;
+    }
+
+    public function getPrdItem($id) {
+        $prdItem = Predio::select()->where('id', $id)->one();
+        return $prdItem;
+    }
+
+    public function savePrd($id, $nome, $condominio) {
+        Predio::update()
+        ->set('nome', $nome)
+        ->set('condominio', $condominio)
+        ->where('id', $id)->execute();
+        return true;
+    }
+
+    public function delPrd($id) {
+        Predio::delete()->where('id', $id)->execute();
         return true;
     }
 

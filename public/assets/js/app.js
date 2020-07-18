@@ -65,17 +65,13 @@ $(document).ready(function(){
 
 
 
-//Modal condominio Add e edição
+//Modal condominio Add
 $('#add-cond').on('click', function () {
-
-    $.ajax({url: "http://localhost/condosoftware/src/views/pages/forms/add-cond.php", success: function(result){
-      $("#modal-content").html(result);
-    }});
-
     $('#condominio-modal').show('fade');
-
 });
 
 $('#modal-close').on('click', function() {
     $('#condominio-modal').hide('fade');
 });
+
+$('#cnpj-field').mask('00.000.000/0000-00', {reverse: true});

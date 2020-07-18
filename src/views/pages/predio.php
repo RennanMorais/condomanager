@@ -1,5 +1,5 @@
 <?php $render('header'); ?>
-<?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'condominio', 'activeMasterMenu' => 'condominio']); ?>
+<?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'predio', 'activeMasterMenu' => 'condominio']); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -8,7 +8,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Condomínios</h1>
+                <h1 class="m-0 text-dark">Prédios</h1>
             </div>
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -28,30 +28,20 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <table class="table table-bordered table-hover table-responsive-md">
+                    <table class="table table-bordered table-hover table-responsive-sm table-center">
                         <thead class="bg-info">
                             <tr>
                                 <th>Nome</th>
-                                    <th>CNPJ</th>
-                                    <th>Email</th>
-                                    <th>Endereço</th>
-                                    <th>Número</th>
-                                    <th>Complemento</th>
-                                    <th>Bairro</th>
-                                    <th>Ação</th>
-                                </tr>
+                                <th>Condomínio</th>
+                                <th>Ação</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($condominios as $condominiosItem): ?>
+                            <?php foreach($prediosList as $prediosItem): ?>
                                 <tr>
-                                    <td><?=$condominiosItem->nome;?></td>
-                                    <td><?=$condominiosItem->cnpj;?></td>
-                                    <td><?=$condominiosItem->email;?></td>
-                                    <td><?=$condominiosItem->endereco;?></td>
-                                    <td><?=$condominiosItem->numero;?></td>
-                                    <td><?=$condominiosItem->complemento;?></td>
-                                    <td><?=$condominiosItem->bairro;?></td>
-                                    <td><a href="<?=$base;?>/app/condominios/edit_cond/<?=$condominiosItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="<?=$base;?>/app/condominios/delete_cond?id=<?=$condominiosItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a></td>
+                                    <td><?=$prediosItem->nome;?></td>
+                                    <td><?=$prediosItem->condominio;?></td>
+                                    <td><a href="<?=$base;?>/app/predios/edit_prd/<?=$prediosItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="<?=$base;?>/app/predios/delete_prd?id=<?=$prediosItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -59,7 +49,7 @@
                 </div>
             </div>
 
-            <?php if(empty($condominios)): ?>
+            <?php if(empty($prediosList)): ?>
                 
                 <div class="container-fluid">
                     <h6 class="alert alert-secondary text-center">Nenhum Item Cadastrado!</h6>
@@ -72,7 +62,8 @@
                     <div class="modal-content">
 
                         <div class="modal-body" id="modal-content">
-                            <?php $this->render('forms/add-cond',[
+                            <?php $this->render('forms/add-predio',[
+                                'condominios' => $condominios,
                                 'base' => $base
                             ]); ?>
                         </div>

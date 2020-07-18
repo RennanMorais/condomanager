@@ -54,8 +54,8 @@
               </a>
             </li>
 
-            <li class="nav-item has-treeview <?= ($activeMenu == 'condominio' || $activeMenu == 'predio') ? 'menu-open':''; ?>">
-              <a href="<?=$base;?>/app/condominios" class="nav-link <?= ($activeMenu == 'condominio') ? 'active':''; ?>">
+            <li class="nav-item has-treeview <?= ($activeMasterMenu == 'condominio') ? 'menu-open':''; ?>">
+              <a href="<?=$base;?>/app/condominios" class="nav-link <?= ($activeMasterMenu == 'condominio') ? 'active':''; ?>">
                 <i class="nav-icon fas fa-building"></i>
                 <p>
                   Condominios
@@ -74,7 +74,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?=$base;?>/app/predios" class="nav-link <?= ($activeMenu == 'predios') ? 'active':''; ?>">
+                  <a href="<?=$base;?>/app/predios" class="nav-link <?= ($activeMenu == 'predio') ? 'active':''; ?>">
                     <i class="fa fa-city nav-icon"></i>
                     <p>Prédios</p>
                   </a>
@@ -146,7 +146,7 @@
 
             </li>
 
-            <li class="nav-item has-treeview <?= ($activeMenu == 'financeiro' || $activeMenu == 'categoria_contas') ? 'menu-open':''; ?>">
+            <li class="nav-item has-treeview <?= ($activeMasterMenu == 'financeiro') ? 'menu-open':''; ?>">
               <a href="" class="nav-link <?= ($activeMenu == 'financeiro') ? 'active':''; ?>">
                 <i class="nav-icon fa fa-dollar-sign"></i>
                 <p>

@@ -23,6 +23,8 @@
   <script type="text/javascript" src="<?=$base;?>/assets/js/all.min.js"></script>
   <!-- Chart -->
   <script type="text/javascript" src="<?=$base;?>/assets/js/Chart.min.js"></script>
+  <!-- Mask -->
+  <script type="text/javascript" src="<?=$base;?>/assets/js/jquery.mask.min.js"></script>
   <!-- Page Script -->
   <script type="text/javascript" src="<?=$base;?>/assets/js/app.js"></script>
 

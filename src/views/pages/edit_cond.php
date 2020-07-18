@@ -20,7 +20,7 @@
 
         <div class="container">
           
-        <form action="http://localhost/condosoftware/public/app/condominios/edit_cond/save" method="POST">
+        <form action="<?=$base;?>/app/condominios/edit_cond/save" method="POST">
 
             <h6>Editar Dados</h6>
 
@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" name='cnpj' required placeholder="CNPJ" value="<?=$condItem['cnpj'];?>"/>
+                <input type="text" class="form-control" name='cnpj' id="cnpj-field" required placeholder="CNPJ" value="<?=$condItem['cnpj'];?>"/>
             </div>
 
             <div class="form-group">
@@ -47,7 +47,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" name='complemento' required placeholder="Complemento" value="<?=$condItem['complemento'];?>"/>
+                <input type="text" class="form-control" name='complemento' placeholder="Complemento" value="<?=$condItem['complemento'];?>"/>
             </div>
 
             <div class="form-group">

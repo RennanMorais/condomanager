@@ -20,7 +20,7 @@
                         <li id="btn-quemsomos">Quem somos</li>
                         <li id="btn-sistema">O sistema</li>
                         <li id="btn-contato">Contato</li>
-                        <li><a href="<?=$base;?>/login" class="btn btn-info">Acesso ao sistema</a></li>
+                        <li><a href="<?=$base;?>/app" class="btn btn-info">Acesso ao sistema</a></li>
                     </ul>
                 </nav>
             </div>

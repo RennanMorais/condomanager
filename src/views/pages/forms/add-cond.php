@@ -1,4 +1,4 @@
-<form action="http://localhost/condosoftware/public/app/condominios/add_cond" method="POST">
+<form action="<?=$base;?>/app/condominios/add_cond" method="POST">
 
     <h6>Novo Condomínio</h6>
 
@@ -7,7 +7,7 @@
     </div>
 
     <div class="form-group">
-        <input type="text" class="form-control" name='cnpj' required placeholder="CNPJ"/>
+        <input type="text" class="form-control" name='cnpj' id="cnpj-field" required placeholder="CNPJ"/>
     </div>
 
     <div class="form-group">
@@ -23,7 +23,7 @@
     </div>
 
     <div class="form-group">
-        <input type="text" class="form-control" name='complemento' required placeholder="Complemento"/>
+        <input type="text" class="form-control" name='complemento' placeholder="Complemento"/>
     </div>
 
     <div class="form-group">
@@ -31,7 +31,7 @@
     </div>
 
     <div class='form-group'>
-        <button type="submit" class="btn btn-info btn-login"><span class="fa fa-plus"></span> Adicionar</button>         
+        <button type="submit" class="btn btn-info"><span class="fa fa-plus"></span> Adicionar</button>         
     </div>
 
 </form>

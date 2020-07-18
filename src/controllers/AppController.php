@@ -34,7 +34,8 @@ class AppController extends Controller {
         }
 
     }
-
+    
+    //Funções da pagina de condominio
     public function condominio() {
         $condominiosList = CondominioHandler::getCond();
         $this->render('condominio', [
@@ -89,6 +90,58 @@ class AppController extends Controller {
         if($condominioId) {
             CondominioHandler::delCond($condominioId);
             $this->redirect('/app/condominios');
+        }
+
+    }
+
+    //Funções da página de prédios
+    public function predio() {
+        $prediosList = CondominioHandler::getPredios();
+        $condominiosList = CondominioHandler::getCond();
+        $this->render('predio', [
+            'loggedUser' => $this->loggedUser,
+            'condominios' => $condominiosList,
+            'prediosList' => $prediosList
+        ]);
+    }
+
+    public function addPredio() {
+        $predio = filter_input(INPUT_POST, 'name');
+        $condominio = filter_input(INPUT_POST, 'condominio');
+
+        if($predio && $condominio) {
+            CondominioHandler::addPrd($predio, $condominio);
+            $this->redirect('/app/predios');
+        }
+    }
+
+    public function editPredio($atts) {
+        $prdItem = CondominioHandler::getPrdItem($atts['id']);
+        $condominiosList = CondominioHandler::getCond();
+        $this->render('edit_prd', [
+            'loggedUser' => $this->loggedUser,
+            'prdItem' => $prdItem,
+            'condominios' => $condominiosList
+        ]);
+
+    }
+
+    public function savePredio() {
+        $id = filter_input(INPUT_POST, 'id');
+        $nome = filter_input(INPUT_POST, 'name');
+        $condominio = filter_input(INPUT_POST, 'condominio');
+
+        if($nome && $condominio) {
+            CondominioHandler::savePrd($id, $nome, $condominio);
+            $this->redirect('/app/predios');
+        }
+    }
+
+    public function deletePredio() {
+        $predioId = filter_input(INPUT_GET, 'id');
+        if($predioId) {
+            CondominioHandler::delPrd($predioId);
+            $this->redirect('/app/predios');
         }
 
     }
