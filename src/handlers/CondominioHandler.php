@@ -20,7 +20,7 @@ class CondominioHandler {
     }
 
     public function getCond() {
-        $condList = Condominio::select()->get();
+        $condList = Condominio::select()->orderBy('nome', 'asc')->get();
         $cond = [];
         foreach($condList as $condItem) {
             $newCond = new Condominio();

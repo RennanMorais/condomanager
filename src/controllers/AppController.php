@@ -146,4 +146,47 @@ class AppController extends Controller {
 
     }
 
+    //Funções da página de prédios
+    public function morador() {
+        $prediosList = CondominioHandler::getPredios();
+        $condominiosList = CondominioHandler::getCond();
+        $this->render('morador', [
+            'loggedUser' => $this->loggedUser,
+            'condominios' => $condominiosList,
+            'prediosList' => $prediosList
+        ]);
+    }
+
+    public function addMorador() {
+        $predio = filter_input(INPUT_POST, 'name');
+        $condominio = filter_input(INPUT_POST, 'condominio');
+
+        if($predio && $condominio) {
+            CondominioHandler::addPrd($predio, $condominio);
+            $this->redirect('/app/predios');
+        }
+    }
+
+    public function editMorador($atts) {
+        $prdItem = CondominioHandler::getPrdItem($atts['id']);
+        $condominiosList = CondominioHandler::getCond();
+        $this->render('edit_prd', [
+            'loggedUser' => $this->loggedUser,
+            'prdItem' => $prdItem,
+            'condominios' => $condominiosList
+        ]);
+
+    }
+
+    public function saveMorador() {
+        $id = filter_input(INPUT_POST, 'id');
+        $nome = filter_input(INPUT_POST, 'name');
+        $condominio = filter_input(INPUT_POST, 'condominio');
+
+        if($nome && $condominio) {
+            CondominioHandler::savePrd($id, $nome, $condominio);
+            $this->redirect('/app/predios');
+        }
+    }
+
 }

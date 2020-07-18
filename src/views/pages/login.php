@@ -37,7 +37,7 @@
         <form action="<?=$base;?>/login" method="POST">
 
             <div class="form-group">
-              <input type="text" class="form-control" name='email' required placeholder="Email"/>
+              <input type="text" class="form-control" name='email' required placeholder="E-mail"/>
             </div>
             
             <div class="form-group">
@@ -45,7 +45,7 @@
             </div>
 
             <div class='form-group'>
-                <button type="submit" class="btn btn-info btn-login"><span class="fas fa-lock"></span> Login</button>         
+                <button type="submit" class="btn btn-info btn-login container-fluid"><span class="fa fa-lock"></span> Login</button>         
             </div>
       
           

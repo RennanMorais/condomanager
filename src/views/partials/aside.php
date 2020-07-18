@@ -83,7 +83,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?=$base;?>/app/morador" class="nav-link <?= ($activeMenu == 'morador') ? 'active':''; ?>">
+                  <a href="<?=$base;?>/app/moradores" class="nav-link <?= ($activeMenu == 'morador') ? 'active':''; ?>">
                     <i class="far fa-address-book nav-icon"></i>
                     <p>Morador</p>
                   </a>
