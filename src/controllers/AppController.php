@@ -73,7 +73,7 @@ class AppController extends Controller {
         $id = filter_input(INPUT_POST, 'id');
         $nome = filter_input(INPUT_POST, 'name');
         $cnpj = filter_input(INPUT_POST, 'cnpj');
-        $email = filter_input(INPUT_POST, 'email');
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $endereco = filter_input(INPUT_POST, 'endereco');
         $numero = filter_input(INPUT_POST, 'numero');
         $complemento = filter_input(INPUT_POST, 'complemento');
@@ -150,42 +150,59 @@ class AppController extends Controller {
     public function morador() {
         $prediosList = CondominioHandler::getPredios();
         $condominiosList = CondominioHandler::getCond();
+        $moradorList = CondominioHandler::getMorador();
         $this->render('morador', [
             'loggedUser' => $this->loggedUser,
             'condominios' => $condominiosList,
-            'prediosList' => $prediosList
+            'predios' => $prediosList,
+            'moradores' => $moradorList
         ]);
     }
 
     public function addMorador() {
-        $predio = filter_input(INPUT_POST, 'name');
+        $nome = filter_input(INPUT_POST, 'name');
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $rg = filter_input(INPUT_POST, 'rg');
+        $cpf = filter_input(INPUT_POST, 'cpf');
+        $phone = filter_input(INPUT_POST, 'phone');
+        $tipo = filter_input(INPUT_POST, 'tipo');
         $condominio = filter_input(INPUT_POST, 'condominio');
+        $predio = filter_input(INPUT_POST, 'predio');
+        $apto = filter_input(INPUT_POST, 'apto');
 
-        if($predio && $condominio) {
-            CondominioHandler::addPrd($predio, $condominio);
-            $this->redirect('/app/predios');
+        if($nome && $email) {
+            UserHandler::addUserFromMorador($nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto);
+            $this->redirect('/app/moradores');
         }
     }
 
     public function editMorador($atts) {
-        $prdItem = CondominioHandler::getPrdItem($atts['id']);
+        $moradorItem = CondominioHandler::getMoradorItem($atts['id']);
         $condominiosList = CondominioHandler::getCond();
-        $this->render('edit_prd', [
+        $prediosList = CondominioHandler::getPredios();
+        $this->render('edit_morador', [
             'loggedUser' => $this->loggedUser,
-            'prdItem' => $prdItem,
-            'condominios' => $condominiosList
+            'morador' => $moradorItem,
+            'condominios' => $condominiosList,
+            'predios' => $prediosList
         ]);
-
     }
 
     public function saveMorador() {
         $id = filter_input(INPUT_POST, 'id');
         $nome = filter_input(INPUT_POST, 'name');
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $rg = filter_input(INPUT_POST, 'rg');
+        $cpf = filter_input(INPUT_POST, 'cpf');
+        $phone = filter_input(INPUT_POST, 'phone');
+        $tipo = filter_input(INPUT_POST, 'tipo');
         $condominio = filter_input(INPUT_POST, 'condominio');
+        $predio = filter_input(INPUT_POST, 'predio');
+        $apto = filter_input(INPUT_POST, 'apto');
 
-        if($nome && $condominio) {
-            CondominioHandler::savePrd($id, $nome, $condominio);
-            $this->redirect('/app/predios');
+        if($nome && $email) {
+            CondominioHandler::saveMoradorFromMorador($id, $nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto);
+            $this->redirect('/app/moradores');
         }
     }
 

@@ -54,4 +54,23 @@ class UserHandler {
         return $token;
     }
 
+    public function addUserFromMorador($nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
+        $password = password_hash($cpf, PASSWORD_DEFAULT);
+        $access = '3';
+        User::insert([
+            'name' => $nome,
+            'email' => $email,
+            'password' => $password,
+            'rg' => $rg,
+            'cpf' => $cpf,
+            'phone' => $phone,
+            'tipo' => $tipo,
+            'condominio' => $condominio,
+            'predio' => $predio,
+            'apto' => $apto,
+            'access' => $access
+        ])->execute();
+        return true;
+    }
+
 }

@@ -1,5 +1,5 @@
 <?php $render('header'); ?>
-<?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'condominio']); ?>
+<?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'predio', 'activeMasterMenu' => 'condominio']); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -8,7 +8,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Pagina</h1>
+              <h1 class="m-0 text-dark">Prédios</h1>
             </div>
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->

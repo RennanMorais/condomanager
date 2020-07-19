@@ -36,6 +36,7 @@
                                     <th>RG</th>
                                     <th>CPF</th>
                                     <th>Contato</th>
+                                    <th>Tipo</th>
                                     <th>Condomínio</th>
                                     <th>Prédio</th>
                                     <th>Apartamento</th>
@@ -43,7 +44,22 @@
                                 </tr>
                         </thead>
                         <tbody>
-                            
+                            <?php foreach($moradores as $moradorItem): ?>
+                                <?php if($moradorItem->access === '3'): ?>
+                                <tr>
+                                    <td><?=$moradorItem->name;?></td>
+                                    <td><?=$moradorItem->email;?></td>
+                                    <td><?=$moradorItem->rg;?></td>
+                                    <td><?=$moradorItem->cpf;?></td>
+                                    <td><?=$moradorItem->phone;?></td>
+                                    <td><?=$moradorItem->tipo;?></td>
+                                    <td><?=$moradorItem->condominio;?></td>
+                                    <td><?=$moradorItem->predio;?></td>
+                                    <td><?=$moradorItem->apto;?></td>
+                                    <td><a href="<?=$base;?>/app/moradores/edit_morador/<?=$moradorItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="<?=$base;?>/app/moradores/delete_morador?id=<?=$moradorItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -65,7 +81,7 @@
                             <?php $this->render('forms/add-morador',[
                                 'base' => $base,
                                 'condominios' => $condominios,
-                                'predios' => $prediosList
+                                'predios' => $predios
                             ]); ?>
                         </div>
 

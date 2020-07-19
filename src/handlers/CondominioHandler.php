@@ -3,6 +3,8 @@ namespace src\handlers;
 
 use \src\models\Condominio;
 use \src\models\Predio;
+use \src\models\User;
+
 
 class CondominioHandler {
 
@@ -95,6 +97,47 @@ class CondominioHandler {
 
     public function delPrd($id) {
         Predio::delete()->where('id', $id)->execute();
+        return true;
+    }
+
+    public function getMorador() {
+        $moradorList = User::select()->get();
+        $morador = [];
+        foreach($moradorList as $moradorItem) {
+            $newMorador = new User();
+            $newMorador->id = $moradorItem['id'];
+            $newMorador->name = $moradorItem['name'];
+            $newMorador->email = $moradorItem['email'];
+            $newMorador->rg = $moradorItem['rg'];
+            $newMorador->cpf = $moradorItem['cpf'];
+            $newMorador->phone = $moradorItem['phone'];
+            $newMorador->tipo = $moradorItem['tipo'];
+            $newMorador->condominio = $moradorItem['condominio'];
+            $newMorador->predio = $moradorItem['predio'];
+            $newMorador->apto = $moradorItem['apto'];
+            $newMorador->access = $moradorItem['access'];
+            $morador[] = $newMorador;
+        }
+        return $morador;
+    }
+
+    public function getMoradorItem($id) {
+        $moradorItem = User::select()->where('id', $id)->one();
+        return $moradorItem;
+    }
+
+    public static function saveMoradorFromMorador($id, $nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
+        User::update()
+        ->set('name', $nome)
+        ->set('email', $email)
+        ->set('rg', $rg)
+        ->set('cpf', $cpf)
+        ->set('phone', $phone)
+        ->set('tipo', $tipo)
+        ->set('condominio', $condominio)
+        ->set('predio', $predio)
+        ->set('apto', $apto)
+        ->where('id', $id)->execute();
         return true;
     }
 

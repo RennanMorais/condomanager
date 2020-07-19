@@ -7,27 +7,27 @@
     </div>
 
     <div class="form-group">
-        <input type="email" class="form-control" name='email' id="cnpj-field" required placeholder="E-mail"/>
+        <input type="email" class="form-control" name='email' required placeholder="E-mail"/>
     </div>
 
     <div class="form-group">
-        <input type="text" class="form-control" name='rg' required placeholder="RG"/>
+        <input type="text" class="form-control" name='rg' id="rg-field" required placeholder="RG"/>
     </div>
 
     <div class="form-group">
-        <input type="text" class="form-control" name='cpf' required placeholder="CPF"/>
+        <input type="text" class="form-control" name='cpf' id="cpf-field" required placeholder="CPF"/>
     </div>
 
     <div class="form-group">
-        <input type="text" class="form-control" name='phone' placeholder="Telefone/Celular"/>
+        <input type="text" class="form-control" name='phone' id="phone-field" placeholder="Telefone/Celular"/>
     </div>
 
     <div class="form-group">
         <span>Tipo</span>
         <select name="tipo" class="form-control">
             <option value="">Selecionar...</option>
-            <option value="">Morador</option>
-            <option value="">Proprietário</option>
+            <option value="Morador">Morador</option>
+            <option value="Proprietário">Proprietário</option>
         </select>
     </div>
 

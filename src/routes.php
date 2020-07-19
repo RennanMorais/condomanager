@@ -32,7 +32,7 @@ $router->get('/app/predios/delete_prd', 'AppController@deletePredio');
 
 //Rotas Moradores
 $router->get('/app/moradores', 'AppController@morador');
-$router->post('/app/moradores/add_morador', 'AppController@addPredio');
-$router->get('/app/moradores/edit_morador/{id}', 'AppController@editPredio');
-$router->post('/app/moradores/edit_prd/save', 'AppController@savePredio');
-$router->get('/app/moradores/delete_prd', 'AppController@deletePredio');
+$router->post('/app/moradores/add_morador', 'AppController@addMorador');
+$router->get('/app/moradores/edit_morador/{id}', 'AppController@editMorador');
+$router->post('/app/moradores/edit_morador/save', 'AppController@saveMorador');
+$router->get('/app/moradores/delete_morador', 'AppController@deleteMorador');
