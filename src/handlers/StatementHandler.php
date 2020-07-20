@@ -5,7 +5,7 @@ use \src\models\Statement;
 
 class StatementHandler {
 
-    public function addStatement($text) {
+    public static function addStatement($text) {
         $name = 'Administração';
         $date = date('Y-m-d H:i:s');
         Statement::insert([
@@ -16,7 +16,7 @@ class StatementHandler {
         return true;
     }
 
-    public function getStatement() {
+    public static function getStatement() {
         $statementList = Statement::select()->orderBy('date', 'desc')->limit(5)->get();
         $statement = [];
         foreach($statementList as $statementItem) {

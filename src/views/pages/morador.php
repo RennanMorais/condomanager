@@ -45,7 +45,6 @@
                         </thead>
                         <tbody>
                             <?php foreach($moradores as $moradorItem): ?>
-                                <?php if($moradorItem->access === '3'): ?>
                                 <tr>
                                     <td><?=$moradorItem->name;?></td>
                                     <td><?=$moradorItem->email;?></td>
@@ -56,21 +55,18 @@
                                     <td><?=$moradorItem->condominio;?></td>
                                     <td><?=$moradorItem->predio;?></td>
                                     <td><?=$moradorItem->apto;?></td>
-                                    <td><a href="<?=$base;?>/app/moradores/edit_morador/<?=$moradorItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="<?=$base;?>/app/moradores/delete_morador?id=<?=$moradorItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a></td>
+                                    <td><a href="<?=$base;?>/app/moradores/edit_morador/<?=$moradorItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="<?=$base;?>/app/moradores/disable?id=<?=$moradorItem->id;?>" class="btn btn-outline-danger btn-sm" title="Desativar Morador"><i class="fa fa-user"></i></a></td>
                                 </tr>
-                                <?php endif; ?>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <?php if(empty($condominios)): ?>
-                
+            <?php if(empty($moradores)): ?>           
                 <div class="container-fluid">
-                    <h6 class="alert alert-secondary text-center">Nenhum Morador Cadastrado!</h6>
-                </div>
-            
+                    <h6 class="alert alert-secondary text-center">Nenhum Morador Registrado!</h6>
+                </div>          
             <?php endif;?>
 
             <div class="modal" tabindex="-1" role="dialog" id="condominio-modal">

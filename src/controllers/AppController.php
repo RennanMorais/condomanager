@@ -5,6 +5,7 @@ use \core\Controller;
 use \src\handlers\UserHandler;
 use \src\handlers\StatementHandler;
 use \src\handlers\CondominioHandler;
+use src\models\User;
 
 class AppController extends Controller {
 
@@ -202,6 +203,16 @@ class AppController extends Controller {
 
         if($nome && $email) {
             CondominioHandler::saveMoradorFromMorador($id, $nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto);
+            $this->redirect('/app/moradores');
+        }
+    }
+
+    public function disableMorador() {
+        $moradorId = filter_input(INPUT_GET, 'id');
+        if(!empty($moradorId)) {
+            UserHandler::disableUser($moradorId);
+            $this->redirect('/app/moradores');
+        } else {
             $this->redirect('/app/moradores');
         }
     }

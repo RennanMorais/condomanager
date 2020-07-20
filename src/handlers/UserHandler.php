@@ -32,12 +32,12 @@ class UserHandler {
         return false;
     }
 
-    public function emailExists($email) {
+    public static function emailExists($email) {
         $user = User::select()->where('email', $email)->one();
         return $user ? true : false;
     }
 
-    public function addUser($name, $email, $phone, $password) {
+    public static function addUser($name, $email, $phone, $password) {
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $token = md5(time().rand(0, 9999).time());
         $access = '1';
@@ -54,7 +54,7 @@ class UserHandler {
         return $token;
     }
 
-    public function addUserFromMorador($nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
+    public static function addUserFromMorador($nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
         $password = password_hash($cpf, PASSWORD_DEFAULT);
         $access = '3';
         User::insert([
@@ -70,6 +70,12 @@ class UserHandler {
             'apto' => $apto,
             'access' => $access
         ])->execute();
+        return true;
+    }
+
+    public static function disableUser($id) {
+        $access = '4';
+        User::update()->set('access', $access)->where('id', $id)->execute();
         return true;
     }
 

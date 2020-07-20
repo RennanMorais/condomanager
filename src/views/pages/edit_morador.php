@@ -27,56 +27,98 @@
                 <input type="hidden" name="id" value="<?=$morador['id'];?>">
 
                 <div class="form-group">
-                    <input type="text" class="form-control" name='name' required placeholder="Nome" value="<?=$morador['name'];?>"/>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Nome</div>
+                        </div>
+                        <input type="text" class="form-control" name='name' required value="<?=$morador['name'];?>"/>
+                    </div>                   
                 </div>
 
                 <div class="form-group">
-                    <input type="email" class="form-control" name='email' required placeholder="E-mail" value="<?=$morador['email'];?>"/>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">E-mail</div>
+                        </div>
+                        <input type="email" class="form-control" name='email' required value="<?=$morador['email'];?>"/>
+                    </div>                  
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" name='rg' id="rg-field" required placeholder="RG" value="<?=$morador['rg'];?>"/>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">RG</div>
+                        </div>
+                        <input type="text" class="form-control" name='rg' id="rg-field" required value="<?=$morador['rg'];?>"/>
+                    </div>                 
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" name='cpf' id="cpf-field" required placeholder="CPF" value="<?=$morador['cpf'];?>"/>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">CPF</div>
+                        </div>
+                        <input type="text" class="form-control" name='cpf' id="cpf-field" required value="<?=$morador['cpf'];?>"/>
+                    </div>                    
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" name='phone' id="phone-field" placeholder="Telefone/Celular" value="<?=$morador['phone'];?>"/>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Telefone/Celular</div>
+                        </div>
+                        <input type="text" class="form-control" name='phone' id="phone-field" value="<?=$morador['phone'];?>"/>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <span>Tipo</span>
-                    <select name="tipo" class="form-control">
-                        <option value="<?=$morador['tipo'];?>"><?=$morador['tipo'];?></option>
-                        <option value="Morador">Morador</option>
-                        <option value="Proprietário">Proprietário</option>
-                    </select>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Tipo</div>
+                        </div>
+                        <select name="tipo" class="form-control">
+                            <option value="<?=$morador['tipo'];?>"><?=$morador['tipo'];?></option>
+                            <option value="Morador">Morador</option>
+                            <option value="Proprietário">Proprietário</option>
+                        </select>
+                    </div>                
                 </div>
 
                 <div class="form-group">
-                    <span>Condomínio</span>
-                    <select name="condominio" class="form-control">
-                        <option value="<?=$morador['condominio'];?>"><?=$morador['condominio'];?></option>
-                        <?php foreach($condominios as $condominiosItem):?>
-                        <option value="<?=$condominiosItem->nome;?>"><?=$condominiosItem->nome;?></option>
-                        <?php endforeach;?>
-                    </select>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Condomínios</div>
+                        </div>
+                        <select name="condominio" class="form-control">
+                            <option value="<?=$morador['condominio'];?>"><?=$morador['condominio'];?></option>
+                            <?php foreach($condominios as $condominiosItem):?>
+                            <option value="<?=$condominiosItem->nome;?>"><?=$condominiosItem->nome;?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <span>Prédio</span>
-                    <select name="predio" class="form-control">
-                        <option value="<?=$morador['predio'];?>"><?=$morador['predio'];?></option>
-                        <?php foreach($predios as $prediosItem):?>
-                        <option value="<?=$prediosItem->nome;?>"><?=$prediosItem->nome;?></option>
-                        <?php endforeach;?>
-                    </select>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Prédio</div>
+                        </div>
+                        <select name="predio" class="form-control">
+                            <option value="<?=$morador['predio'];?>"><?=$morador['predio'];?></option>
+                            <?php foreach($predios as $prediosItem):?>
+                            <option value="<?=$prediosItem->nome;?>"><?=$prediosItem->nome;?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>                   
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" name='apto' placeholder="Número do Apto" value="<?=$morador['apto'];?>"/>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Apartamento</div>
+                        </div>
+                        <input type="text" class="form-control" name='apto' placeholder="Número do Apto" value="<?=$morador['apto'];?>"/>
+                    </div>                    
                 </div>
 
                 <div class='form-group'>

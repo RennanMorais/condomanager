@@ -8,7 +8,7 @@ use \src\models\User;
 
 class CondominioHandler {
 
-    public function addCond($name, $cnpj, $email, $endereco, $numero, $complemento, $bairro) {
+    public static function addCond($name, $cnpj, $email, $endereco, $numero, $complemento, $bairro) {
         Condominio::insert([
             'nome' => $name,
             'cnpj' => $cnpj,
@@ -21,7 +21,7 @@ class CondominioHandler {
         return true;
     }
 
-    public function getCond() {
+    public static function getCond() {
         $condList = Condominio::select()->orderBy('nome', 'asc')->get();
         $cond = [];
         foreach($condList as $condItem) {
@@ -39,17 +39,17 @@ class CondominioHandler {
         return $cond;
     }
 
-    public function delCond($id) {
+    public static function delCond($id) {
         Condominio::delete()->where('id', $id)->execute();
         return true;
     }
 
-    public function getCondItem($id) {
+    public static function getCondItem($id) {
         $condItem = Condominio::select()->where('id', $id)->one();
         return $condItem;
     }
 
-    public function saveCond($id, $nome, $cnpj, $email, $endereco, $numero, $complemento, $bairro) {
+    public static function saveCond($id, $nome, $cnpj, $email, $endereco, $numero, $complemento, $bairro) {
         Condominio::update()
         ->set('nome', $nome)
         ->set('cnpj', $cnpj)
@@ -61,7 +61,7 @@ class CondominioHandler {
         return true;
     }
 
-    public function addPrd($predio, $condominio) {
+    public static function addPrd($predio, $condominio) {
         Predio::insert([
             'nome' => $predio,
             'condominio' => $condominio
@@ -69,7 +69,7 @@ class CondominioHandler {
         return true;
     }
 
-    public function getPredios() {
+    public static function getPredios() {
         $prdList = Predio::select()->get();
         $prd = [];
         foreach($prdList as $prdItem) {
@@ -82,12 +82,12 @@ class CondominioHandler {
         return $prd;
     }
 
-    public function getPrdItem($id) {
+    public static function getPrdItem($id) {
         $prdItem = Predio::select()->where('id', $id)->one();
         return $prdItem;
     }
 
-    public function savePrd($id, $nome, $condominio) {
+    public static function savePrd($id, $nome, $condominio) {
         Predio::update()
         ->set('nome', $nome)
         ->set('condominio', $condominio)
@@ -95,13 +95,13 @@ class CondominioHandler {
         return true;
     }
 
-    public function delPrd($id) {
+    public static function delPrd($id) {
         Predio::delete()->where('id', $id)->execute();
         return true;
     }
 
-    public function getMorador() {
-        $moradorList = User::select()->get();
+    public static function getMorador() {
+        $moradorList = User::select()->where('access', '3')->get();
         $morador = [];
         foreach($moradorList as $moradorItem) {
             $newMorador = new User();
@@ -121,7 +121,7 @@ class CondominioHandler {
         return $morador;
     }
 
-    public function getMoradorItem($id) {
+    public static function getMoradorItem($id) {
         $moradorItem = User::select()->where('id', $id)->one();
         return $moradorItem;
     }

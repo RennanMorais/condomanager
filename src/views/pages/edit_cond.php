@@ -27,31 +27,66 @@
               <input type="hidden" name="id" value="<?=$condItem['id'];?>">
 
               <div class="form-group">
-                  <input type="text" class="form-control" name='name' required placeholder="Nome" value="<?=$condItem['nome'];?>"/>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text">Nome</div>
+                      </div>
+                      <input type="text" class="form-control" name='name' required value="<?=$condItem['nome'];?>"/>
+                  </div>
               </div>
 
               <div class="form-group">
-                  <input type="text" class="form-control" name='cnpj' id="cnpj-field" required placeholder="CNPJ" value="<?=$condItem['cnpj'];?>"/>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text">CNPJ</div>
+                      </div>
+                      <input type="text" class="form-control" name='cnpj' id="cnpj-field" required value="<?=$condItem['cnpj'];?>"/>
+                  </div>
               </div>
 
               <div class="form-group">
-                  <input type="email" class="form-control" name='email' placeholder="E-mail" value="<?=$condItem['email'];?>"/>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text">E-mail</div>
+                      </div>
+                      <input type="email" class="form-control" name='email' value="<?=$condItem['email'];?>"/>
+                  </div> 
               </div>
 
               <div class="form-group">
-                  <input type="text" class="form-control" name='endereco' required placeholder="Endereço" value="<?=$condItem['endereco'];?>"/>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text">Endereço</div>
+                      </div>
+                      <input type="text" class="form-control" name='endereco' required value="<?=$condItem['endereco'];?>"/>
+                  </div>       
               </div>
 
               <div class="form-group">
-                  <input type="text" class="form-control" name='numero' required placeholder="Número" value="<?=$condItem['numero'];?>"/>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text">Número</div>
+                      </div>
+                      <input type="text" class="form-control" name='numero' required value="<?=$condItem['numero'];?>"/>
+                  </div>                 
               </div>
 
               <div class="form-group">
-                  <input type="text" class="form-control" name='complemento' placeholder="Complemento" value="<?=$condItem['complemento'];?>"/>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text">Complemento</div>
+                      </div>
+                      <input type="text" class="form-control" name='complemento' value="<?=$condItem['complemento'];?>"/>
+                  </div>                  
               </div>
 
               <div class="form-group">
-                  <input type="text" class="form-control" name='bairro' required placeholder="Bairro" value="<?=$condItem['bairro'];?>"/>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text">Bairro</div>
+                      </div>
+                      <input type="text" class="form-control" name='bairro' required value="<?=$condItem['bairro'];?>"/>
+                  </div> 
               </div>
 
               <div class='form-group'>

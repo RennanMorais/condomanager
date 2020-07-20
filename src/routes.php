@@ -35,4 +35,11 @@ $router->get('/app/moradores', 'AppController@morador');
 $router->post('/app/moradores/add_morador', 'AppController@addMorador');
 $router->get('/app/moradores/edit_morador/{id}', 'AppController@editMorador');
 $router->post('/app/moradores/edit_morador/save', 'AppController@saveMorador');
-$router->get('/app/moradores/delete_morador', 'AppController@deleteMorador');
+$router->get('/app/moradores/disable', 'AppController@disableMorador');
+
+//Rotas Áreas Comuns
+$router->get('/app/areascomuns', 'AppController@areas');
+$router->post('/app/areascomuns/add_area', 'AppController@addArea');
+$router->get('/app/areascomuns/edit_area/{id}', 'AppController@editArea');
+$router->post('/app/areascomuns/edit_area/save', 'AppController@saveArea');
+$router->get('/app/areascomuns/delete_area', 'AppController@deleteArea');
