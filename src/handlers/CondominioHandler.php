@@ -3,7 +3,7 @@ namespace src\handlers;
 
 use \src\models\Condominio;
 use \src\models\Predio;
-use \src\models\AreasComum;
+use \src\models\Areascomum;
 use \src\models\User;
 
 
@@ -151,7 +151,7 @@ class CondominioHandler {
     }
 
     public static function getAreas() {
-        $areasList = AreasComum::select()->get();
+        $areasList = Areascomum::select()->get();
         $areas = [];
         foreach($areasList as $areaItem) {
             $newArea = new AreasComum();
@@ -161,6 +161,24 @@ class CondominioHandler {
             $areas[] = $newArea;
         }
         return $areas;
+    }
+
+    public static function getAreaItem($id) {
+        $areaItem = Areascomum::select()->where('id', $id)->one();
+        return $areaItem;
+    }
+
+    public static function saveAreaComum($id, $nome, $condominio) {
+        Areascomum::update()
+        ->set('nome', $nome)
+        ->set('condominio', $condominio)
+        ->where('id', $id)->execute();
+        return true;
+    }
+
+    public function delArea($id) {
+        Areascomum::delete()->where('id', $id)->execute();
+        return true;
     }
 
 }

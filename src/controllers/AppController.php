@@ -238,4 +238,33 @@ class AppController extends Controller {
         }
     }
 
+    public function editArea($atts) {
+        $areaComumItem = CondominioHandler::getAreaItem($atts['id']);
+        $condominiosList = CondominioHandler::getCond();
+        $this->render('edit_area', [
+            'loggedUser' => $this->loggedUser,
+            'areaComumItem' => $areaComumItem,
+            'condominios' => $condominiosList
+        ]);
+    }
+
+    public function saveArea() {
+        $id = filter_input(INPUT_POST, 'id');
+        $nome = filter_input(INPUT_POST, 'name');
+        $condominio = filter_input(INPUT_POST, 'condominio');
+
+        if($nome && $condominio) {
+            CondominioHandler::saveAreaComum($id, $nome, $condominio);
+            $this->redirect('/app/area_comum');
+        }
+    }
+
+    public function deleteArea() {
+        $idArea = filter_input(INPUT_GET, 'id');
+        if($idArea) {
+            CondominioHandler::delArea($idArea);
+            $this->redirect('/app/area_comum');
+        }
+    }
+
 }

@@ -35,7 +35,7 @@
             <img src="<?=$base;?>/assets/images/avatar.png" class="img-circle elevation-2" alt="Users Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block"><?=$loggedUser->name;?></a>
+            <span class="d-block"><?=$loggedUser->name;?></span>
           </div>
         </div>
 
