@@ -3,6 +3,7 @@ namespace src\handlers;
 
 use \src\models\Condominio;
 use \src\models\Predio;
+use \src\models\AreasComum;
 use \src\models\User;
 
 
@@ -139,6 +140,27 @@ class CondominioHandler {
         ->set('apto', $apto)
         ->where('id', $id)->execute();
         return true;
+    }
+
+    public static function addNewArea($nome, $condominio) {
+        Areascomum::insert([
+            'nome' => $nome,
+            'condominio' => $condominio
+        ])->execute();
+        return true;
+    }
+
+    public static function getAreas() {
+        $areasList = AreasComum::select()->get();
+        $areas = [];
+        foreach($areasList as $areaItem) {
+            $newArea = new AreasComum();
+            $newArea->id = $areaItem['id'];
+            $newArea->nome = $areaItem['nome'];
+            $newArea->condominio = $areaItem['condominio'];
+            $areas[] = $newArea;
+        }
+        return $areas;
     }
 
 }

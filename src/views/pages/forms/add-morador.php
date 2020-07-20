@@ -65,7 +65,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">Condomínio</div>
             </div>
-            <select name="condominio" class="form-control">
+            <select name="condominio" id="combo-condominio" class="form-control">
                 <option value="">Selecionar...</option>
                 <?php foreach($condominios as $condominiosItem):?>
                 <option value="<?=$condominiosItem->nome;?>"><?=$condominiosItem->nome;?></option>

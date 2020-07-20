@@ -147,7 +147,7 @@ class AppController extends Controller {
 
     }
 
-    //Funções da página de prédios
+    //Funções da página de moradores
     public function morador() {
         $prediosList = CondominioHandler::getPredios();
         $condominiosList = CondominioHandler::getCond();
@@ -214,6 +214,27 @@ class AppController extends Controller {
             $this->redirect('/app/moradores');
         } else {
             $this->redirect('/app/moradores');
+        }
+    }
+
+    //Funções da página de areas comuns
+    public function areas() {
+        $areasList = CondominioHandler::getAreas();
+        $condominiosList = CondominioHandler::getCond();
+        $this->render('areacomum', [
+            'loggedUser' => $this->loggedUser,
+            'condominios' => $condominiosList,
+            'areas' => $areasList
+        ]);
+    }
+
+    public function addArea() {
+        $nome = filter_input(INPUT_POST, 'name');
+        $condominio = filter_input(INPUT_POST, 'condominio');
+
+        if($nome && $condominio) {
+            CondominioHandler::addNewArea($nome, $condominio);
+            $this->redirect('/app/area_comum');
         }
     }
 
