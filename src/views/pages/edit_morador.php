@@ -92,7 +92,7 @@
                         <select name="condominio" class="form-control">
                             <option value="<?=$morador['condominio'];?>"><?=$morador['condominio'];?></option>
                             <?php foreach($condominios as $condominiosItem):?>
-                            <option value="<?=$condominiosItem->nome;?>"><?=$condominiosItem->nome;?></option>
+                            <option value="<?=$condominiosItem->id;?>"><?=$condominiosItem->nome;?></option>
                             <?php endforeach;?>
                         </select>
                     </div>
@@ -106,7 +106,7 @@
                         <select name="predio" class="form-control">
                             <option value="<?=$morador['predio'];?>"><?=$morador['predio'];?></option>
                             <?php foreach($predios as $prediosItem):?>
-                            <option value="<?=$prediosItem->nome;?>"><?=$prediosItem->nome;?></option>
+                            <option value="<?=$prediosItem->id;?>"><?=$prediosItem->nome;?></option>
                             <?php endforeach;?>
                         </select>
                     </div>                   

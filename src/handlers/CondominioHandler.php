@@ -63,9 +63,11 @@ class CondominioHandler {
     }
 
     public static function addPrd($predio, $condominio) {
+        $cond = Condominio::select()->where('id', $condominio)->one();
         Predio::insert([
             'nome' => $predio,
-            'condominio' => $condominio
+            'id_condominio' => $condominio,
+            'condominio' => $cond['nome']
         ])->execute();
         return true;
     }
@@ -77,6 +79,7 @@ class CondominioHandler {
             $newPrd = new Predio();
             $newPrd->id = $prdItem['id'];
             $newPrd->nome = $prdItem['nome'];
+            $newPrd->id_condominio = $prdItem['id_condominio'];
             $newPrd->condominio = $prdItem['condominio'];
             $prd[] = $newPrd;
         }
@@ -89,9 +92,11 @@ class CondominioHandler {
     }
 
     public static function savePrd($id, $nome, $condominio) {
+        $cond = Condominio::select()->where('id', $condominio)->one();
         Predio::update()
         ->set('nome', $nome)
-        ->set('condominio', $condominio)
+        ->set('id_condominio', $condominio)
+        ->set('condominio', $cond['nome'])
         ->where('id', $id)->execute();
         return true;
     }
@@ -127,7 +132,9 @@ class CondominioHandler {
         return $moradorItem;
     }
 
-    public static function saveMoradorFromMorador($id, $nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
+    public function saveMoradorFromMorador($id, $nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
+        $cond = Condominio::select()->where('id', $condominio)->one();
+        $prd = Predio::select()->where('id', $predio)->one();
         User::update()
         ->set('name', $nome)
         ->set('email', $email)
@@ -135,17 +142,21 @@ class CondominioHandler {
         ->set('cpf', $cpf)
         ->set('phone', $phone)
         ->set('tipo', $tipo)
-        ->set('condominio', $condominio)
-        ->set('predio', $predio)
+        ->set('id_condominio', $condominio)
+        ->set('condominio', $cond['nome'])
+        ->set('id_predio', $predio)
+        ->set('predio', $prd['nome'])
         ->set('apto', $apto)
         ->where('id', $id)->execute();
         return true;
     }
 
     public static function addNewArea($nome, $condominio) {
+        $cond = Condominio::select()->where('id', $condominio)->one();
         Areascomum::insert([
             'nome' => $nome,
-            'condominio' => $condominio
+            'id_condominio' => $condominio,
+            'condominio' => $cond['nome']
         ])->execute();
         return true;
     }
@@ -169,9 +180,11 @@ class CondominioHandler {
     }
 
     public static function saveAreaComum($id, $nome, $condominio) {
+        $cond = Condominio::select()->where('id', $condominio)->one();
         Areascomum::update()
         ->set('nome', $nome)
-        ->set('condominio', $condominio)
+        ->set('id_condominio', $condominio)
+        ->set('condominio', $cond['nome'])
         ->where('id', $id)->execute();
         return true;
     }

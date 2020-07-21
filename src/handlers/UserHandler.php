@@ -1,6 +1,8 @@
 <?php
 namespace src\handlers;
 
+use \src\models\Condominio;
+use \src\models\Predio;
 use \src\models\User;
 
 class UserHandler {
@@ -55,6 +57,8 @@ class UserHandler {
     }
 
     public static function addUserFromMorador($nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
+        $cond = Condominio::select()->where('id', $condominio)->one();
+        $prd = Predio::select()->where('id', $predio)->one();
         $password = password_hash($cpf, PASSWORD_DEFAULT);
         $access = '3';
         User::insert([
@@ -65,8 +69,10 @@ class UserHandler {
             'cpf' => $cpf,
             'phone' => $phone,
             'tipo' => $tipo,
-            'condominio' => $condominio,
-            'predio' => $predio,
+            'id_condominio' => $condominio,
+            'condominio' => $cond['nome'],
+            'id_predio' => $predio,
+            'predio' => $prd['nome'],
             'apto' => $apto,
             'access' => $access
         ])->execute();

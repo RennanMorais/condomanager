@@ -129,4 +129,4 @@
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-<?php $render('footer'); ?>
+<?php $render('footer', ['data' => date('d/m/Y')]); ?>
