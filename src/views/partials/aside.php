@@ -101,7 +101,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?=$base;?>/app/reservas_area_comum" class="nav-link <?= ($activeMenu == 'reserva_area') ? 'active':''; ?>">
+                  <a href="<?=$base;?>/app/reservas" class="nav-link <?= ($activeMenu == 'reserva_area') ? 'active':''; ?>">
                     <i class="fa fa-glass-cheers nav-icon"></i>
                     <p>Reserva de Área Comum</p>
                   </a>

@@ -59,9 +59,21 @@ class CondominioHandler {
         ->set('numero', $numero)
         ->set('complemento', $complemento)
         ->set('bairro', $bairro)->where('id', $id)->execute();
+
+        Predio::update()
+        ->set('condominio', $nome)->where('id_condominio', $id)->execute();
+
+        Areascomum::update()
+        ->set('condominio', $nome)->where('id_condominio', $id)->execute();
+
+        User::update()
+        ->set('condominio', $nome)->where('id_condominio', $id)->execute();
+
         return true;
     }
 
+
+    //Funções Predios
     public static function addPrd($predio, $condominio) {
         $cond = Condominio::select()->where('id', $condominio)->one();
         Predio::insert([
@@ -93,11 +105,19 @@ class CondominioHandler {
 
     public static function savePrd($id, $nome, $condominio) {
         $cond = Condominio::select()->where('id', $condominio)->one();
+        
         Predio::update()
         ->set('nome', $nome)
         ->set('id_condominio', $condominio)
         ->set('condominio', $cond['nome'])
         ->where('id', $id)->execute();
+
+        User::update()
+        ->set('id_condominio', $condominio)
+        ->set('condominio', $cond['nome'])
+        ->set('id_predio', $id)
+        ->set('predio', $nome)->where('id_predio', $id)->execute();
+
         return true;
     }
 
@@ -106,6 +126,13 @@ class CondominioHandler {
         return true;
     }
 
+    public static function getPrdListByCond($id) {
+        $prdList = Predio::select()->where('id_condominio', $id)->get();
+        return $prdList;
+    }
+
+
+    //Funções Moradores
     public static function getMorador() {
         $moradorList = User::select()->where('access', '3')->get();
         $morador = [];
@@ -132,7 +159,7 @@ class CondominioHandler {
         return $moradorItem;
     }
 
-    public function saveMoradorFromMorador($id, $nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
+    public static function saveMoradorFromMorador($id, $nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
         $cond = Condominio::select()->where('id', $condominio)->one();
         $prd = Predio::select()->where('id', $predio)->one();
         User::update()
@@ -151,6 +178,8 @@ class CondominioHandler {
         return true;
     }
 
+
+    //Funções de Areas
     public static function addNewArea($nome, $condominio) {
         $cond = Condominio::select()->where('id', $condominio)->one();
         Areascomum::insert([
@@ -189,9 +218,14 @@ class CondominioHandler {
         return true;
     }
 
-    public function delArea($id) {
+    public static function delArea($id) {
         Areascomum::delete()->where('id', $id)->execute();
         return true;
+    }
+
+    public static function getAreaListByCond($id) {
+        $areaList = Areascomum::select()->where('id_condominio', $id)->get();
+        return $areaList;
     }
 
 }

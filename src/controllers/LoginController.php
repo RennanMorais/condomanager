@@ -74,4 +74,12 @@ class LoginController extends Controller {
         $this->redirect('/login');
     }
 
+    public function getForgotForm() {
+        $this->render('/forms/forgotpass');
+    }
+
+    public function getRegistroForm() {
+        $this->render('/forms/registro');
+    }
+
 }

@@ -59,8 +59,14 @@ class UserHandler {
     public static function addUserFromMorador($nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
         $cond = Condominio::select()->where('id', $condominio)->one();
         $prd = Predio::select()->where('id', $predio)->one();
+        
+        //Remover pontos e traço do CPF
+        $cpf = str_replace('.', '', $cpf);
+        $cpf = str_replace('-', '', $cpf);
         $password = password_hash($cpf, PASSWORD_DEFAULT);
+
         $access = '3';
+
         User::insert([
             'name' => $nome,
             'email' => $email,
@@ -83,6 +89,11 @@ class UserHandler {
         $access = '4';
         User::update()->set('access', $access)->where('id', $id)->execute();
         return true;
+    }
+
+    public static function countMoradores() {
+        $countUsers = User::select()->where('access', '3')->count();
+        return $countUsers;
     }
 
 }

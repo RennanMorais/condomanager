@@ -89,8 +89,8 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">Condomínios</div>
                         </div>
-                        <select name="condominio" class="form-control">
-                            <option value="<?=$morador['condominio'];?>"><?=$morador['condominio'];?></option>
+                        <select name="condominio" class="form-control" id="combo-condominio">
+                            <option value="<?=$morador['id_condominio'];?>"><?=$morador['condominio'];?></option>
                             <?php foreach($condominios as $condominiosItem):?>
                             <option value="<?=$condominiosItem->id;?>"><?=$condominiosItem->nome;?></option>
                             <?php endforeach;?>
@@ -103,11 +103,8 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">Prédio</div>
                         </div>
-                        <select name="predio" class="form-control">
-                            <option value="<?=$morador['predio'];?>"><?=$morador['predio'];?></option>
-                            <?php foreach($predios as $prediosItem):?>
-                            <option value="<?=$prediosItem->id;?>"><?=$prediosItem->nome;?></option>
-                            <?php endforeach;?>
+                        <select name="predio" class="form-control" required id="combo-predio">
+                            <option value="<?=$morador['id_predio'];?>"><?=$morador['predio'];?></option>
                         </select>
                     </div>                   
                 </div>
@@ -135,5 +132,65 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script src="<?=$base;?>/assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+    
+    $(document).ready(function()
+    {
+        carrega_predios();
+        carrega_prediosOnChange();
+
+    });
+
+    function carrega_prediosOnChange() {
+        $('#combo-condominio').on('change', function()
+        {
+            var valCond = $('#combo-condominio').val();
+
+            $.ajax({
+                url: "<?=$base;?>/app/moradores",
+                method: "POST",
+                data: {id_cond: valCond},
+                dataType: "json",
+                success: function (data)
+                {
+                    
+                    //console(data);
+                    var html = '';
+                    for (var count = 0; count < data.length; count++){
+                        html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
+                    }
+                    
+                    $('#combo-predio').html(html);
+
+                }
+            });
+        });
+    }
+
+    function carrega_predios() {
+        var valCond = $('#combo-condominio').val();
+        $.ajax({
+            url: "<?=$base;?>/app/moradores",
+            method: "POST",
+            data: {id_cond: valCond},
+            dataType: "json",
+            success: function (data)
+            {
+                
+                //console(data);
+                var html = '';
+                for (var count = 0; count < data.length; count++){
+                    html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
+                }
+                
+                $('#combo-predio').append(html);
+
+            }
+        });
+    }
+
+</script>
 
 <?php $render('footer'); ?>

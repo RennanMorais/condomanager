@@ -32,6 +32,7 @@ $router->get('/app/predios/delete_prd', 'AppController@deletePredio');
 
 //Rotas Moradores
 $router->get('/app/moradores', 'AppController@morador');
+$router->post('/app/moradores', 'AppController@getPredioField');
 $router->post('/app/moradores/add_morador', 'AppController@addMorador');
 $router->get('/app/moradores/edit_morador/{id}', 'AppController@editMorador');
 $router->post('/app/moradores/edit_morador/save', 'AppController@saveMorador');
@@ -43,3 +44,11 @@ $router->post('/app/area_comum/add_area', 'AppController@addArea');
 $router->get('/app/area_comum/edit_area/{id}', 'AppController@editArea');
 $router->post('/app/area_comum/edit_area/save', 'AppController@saveArea');
 $router->get('/app/area_comum/delete_area', 'AppController@deleteArea');
+
+//Rotas Reservas de Areas Comuns
+$router->get('/app/reservas', 'AppController@reservas');
+$router->post('/app/reservas', 'AppController@getAreaField');
+
+//Rotas formularios
+$router->get('/forgot', 'LoginController@getForgotForm');
+$router->get('/registro', 'LoginController@getRegistroForm');

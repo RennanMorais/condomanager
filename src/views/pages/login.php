@@ -81,6 +81,29 @@
 
     <script type="text/javascript" src="<?=$base;?>/assets/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="<?=$base;?>/assets/js/all.min.js"></script>
-    <script type="text/javascript" src="<?=$base;?>/assets/js/script.js"></script> 
+    <script type="text/javascript">
+        //Script para alteração dinamica do modal
+        $('#forgot-btn').on('click', function () {
+
+        $.ajax({url: "<?=$base;?>/forgot", success: function(result){
+          $("#modal-content").html(result);
+        }});
+
+        $('#forgotreg-modal').show('fade');
+        });
+
+        $('#reg-btn').on('click', function () {
+
+        $.ajax({url: "<?=$base;?>/registro", success: function(result){
+          $("#modal-content").html(result);
+        }});
+
+        $('#forgotreg-modal').show('fade');
+        });
+
+        $('#modal-close').on('click', function() {
+        $('#forgotreg-modal').hide('fade');
+        });
+    </script>
   </body>
 </html>

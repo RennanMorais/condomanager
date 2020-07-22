@@ -32,8 +32,7 @@
                         <div class="input-group-text">Nome/Número</div>
                     </div>
                     <input type="text" class="form-control" name='name' required value="<?=$prdItem['nome'];?>"/>
-                </div>
-                
+                </div>   
             </div>
 
             <div class="form-group">

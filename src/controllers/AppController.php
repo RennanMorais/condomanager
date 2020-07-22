@@ -18,11 +18,15 @@ class AppController extends Controller {
         }
     }
 
+
+    //Funções da pagina inicial do sistema
     public function index() {
         $statementsFeed = StatementHandler::getStatement();
+        $countMoradores = UserHandler::countMoradores();
         $this->render('dash', [
             'loggedUser' => $this->loggedUser,
-            'statementsFeed' => $statementsFeed
+            'statementsFeed' => $statementsFeed,
+            'countMoradores' => $countMoradores
         ]);
     }
 
@@ -35,6 +39,7 @@ class AppController extends Controller {
         }
 
     }
+
     
     //Funções da pagina de condominio
     public function condominio() {
@@ -95,6 +100,7 @@ class AppController extends Controller {
 
     }
 
+
     //Funções da página de prédios
     public function predio() {
         $prediosList = CondominioHandler::getPredios();
@@ -146,6 +152,7 @@ class AppController extends Controller {
         }
 
     }
+
 
     //Funções da página de moradores
     public function morador() {
@@ -217,6 +224,13 @@ class AppController extends Controller {
         }
     }
 
+    public function getPredioField() {
+        $idCond = filter_input(INPUT_POST, 'id_cond');
+        $prdList = CondominioHandler::getPrdListByCond($idCond);
+        echo json_encode($prdList);
+    }
+
+
     //Funções da página de areas comuns
     public function areas() {
         $areasList = CondominioHandler::getAreas();
@@ -265,6 +279,24 @@ class AppController extends Controller {
             CondominioHandler::delArea($idArea);
             $this->redirect('/app/area_comum');
         }
+    }
+
+
+    //Pagina de Reservas
+    public function reservas() {
+        $areasList = CondominioHandler::getAreas();
+        $condominiosList = CondominioHandler::getCond();
+        $this->render('reservas', [
+            'loggedUser' => $this->loggedUser,
+            'condominios' => $condominiosList,
+            'areas' => $areasList
+        ]);
+    }
+
+    public function getAreaField() {
+        $idCond = filter_input(INPUT_POST, 'id_cond');
+        $areaList = CondominioHandler::getAreaListByCond($idCond);
+        echo json_encode($areaList);
     }
 
 }

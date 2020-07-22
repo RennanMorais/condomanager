@@ -79,11 +79,8 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">Prédio</div>
             </div>
-            <select name="predio" class="form-control">
+            <select name="predio" class="form-control" id="combo-predio">
                 <option value="">Selecionar...</option>
-                <?php foreach($predios as $prediosItem):?>
-                <option value="<?=$prediosItem->id;?>"><?=$prediosItem->nome;?></option>
-                <?php endforeach;?>
             </select>
         </div>       
     </div>
@@ -102,3 +99,35 @@
     </div>
 
 </form>
+<script src="<?=$base;?>/assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+    
+    $(document).ready(function()
+    {
+        //Carrega condominios e predios de acordo como condominio
+        $('#combo-condominio').on('change', function()
+        {
+            var valCond = $('#combo-condominio').val();
+
+            $.ajax({
+                url: "<?=$base;?>/app/moradores",
+                method: "POST",
+                data: {id_cond: valCond},
+                dataType: "json",
+                success: function (data)
+                {
+                    
+                    //console(data);
+                    var html = '';
+                    for (var count = 0; count < data.length; count++){
+                        html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
+                    }
+                    
+                    $('#combo-predio').html(html);
+
+                }
+            });
+        });
+
+    });
+</script>
