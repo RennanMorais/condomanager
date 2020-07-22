@@ -47,7 +47,9 @@ $router->get('/app/area_comum/delete_area', 'AppController@deleteArea');
 
 //Rotas Reservas de Areas Comuns
 $router->get('/app/reservas', 'AppController@reservas');
-$router->post('/app/reservas', 'AppController@getAreaField');
+$router->post('/app/reservas/getarea', 'AppController@getAreaField');
+$router->post('/app/reservas/getmorador', 'AppController@getMoradorField');
+$router->post('/app/reservas/add_reserva', 'AppController@addReserva');
 
 //Rotas formularios
 $router->get('/forgot', 'LoginController@getForgotForm');

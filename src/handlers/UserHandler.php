@@ -96,4 +96,9 @@ class UserHandler {
         return $countUsers;
     }
 
+    public static function getMoradorField($id) {
+        $moradorList = User::select()->where('id_condominio', $id)->get();
+        return $moradorList;
+    }
+
 }

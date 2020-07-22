@@ -1,4 +1,4 @@
-<form action="http://localhost/condosoftware/public/login/registro" method="POST">
+<form action="<?=$base;?>/login/registro" method="POST">
 
     <h6>Cadastro</h6>
 
@@ -11,7 +11,7 @@
     </div>
 
     <div class="form-group">
-        <input type="text" class="form-control" name='phone' required placeholder="Telefone/Celular"/>
+        <input type="text" class="form-control" name='phone' id="phone-field" required placeholder="Telefone/Celular"/>
     </div>
     
     <div class="form-group">

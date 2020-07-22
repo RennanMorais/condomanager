@@ -34,6 +34,10 @@
           <div class="flash alert alert-warning"><?php echo $flashWarning; ?></div>
         <?php endif; ?>
 
+        <?php if(!empty($flashSuccess)): ?>
+          <div class="flash alert alert-success"><?php echo $flashSuccess; ?></div>
+        <?php endif; ?>
+
         <form action="<?=$base;?>/login" method="POST">
 
             <div class="form-group">
@@ -59,16 +63,36 @@
             </div>
         </form>
 
-        <div class="modal" tabindex="-1" role="dialog" id="forgotreg-modal">
+        <div class="modal" tabindex="-1" role="dialog" id="registro-modal">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
               <div class="modal-body" id="modal-content">
-
+                  <?php $this->render('forms/registro',[
+                      'base' => $base,
+                  ]); ?>
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-info" id="modal-close">Fechar</button>
+                <button type="button" class="btn btn-info close-btn-registro" id="modal-close">Fechar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="forgot-modal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+              <div class="modal-body" id="modal-content">
+                  <?php $this->render('forms/forgotpass',[
+                      'base' => $base,
+                  ]); ?>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info close-btn-forgot" id="modal-close">Fechar</button>
               </div>
 
             </div>
@@ -81,29 +105,31 @@
 
     <script type="text/javascript" src="<?=$base;?>/assets/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="<?=$base;?>/assets/js/all.min.js"></script>
+    <script type="text/javascript" src="<?=$base;?>/assets/js/jquery.mask.min.js"></script>
     <script type="text/javascript">
         //Script para alteração dinamica do modal
-        $('#forgot-btn').on('click', function () {
-
-        $.ajax({url: "<?=$base;?>/forgot", success: function(result){
-          $("#modal-content").html(result);
-        }});
-
-        $('#forgotreg-modal').show('fade');
-        });
-
+        //Registro
         $('#reg-btn').on('click', function () {
 
-        $.ajax({url: "<?=$base;?>/registro", success: function(result){
-          $("#modal-content").html(result);
-        }});
-
-        $('#forgotreg-modal').show('fade');
+        $('#registro-modal').show('fade');
         });
 
-        $('#modal-close').on('click', function() {
-        $('#forgotreg-modal').hide('fade');
+        $('.close-btn-registro').on('click', function() {
+        $('#registro-modal').hide('fade');
         });
+
+        //Forgot
+        $('#forgot-btn').on('click', function () {
+
+        $('#forgot-modal').show('fade');
+        });
+
+        $('.close-btn-forgot').on('click', function() {
+        $('#forgot-modal').hide('fade');
+        });
+
+        //mask para telefone
+        $('#phone-field').mask('(00) 00000-0000');
     </script>
   </body>
 </html>

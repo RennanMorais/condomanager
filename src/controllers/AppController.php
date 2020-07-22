@@ -5,7 +5,6 @@ use \core\Controller;
 use \src\handlers\UserHandler;
 use \src\handlers\StatementHandler;
 use \src\handlers\CondominioHandler;
-use src\models\User;
 
 class AppController extends Controller {
 
@@ -284,12 +283,12 @@ class AppController extends Controller {
 
     //Pagina de Reservas
     public function reservas() {
-        $areasList = CondominioHandler::getAreas();
         $condominiosList = CondominioHandler::getCond();
+        $reservaList = CondominioHandler::getReservas();
         $this->render('reservas', [
             'loggedUser' => $this->loggedUser,
             'condominios' => $condominiosList,
-            'areas' => $areasList
+            'reservas' => $reservaList
         ]);
     }
 
@@ -297,6 +296,27 @@ class AppController extends Controller {
         $idCond = filter_input(INPUT_POST, 'id_cond');
         $areaList = CondominioHandler::getAreaListByCond($idCond);
         echo json_encode($areaList);
+    }
+
+    public function getMoradorField() {
+        $idCond = filter_input(INPUT_POST, 'id_cond');
+        $moradorList = UserHandler::getMoradorField($idCond);
+        echo json_encode($moradorList);
+    }
+
+    public function addReserva() {
+        $id_condominio = filter_input(INPUT_POST, 'condominio');
+        $id_morador = filter_input(INPUT_POST, 'morador');
+        $id_area = filter_input(INPUT_POST, 'area');
+        $nome_evento = filter_input(INPUT_POST, 'evento');
+        $data = filter_input(INPUT_POST, 'data');
+        $inicio = filter_input(INPUT_POST, 'inicio');
+        $termino = filter_input(INPUT_POST, 'fim');
+
+        if($id_condominio && $id_morador) {
+            CondominioHandler::addNewReserva($id_condominio, $id_morador, $id_area, $nome_evento, $data, $inicio, $termino);
+            $this->redirect('/app/reservas');
+        }
     }
 
 }

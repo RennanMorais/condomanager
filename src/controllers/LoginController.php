@@ -9,7 +9,8 @@ class LoginController extends Controller {
     public function index() {
         $flashDanger = '';
         $flashWarning = '';
-        if(!empty($_SESSION['flashDanger']) || !empty($_SESSION['flashWarning'])) {
+        $flashSuccess = '';
+        if(!empty($_SESSION['flashDanger']) || !empty($_SESSION['flashWarning']) || !empty($_SESSION['flashSuccess'])) {
             $flashDanger = $_SESSION['flashDanger'];
             $_SESSION['flashDanger'] = '';
         }
@@ -19,9 +20,15 @@ class LoginController extends Controller {
             $_SESSION['flashWarning'] = '';
         }
 
+        if(!empty($_SESSION['flashSuccess'])) {
+            $flashSuccess = $_SESSION['flashSuccess'];
+            $_SESSION['flashSuccess'] = '';
+        }
+
         $this->render('login', [
             'flashDanger' => $flashDanger,
-            'flashWarning' => $flashWarning
+            'flashWarning' => $flashWarning,
+            'flashSuccess' => $flashSuccess
         ]);
     }
 
@@ -67,6 +74,23 @@ class LoginController extends Controller {
         } else {
             $this->redirect('/login');
         }
+    }
+
+    public function forgotpass() {
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        
+        if($email) {
+            if(UserHandler::emailExists($email) === true) {
+
+                $_SESSION['flashSuccess'] = "Pronto! Um link para alterar sua senha foi enviado para: ".$email;
+                $this->redirect('/login');
+
+            } else {
+                $_SESSION['flashDanger'] = "E-mail não cadastrado.";
+                $this->redirect('/login');
+            }
+        }
+
     }
 
     public function logout() {

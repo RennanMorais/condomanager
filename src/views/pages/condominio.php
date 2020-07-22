@@ -51,7 +51,10 @@
                                     <td><?=$condominiosItem->numero;?></td>
                                     <td><?=$condominiosItem->complemento;?></td>
                                     <td><?=$condominiosItem->bairro;?></td>
-                                    <td><a href="<?=$base;?>/app/condominios/edit_cond/<?=$condominiosItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="<?=$base;?>/app/condominios/delete_cond?id=<?=$condominiosItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a></td>
+                                    <td style="text-align:center;">
+                                        <a href="<?=$base;?>/app/condominios/edit_cond/<?=$condominiosItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> 
+                                        <a href="<?=$base;?>/app/condominios/delete_cond?id=<?=$condominiosItem->id;?>" class="btn btn-outline-danger btn-sm btn-teste" title="Excluir"><i class="fa fa-trash"></i></a>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

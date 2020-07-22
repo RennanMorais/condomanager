@@ -5,6 +5,7 @@ use \src\models\Condominio;
 use \src\models\Predio;
 use \src\models\Areascomum;
 use \src\models\User;
+use \src\models\Reserva;
 
 
 class CondominioHandler {
@@ -67,6 +68,9 @@ class CondominioHandler {
         ->set('condominio', $nome)->where('id_condominio', $id)->execute();
 
         User::update()
+        ->set('condominio', $nome)->where('id_condominio', $id)->execute();
+
+        Reserva::update()
         ->set('condominio', $nome)->where('id_condominio', $id)->execute();
 
         return true;
@@ -215,6 +219,12 @@ class CondominioHandler {
         ->set('id_condominio', $condominio)
         ->set('condominio', $cond['nome'])
         ->where('id', $id)->execute();
+
+        Reserva::update()
+        ->set('area_comum', $nome)
+        ->set('id_condominio', $condominio)
+        ->set('condominio', $cond['nome'])
+        ->where('id_area', $id)->execute();
         return true;
     }
 
@@ -226,6 +236,50 @@ class CondominioHandler {
     public static function getAreaListByCond($id) {
         $areaList = Areascomum::select()->where('id_condominio', $id)->get();
         return $areaList;
+    }
+
+    public static function addNewReserva($id_condominio, $id_morador, $id_area, $nome_evento, $data, $inicio, $termino) {
+        $nome_condominio = Condominio::select()->where('id', $id_condominio)->one();
+        $nome_morador = User::select()->where('id', $id_morador)->one();
+        $nome_area = Areascomum::select()->where('id', $id_area)->one();
+        $status = 'Pendente';
+        Reserva::insert([
+            'id_condominio' => $id_condominio,
+            'condominio' => $nome_condominio['nome'],
+            'id_morador' => $id_morador,
+            'morador' => $nome_morador['name'],
+            'id_area' => $id_area,
+            'area_comum' => $nome_area['nome'],
+            'evento' => $nome_evento,
+            'data' => $data,
+            'inicio' => $inicio,
+            'termino' => $termino,
+            'status' => $status
+        ])->execute();
+        return true;
+    }
+
+    public static function getReservas() {
+        $reservasList = Reserva::select()->get();
+        $reservas = [];
+
+        foreach($reservasList as $reservaItem) {
+            $newReserva = new Reserva();
+            $newReserva->id = $reservaItem['id'];
+            $newReserva->id_condominio = $reservaItem['id_condominio'];
+            $newReserva->condominio = $reservaItem['condominio'];
+            $newReserva->id_morador = $reservaItem['id_morador'];
+            $newReserva->morador = $reservaItem['morador'];
+            $newReserva->id_area = $reservaItem['id_area'];
+            $newReserva->area_comum = $reservaItem['area_comum'];
+            $newReserva->evento = $reservaItem['evento'];
+            $newReserva->data = $reservaItem['data'];
+            $newReserva->inicio = $reservaItem['inicio'];
+            $newReserva->termino = $reservaItem['termino'];
+            $newReserva->status = $reservaItem['status'];
+            $reservas[] = $newReserva;
+        }
+        return $reservas;
     }
 
 }

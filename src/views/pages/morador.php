@@ -55,7 +55,10 @@
                                     <td><?=$moradorItem->condominio;?></td>
                                     <td><?=$moradorItem->predio;?></td>
                                     <td><?=$moradorItem->apto;?></td>
-                                    <td><a href="<?=$base;?>/app/moradores/edit_morador/<?=$moradorItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="<?=$base;?>/app/moradores/disable?id=<?=$moradorItem->id;?>" class="btn btn-outline-danger btn-sm" title="Desativar Morador"><i class="fa fa-user"></i></a></td>
+                                    <td style="text-align:center;">
+                                        <a href="<?=$base;?>/app/moradores/edit_morador/<?=$moradorItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> 
+                                        <a href="<?=$base;?>/app/moradores/disable?id=<?=$moradorItem->id;?>" class="btn btn-outline-danger btn-sm" title="Desativar Morador"><i class="fa fa-user"></i></a>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

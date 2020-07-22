@@ -41,7 +41,10 @@
                                 <tr>
                                     <td><?=$prediosItem->nome;?></td>
                                     <td><?=$prediosItem->condominio;?></td>
-                                    <td><a href="<?=$base;?>/app/predios/edit_prd/<?=$prediosItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> <a href="<?=$base;?>/app/predios/delete_prd?id=<?=$prediosItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a></td>
+                                    <td style="text-align:center;">
+                                        <a href="<?=$base;?>/app/predios/edit_prd/<?=$prediosItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i>
+                                        </a> <a href="<?=$base;?>/app/predios/delete_prd?id=<?=$prediosItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
