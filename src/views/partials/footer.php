@@ -15,7 +15,7 @@
   <!-- jQuery -->
   <script src="<?=$base;?>/assets/js/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="<?=$base;?>/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="<?=$base;?>/assets/js/bootstrap.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?=$base;?>/assets/js/adminlte.min.js"></script>
   <!-- Font aewsome -->

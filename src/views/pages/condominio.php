@@ -53,9 +53,27 @@
                                     <td><?=$condominiosItem->bairro;?></td>
                                     <td style="text-align:center;">
                                         <a href="<?=$base;?>/app/condominios/edit_cond/<?=$condominiosItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> 
-                                        <a href="<?=$base;?>/app/condominios/delete_cond?id=<?=$condominiosItem->id;?>" class="btn btn-outline-danger btn-sm btn-teste" title="Excluir"><i class="fa fa-trash"></i></a>
+                                        <button data-toggle="modal" data-target="#del-modal-<?=$condominiosItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
+
+                                <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="del-modal-<?=$condominiosItem->id;?>">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+
+                                            <div class="modal-body" id="modal-content">
+                                                <h5>Tem certeza que deseja o <?=$condominiosItem->nome;?>?</h5>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <a href="<?=$base;?>/app/condominios/delete_cond?id=<?=$condominiosItem->id;?>" class="btn btn-outline-info" title="Excluir"><i></i>Sim</a>
+                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Não</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
                             <?php endforeach; ?>
                         </tbody>
                     </table>
