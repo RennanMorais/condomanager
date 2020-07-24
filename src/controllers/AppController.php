@@ -28,7 +28,8 @@ class AppController extends Controller {
             'loggedUser' => $this->loggedUser,
             'statementsFeed' => $statementsFeed,
             'countMoradores' => $countMoradores,
-            'countReservas' => $countReservasPendentes
+            'countReservas' => $countReservasPendentes,
+            'mes' => 'Rennan'
         ]);
     }
 
