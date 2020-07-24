@@ -99,35 +99,64 @@
     </div>
 
 </form>
-<script src="<?=$base;?>/assets/js/jquery.min.js"></script>
+
+<script src="<?=$base;?>/assets/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     
-    $(document).ready(function()
-    {
-        //Carrega condominios e predios de acordo como condominio
-        $('#combo-condominio').on('change', function()
+$(document).ready(function()
+{
+    carrega_predios();
+    carrega_prediosOnChange();
+});
+
+function carrega_predios()
+{
+    var valCond = $('#combo-condominio').val();
+
+    $.ajax({
+        url: "<?=$base;?>/app/moradores",
+        method: "POST",
+        data: {id_cond: valCond},
+        dataType: "json",
+        success: function (data)
         {
-            var valCond = $('#combo-condominio').val();
+            
+            //console(data);
+            var html = '';
+            for (var count = 0; count < data.length; count++){
+                html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
+            }
+            
+            $('#combo-predio').append(html);
 
-            $.ajax({
-                url: "<?=$base;?>/app/moradores",
-                method: "POST",
-                data: {id_cond: valCond},
-                dataType: "json",
-                success: function (data)
-                {
-                    
-                    //console(data);
-                    var html = '';
-                    for (var count = 0; count < data.length; count++){
-                        html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
-                    }
-                    
-                    $('#combo-predio').html(html);
-
-                }
-            });
-        });
-
+        }
     });
+}
+
+function carrega_prediosOnChange() {
+    $('#combo-condominio').on('change', function()
+    {
+        var valCond = $('#combo-condominio').val();
+
+        $.ajax({
+            url: "<?=$base;?>/app/moradores",
+            method: "POST",
+            data: {id_cond: valCond},
+            dataType: "json",
+            success: function (data)
+            {
+                
+                //console(data);
+                var html = '';
+                for (var count = 0; count < data.length; count++){
+                    html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
+                }
+                
+                $('#combo-predio').html(html);
+
+            }
+        });
+    });
+}
+
 </script>

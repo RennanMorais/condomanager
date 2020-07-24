@@ -110,7 +110,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?=$base;?>/app/cad_pets" class="nav-link <?= ($activeMenu == 'pets') ? 'active':''; ?>">
+                  <a href="<?=$base;?>/app/pets" class="nav-link <?= ($activeMenu == 'pets') ? 'active':''; ?>">
                     <i class="fa fa-paw nav-icon"></i>
                     <p>Cadastro de Pets</p>
                   </a>

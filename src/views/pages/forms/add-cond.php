@@ -16,7 +16,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">CNPJ</div>
             </div>
-            <input type="text" class="form-control" name='cnpj' id="cnpj-field" required placeholder="CNPJ"/>
+            <input type="text" class="form-control" name='cnpj' id="cnpj-field" required/>
         </div>
     </div>
 
@@ -25,7 +25,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">E-mail</div>
             </div>
-            <input type="email" class="form-control" name='email' placeholder="E-mail"/>
+            <input type="email" class="form-control" name='email'/>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">Endereço</div>
             </div>
-            <input type="text" class="form-control" name='endereco' required placeholder="Endereço"/>
+            <input type="text" class="form-control" name='endereco' required/>
         </div>
     </div>
 
@@ -43,7 +43,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">Número</div>
             </div>
-            <input type="text" class="form-control" name='numero' required placeholder="Número"/>
+            <input type="text" class="form-control" name='numero' required/>
         </div>
     </div>
 
@@ -52,7 +52,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">Complemento</div>
             </div>
-            <input type="text" class="form-control" name='complemento' placeholder="Complemento"/>
+            <input type="text" class="form-control" name='complemento'/>
         </div>
     </div>
 
@@ -61,7 +61,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">Bairro</div>
             </div>
-            <input type="text" class="form-control" name='bairro' required placeholder="Bairro"/>
+            <input type="text" class="form-control" name='bairro' required/>
         </div>
     </div>
 

@@ -9,6 +9,8 @@
 
   <!-- Boostrap 4 -->
   <link rel="stylesheet" href="<?=$base;?>/assets/css/bootstrap.min.css">
+  <!-- Boostrap Select -->
+  <link rel="stylesheet" href="<?=$base;?>/assets/css/select2.min.css">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="<?=$base;?>/assets/css/all.min.css">
   <!-- Theme style -->

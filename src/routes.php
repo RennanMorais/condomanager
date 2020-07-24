@@ -57,6 +57,13 @@ $router->get('/app/reservas/aprovar', 'AppController@aprovar');
 $router->get('/app/reservas/rejeitar', 'AppController@rejeitar');
 $router->get('/app/reservas/delete_reserva', 'AppController@deleteReserva');
 
+//Rotas Pets
+$router->get('/app/pets', 'AppController@pets');
+$router->post('/app/pets', 'AppController@getMoradorPhoneField');
+$router->post('/app/pets/add_pet', 'AppController@addPet');
+$router->get('/app/pets/edit_pet/{id}', 'AppController@editPet');
+$router->post('/app/pets/edit_pet/save', 'AppController@savePet');
+
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');
 $router->get('/registro', 'LoginController@getRegistroForm');

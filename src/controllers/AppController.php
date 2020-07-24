@@ -5,6 +5,7 @@ use \core\Controller;
 use \src\handlers\UserHandler;
 use \src\handlers\StatementHandler;
 use \src\handlers\CondominioHandler;
+use src\models\Condominio;
 
 class AppController extends Controller {
 
@@ -387,4 +388,52 @@ class AppController extends Controller {
         }
     }
 
+
+    //Pagina Cadastro de Pets
+    public function pets() {
+        $moradorList = CondominioHandler::getMorador();
+        $petsList = UserHandler::getPets();
+
+        if(!empty($_SESSION['flashDateCheck'])) {
+            $flashDateCheck = $_SESSION['flashDateCheck'];
+            $_SESSION['flashDateCheck'] = '';
+        }
+
+        $this->render('pets', [
+            'loggedUser' => $this->loggedUser,
+            'moradores' => $moradorList,
+            'petsList' => $petsList 
+        ]);
+    }
+
+    public function getMoradorPhoneField() {
+        $id_morador = filter_input(INPUT_POST, 'id_morador');
+        $phone = UserHandler::getMoradorPhone($id_morador);
+        echo json_encode($phone);
+    }
+
+    public function addPet() {
+        $nome = filter_input(INPUT_POST, 'nome');
+        $tipo = filter_input(INPUT_POST, 'tipo');
+        $sexo = filter_input(INPUT_POST, 'sexo');
+        $id_morador = filter_input(INPUT_POST, 'proprietario');
+        $phone = filter_input(INPUT_POST, 'phone');
+
+        if($nome && $tipo) {
+            UserHandler::addPets($nome, $tipo, $sexo, $id_morador, $phone);
+            $this->redirect('/app/pets');
+        } else {
+            $this->redirect('/app/pets');
+        }
+    }
+
+    public function editPet($atts) {
+        $petItem = UserHandler::getPetItem($atts['id']);
+        $moradorList = CondominioHandler::getMorador();
+        $this->render('edit_pet', [
+            'loggedUser' => $this->loggedUser,
+            'moradores' => $moradorList,
+            'petItem' => $petItem
+        ]);
+    }
 }

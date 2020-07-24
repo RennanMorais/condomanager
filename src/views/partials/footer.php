@@ -12,12 +12,14 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-  <!-- jQuery -->
-  <script src="<?=$base;?>/assets/js/jquery.min.js"></script>
+  <!-- jQuery 3.5 -->
+  <script type="text/javascript" src="<?=$base;?>/assets/js/jquery-3.5.1.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="<?=$base;?>/assets/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="<?=$base;?>/assets/js/bootstrap.min.js"></script>
+  <!-- Bootstrap Select -->
+  <script type="text/javascript" src="<?=$base;?>/assets/js/select2.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="<?=$base;?>/assets/js/adminlte.min.js"></script>
+  <script type="text/javascript" src="<?=$base;?>/assets/js/adminlte.min.js"></script>
   <!-- Font aewsome -->
   <script type="text/javascript" src="<?=$base;?>/assets/js/all.min.js"></script>
   <!-- Chart -->

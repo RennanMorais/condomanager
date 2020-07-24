@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     
-                    <form id="form-reservas-new" action="<?=$base;?>/app/reservas/add_reserva" method="POST">
+                    <form id="form-new" action="<?=$base;?>/app/reservas/add_reserva" method="POST">
 
                         <h6>Nova Reserva</h6>
 
@@ -194,60 +194,106 @@
     </div>
     <!-- /.content-wrapper -->
 
-<script src="<?=$base;?>/assets/js/jquery.min.js"></script>
+<script src="<?=$base;?>/assets/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     
-    $(document).ready(function()
-    {
-        carrega_areasOnChange();
-    });
+$(document).ready(function()
+{
+    carrega_areas();
+    carrega_areasOnChange();
+});
 
-    function carrega_areasOnChange() {
-        $('#combo-condominio').on('change', function()
+function carrega_areas() 
+{
+    var valCond = $('#combo-condominio').val();
+    $.ajax({
+        url: "<?=$base;?>/app/reservas/getmorador",
+        method: "POST",
+        data: {id_cond: valCond},
+        dataType: "json",
+        success: function (data)
         {
-            var valCond = $('#combo-condominio').val();
-
-            $.ajax({
-                url: "<?=$base;?>/app/reservas/getmorador",
-                method: "POST",
-                data: {id_cond: valCond},
-                dataType: "json",
-                success: function (data)
-                {
-                    
-                    //console(data);
-                    var html = '';
-                    for (var count = 0; count < data.length; count++){
-                        html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
-                    }
-                    
-                    $('#combo-morador').html('<option value="">Selecionar...</option>');
-                    $('#combo-morador').append(html);
-
-                }
-            });
             
-            $.ajax({
-                url: "<?=$base;?>/app/reservas/getarea",
-                method: "POST",
-                data: {id_cond: valCond},
-                dataType: "json",
-                success: function (data)
-                {
-                    
-                    //console(data);
-                    var html = '';
-                    for (var count = 0; count < data.length; count++){
-                        html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
-                    }
-                    
-                    $('#combo-area').html('<option value="">Selecionar...</option>');
-                    $('#combo-area').append(html);
+            //console(data);
+            var html = '';
+            for (var count = 0; count < data.length; count++){
+                html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
+            }
+            
+            $('#combo-morador').html('<option value="">Selecionar...</option>');
+            $('#combo-morador').append(html);
 
+        }
+    });
+    
+    $.ajax({
+        url: "<?=$base;?>/app/reservas/getarea",
+        method: "POST",
+        data: {id_cond: valCond},
+        dataType: "json",
+        success: function (data)
+        {
+            
+            //console(data);
+            var html = '';
+            for (var count = 0; count < data.length; count++){
+                html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
+            }
+            
+            $('#combo-area').html('<option value="">Selecionar...</option>');
+            $('#combo-area').append(html);
+
+        }
+    });
+}
+
+function carrega_areasOnChange() 
+{
+    $('#combo-condominio').on('change', function()
+    {
+        var valCond = $('#combo-condominio').val();
+
+        $.ajax({
+            url: "<?=$base;?>/app/reservas/getmorador",
+            method: "POST",
+            data: {id_cond: valCond},
+            dataType: "json",
+            success: function (data)
+            {
+                
+                //console(data);
+                var html = '';
+                for (var count = 0; count < data.length; count++){
+                    html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
                 }
-            });
+                
+                $('#combo-morador').html('<option value="">Selecionar...</option>');
+                $('#combo-morador').append(html);
+
+            }
         });
-    }
+        
+        $.ajax({
+            url: "<?=$base;?>/app/reservas/getarea",
+            method: "POST",
+            data: {id_cond: valCond},
+            dataType: "json",
+            success: function (data)
+            {
+                
+                //console(data);
+                var html = '';
+                for (var count = 0; count < data.length; count++){
+                    html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
+                }
+                
+                $('#combo-area').html('<option value="">Selecionar...</option>');
+                $('#combo-area').append(html);
+
+            }
+        });
+    });
+}
 
 </script>
 <?php $render('footer'); ?>

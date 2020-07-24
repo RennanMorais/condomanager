@@ -4,6 +4,7 @@ namespace src\handlers;
 use \src\models\Condominio;
 use \src\models\Predio;
 use \src\models\User;
+use \src\models\Pet;
 
 class UserHandler {
 
@@ -99,6 +100,51 @@ class UserHandler {
     public static function getMoradorField($id) {
         $moradorList = User::select()->where('id_condominio', $id)->get();
         return $moradorList;
+    }
+
+    public static function getMoradorPhone($id) {
+        $morador_phone = User::select('phone')->where('id', $id)->one();
+        return $morador_phone;
+    }
+
+    public static function addPets($nome, $tipo, $sexo, $id_morador, $phone) {
+        $morador = User::select()->where('id', $id_morador)->one();
+        $nome_morador = $morador['name'];
+
+        Pet::insert([
+            'nome' => $nome,
+            'tipo' => $tipo,
+            'sexo' => $sexo,
+            'id_morador' => $id_morador,
+            'morador' => $nome_morador,
+            'phone' => $phone
+        ])->execute();
+
+        return true;
+    }
+
+    public static function getPets() {
+        $petsList = Pet::select()->get();
+        $pets = [];
+        
+        foreach($petsList as $petItem) {
+            $newPet = new Pet();
+            $newPet->id = $petItem['id'];
+            $newPet->nome = $petItem['nome'];
+            $newPet->tipo = $petItem['tipo'];
+            $newPet->sexo = $petItem['sexo'];
+            $newPet->id_morador = $petItem['id_morador'];
+            $newPet->morador = $petItem['morador'];
+            $newPet->phone = $petItem['phone'];
+
+            $pets[] = $newPet;
+        }
+        return $pets;
+    }
+
+    public static function getPetItem($id_pet) {
+        $petItem = Pet::select()->where('id', $id_pet)->one();
+        return $petItem;
     }
 
 }
