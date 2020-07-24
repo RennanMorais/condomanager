@@ -287,10 +287,19 @@ class AppController extends Controller {
     public function reservas() {
         $condominiosList = CondominioHandler::getCond();
         $reservaList = CondominioHandler::getReservas();
+
+        $flashDateCheck = '';
+
+        if(!empty($_SESSION['flashDateCheck'])) {
+            $flashDateCheck = $_SESSION['flashDateCheck'];
+            $_SESSION['flashDateCheck'] = '';
+        }
+
         $this->render('reservas', [
             'loggedUser' => $this->loggedUser,
             'condominios' => $condominiosList,
-            'reservas' => $reservaList
+            'reservas' => $reservaList,
+            'flashDateCheck' => $flashDateCheck
         ]);
     }
 
@@ -316,8 +325,15 @@ class AppController extends Controller {
         $termino = filter_input(INPUT_POST, 'fim');
 
         if($id_condominio && $id_morador) {
-            CondominioHandler::addNewReserva($id_condominio, $id_morador, $id_area, $nome_evento, $data, $inicio, $termino);
-            $this->redirect('/app/reservas');
+
+            if(CondominioHandler::reservaDateCheck($id_condominio, $id_area, $data) === false) {
+                CondominioHandler::addNewReserva($id_condominio, $id_morador, $id_area, $nome_evento, $data, $inicio, $termino);
+                $this->redirect('/app/reservas');
+            } else {
+                $_SESSION['flashDateCheck'] = 'Já existe uma reserva marcada nesta data, tente outra.';
+                $this->redirect('/app/reservas');
+            }
+       
         }
     }
 

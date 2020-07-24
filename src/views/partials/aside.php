@@ -58,7 +58,7 @@
               <a href="<?=$base;?>/app/condominios" class="nav-link <?= ($activeMasterMenu == 'condominio') ? 'active':''; ?>">
                 <i class="nav-icon fas fa-building"></i>
                 <p>
-                  Condominios
+                  Condominio
                   <i class="right fas fa-angle-right"></i>
                 </p>
               </a>
@@ -67,7 +67,7 @@
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/condominios" class="nav-link <?= ($activeMenu == 'condominio') ? 'active':''; ?>">
                     <i class="far fa-building nav-icon"></i>
-                    <p>Condominio</p>
+                    <p>Condominios</p>
                   </a>
                 </li>
               </ul>
@@ -85,7 +85,7 @@
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/moradores" class="nav-link <?= ($activeMenu == 'morador') ? 'active':''; ?>">
                     <i class="far fa-address-book nav-icon"></i>
-                    <p>Morador</p>
+                    <p>Moradores</p>
                   </a>
                 </li>
               </ul>
@@ -93,7 +93,7 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/area_comum" class="nav-link <?= ($activeMenu == 'area_comum') ? 'active':''; ?>">
-                    <i class="fa fa-plus-circle nav-icon"></i>
+                    <i class="fa fa-glass-cheers nav-icon"></i>
                     <p>Área Comum</p>
                   </a>
                 </li>
@@ -102,7 +102,7 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/reservas" class="nav-link <?= ($activeMenu == 'reserva_area') ? 'active':''; ?>">
-                    <i class="fa fa-glass-cheers nav-icon"></i>
+                    <i class="fa fa-check-double nav-icon"></i>
                     <p>Reserva de Área Comum</p>
                   </a>
                 </li>

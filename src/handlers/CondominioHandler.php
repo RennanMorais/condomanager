@@ -165,7 +165,11 @@ class CondominioHandler {
 
     public static function saveMoradorFromMorador($id, $nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
         $cond = Condominio::select()->where('id', $condominio)->one();
+        $nome_condominio = $cond['nome'];
+        
         $prd = Predio::select()->where('id', $predio)->one();
+        $nome_predio = $prd['nome'];
+
         User::update()
         ->set('name', $nome)
         ->set('email', $email)
@@ -174,9 +178,9 @@ class CondominioHandler {
         ->set('phone', $phone)
         ->set('tipo', $tipo)
         ->set('id_condominio', $condominio)
-        ->set('condominio', $cond['nome'])
+        ->set('condominio', $nome_condominio)
         ->set('id_predio', $predio)
-        ->set('predio', $prd['nome'])
+        ->set('predio', $nome_predio)
         ->set('apto', $apto)
         ->where('id', $id)->execute();
         return true;
@@ -337,6 +341,19 @@ class CondominioHandler {
         $status = 'Pendente';
         $countReservas = Reserva::select()->where('status', $status)->count();
         return $countReservas;
+    }
+
+    public static function reservaDateCheck($id_condominio, $id_area, $data) {
+        
+        $status = 'Rejeitado';
+
+        $dateCheck = Reserva::select()
+        ->where('id_condominio', $id_condominio)
+        ->where('id_area', $id_area)
+        ->where('data', $data)
+        ->where('status', '!=', $status)->one();
+
+        return $dateCheck ? true : false;
     }
 
 }

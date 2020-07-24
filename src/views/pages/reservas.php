@@ -27,6 +27,10 @@
 
                         <h6>Nova Reserva</h6>
 
+                        <?php if(!empty($flashDateCheck)): ?>
+                        <div class="flash alert alert-danger"><?= $flashDateCheck; ?></div>
+                        <?php endif; ?>
+
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
