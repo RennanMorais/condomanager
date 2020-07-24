@@ -22,10 +22,12 @@ class AppController extends Controller {
     public function index() {
         $statementsFeed = StatementHandler::getStatement();
         $countMoradores = UserHandler::countMoradores();
+        $countReservasPendentes = CondominioHandler::countReservaPendente();
         $this->render('dash', [
             'loggedUser' => $this->loggedUser,
             'statementsFeed' => $statementsFeed,
-            'countMoradores' => $countMoradores
+            'countMoradores' => $countMoradores,
+            'countReservas' => $countReservasPendentes
         ]);
     }
 
@@ -315,6 +317,56 @@ class AppController extends Controller {
 
         if($id_condominio && $id_morador) {
             CondominioHandler::addNewReserva($id_condominio, $id_morador, $id_area, $nome_evento, $data, $inicio, $termino);
+            $this->redirect('/app/reservas');
+        }
+    }
+
+    public function editReserva($atts) {
+        $reserva = CondominioHandler::getReservaItem($atts['id']);
+        $condominiosList = CondominioHandler::getCond();
+        $this->render('edit_reserva', [
+            'loggedUser' => $this->loggedUser,
+            'condominios' => $condominiosList,
+            'reserva' => $reserva
+        ]);
+    }
+
+    public function saveReserva() {
+        $id = filter_input(INPUT_POST, 'id');
+        $id_condominio = filter_input(INPUT_POST, 'condominio');
+        $id_morador = filter_input(INPUT_POST, 'morador');
+        $id_area = filter_input(INPUT_POST, 'area');
+        $evento = filter_input(INPUT_POST, 'evento');
+        $data = filter_input(INPUT_POST, 'data');
+        $inicio = filter_input(INPUT_POST, 'inicio');
+        $termino = filter_input(INPUT_POST, 'fim');
+
+        if($id_condominio && $id_morador) {
+            CondominioHandler::saveReservaEdit($id, $id_condominio, $id_morador, $id_area, $evento, $data, $inicio, $termino);
+            $this->redirect('/app/reservas');
+        }
+    }
+
+    public function aprovar() {
+        $id_reserva = filter_input(INPUT_GET, 'id');
+        if($id_reserva) {
+            CondominioHandler::aprovarReserva($id_reserva);
+            $this->redirect('/app/reservas');
+        }
+    }
+
+    public function rejeitar() {
+        $id_reserva = filter_input(INPUT_GET, 'id');
+        if($id_reserva) {
+            CondominioHandler::rejeitarReserva($id_reserva);
+            $this->redirect('/app/reservas');
+        }
+    }
+
+    public function deleteReserva() {
+        $id_reserva = filter_input(INPUT_GET, 'id');
+        if($id_reserva) {
+            CondominioHandler::delReserva($id_reserva);
             $this->redirect('/app/reservas');
         }
     }

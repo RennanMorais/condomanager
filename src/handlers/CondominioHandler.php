@@ -238,6 +238,8 @@ class CondominioHandler {
         return $areaList;
     }
 
+
+    //Funções da página de reservas
     public static function addNewReserva($id_condominio, $id_morador, $id_area, $nome_evento, $data, $inicio, $termino) {
         $nome_condominio = Condominio::select()->where('id', $id_condominio)->one();
         $nome_morador = User::select()->where('id', $id_morador)->one();
@@ -280,6 +282,61 @@ class CondominioHandler {
             $reservas[] = $newReserva;
         }
         return $reservas;
+    }
+
+    public static function getReservaItem($id) {
+        $reserva = Reserva::select()->where('id', $id)->one();
+        return $reserva;
+    }
+
+    public static function saveReservaEdit($id, $id_condominio, $id_morador, $id_area, $evento, $data, $inicio, $termino) {
+        $condominio = Condominio::select()->where('id', $id_condominio)->one();
+        $nome_condominio = $condominio['nome'];
+
+        $morador = User::select()->where('id', $id_morador)->one();
+        $nome_morador = $morador['name'];
+
+        $area = Areascomum::select()->where('id', $id_area)->one();
+        $nome_area = $area['nome'];
+        $status = 'Pendente';
+
+        Reserva::update()
+        ->set('id_condominio', $id_condominio)
+        ->set('condominio', $nome_condominio)
+        ->set('id_morador', $id_morador)
+        ->set('morador', $nome_morador)
+        ->set('id_area', $id_area)
+        ->set('area_comum', $nome_area)
+        ->set('evento', $evento)
+        ->set('data', $data)
+        ->set('inicio', $inicio)
+        ->set('termino', $termino)
+        ->set('status', $status)->where('id', $id)->execute();
+
+        return true;
+    }
+
+    public static function aprovarReserva($id) {
+        $status = 'Aprovado';
+        Reserva::update()->set('status', $status)->where('id', $id)->execute();
+        return true;
+    }
+
+    public static function rejeitarReserva($id) {
+        $status = 'Rejeitado';
+        Reserva::update()->set('status', $status)->where('id', $id)->execute();
+        return true;
+    }
+
+    public static function delReserva($id) {
+        Reserva::delete()->where('id', $id)->execute();
+        return true;
+    }
+
+    public static function countReservaPendente() {
+        $status = 'Pendente';
+        $countReservas = Reserva::select()->where('status', $status)->count();
+        return $countReservas;
     }
 
 }

@@ -62,7 +62,7 @@
                                         <div class="modal-content">
 
                                             <div class="modal-body" id="modal-content">
-                                                <h5>Tem certeza que deseja o <?=$condominiosItem->nome;?>?</h5>
+                                                <h5>Tem certeza que deseja excluir: <?=$condominiosItem->nome;?>?</h5>
                                             </div>
 
                                             <div class="modal-footer">

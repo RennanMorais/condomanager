@@ -5,3 +5,15 @@
     margin-bottom: 20px;
     border-radius: 10px;
 }
+
+#form-reservas {
+    border: 2px solid #0099A0;
+    border-radius: 10px;
+    padding: 100px;
+}
+
+#form-reservas-new {
+    border: 2px solid #0099A0;
+    border-radius: 10px;
+    padding: 20px;
+}

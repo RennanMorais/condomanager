@@ -20,7 +20,7 @@
 
         <div class="container">
           
-          <form action="<?=$base;?>/app/condominios/edit_cond/save" method="POST">
+          <form id="form-reservas" action="<?=$base;?>/app/condominios/edit_cond/save" method="POST">
 
               <h6>Editar Dados</h6>
 

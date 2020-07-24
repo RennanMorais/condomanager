@@ -52,7 +52,7 @@
                                         <div class="modal-content">
 
                                             <div class="modal-body" id="modal-content">
-                                                <h5>Tem certeza que deseja excluir o <?=$prediosItem->nome;?>?</h5>
+                                                <h5>Tem certeza que deseja excluir: <?=$prediosItem->nome;?>?</h5>
                                             </div>
 
                                             <div class="modal-footer">

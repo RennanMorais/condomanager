@@ -38,32 +38,32 @@
                         </thead>
                         <tbody>
                             <?php foreach($areas as $areaItem): ?>
-                                <tr>
-                                    <td><?=$areaItem->nome;?></td>
-                                    <td><?=$areaItem->condominio;?></td>
-                                    <td style="text-align:center;">
-                                        <a href="<?=$base;?>/app/area_comum/edit_area/<?=$areaItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> 
-                                        <button data-toggle="modal" data-target="#del-modal-<?=$areaItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                
-                                <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="del-modal-<?=$areaItem->id;?>">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
+                            <tr>
+                                <td><?=$areaItem->nome;?></td>
+                                <td><?=$areaItem->condominio;?></td>
+                                <td style="text-align:center;">
+                                    <a href="<?=$base;?>/app/area_comum/edit_area/<?=$areaItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> 
+                                    <button data-toggle="modal" data-target="#del-modal-<?=$areaItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            
+                            <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="del-modal-<?=$areaItem->id;?>">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
 
-                                            <div class="modal-body" id="modal-content">
-                                                <h5>Tem certeza que deseja excluir a área <?=$areaItem->nome;?>?</h5>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <a href="<?=$base;?>/app/area_comum/delete_area?id=<?=$areaItem->id;?>" class="btn btn-outline-info" title="Excluir"><i></i>Sim</a>
-                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Não</button>
-                                            </div>
-
+                                        <div class="modal-body" id="modal-content">
+                                            <h5>Tem certeza que deseja excluir: <?=$areaItem->nome;?>?</h5>
                                         </div>
+
+                                        <div class="modal-footer">
+                                            <a href="<?=$base;?>/app/area_comum/delete_area?id=<?=$areaItem->id;?>" class="btn btn-outline-info" title="Excluir"><i></i>Sim</a>
+                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Não</button>
+                                        </div>
+
                                     </div>
                                 </div>
-
+                            </div>
+                                
                             <?php endforeach; ?>
                         </tbody>
                     </table>

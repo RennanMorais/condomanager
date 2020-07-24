@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     
-                    <form action="<?=$base;?>/app/reservas/add_reserva" method="POST">
+                    <form id="form-reservas-new" action="<?=$base;?>/app/reservas/add_reserva" method="POST">
 
                         <h6>Nova Reserva</h6>
 
@@ -142,12 +142,32 @@
                                 <td><?=date('H:i', strtotime($reservaItem->termino));?></td>
                                 <td><?=$reservaItem->status;?></td>
                                 <td style="text-align:center;">
-                                    <a href="<?=$base;?>/app/predios/aprovar_reserva?id=<?=$reservaItem->id;?>" class="btn btn-outline-success btn-sm" title="Aprovar"><i class="fa fa-check-square"></i></a>
-                                    <a href="<?=$base;?>/app/predios/rejeitar_reserva?id=<?=$reservaItem->id;?>" class="btn btn-outline-danger btn-sm" title="Rejeitar"><i class="fa fa-window-close"></i></a>
-                                    <a href="<?=$base;?>/app/predios/edit_reserva/<?=$reservaItem->id;?>" class="btn btn-outline-warning btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
-                                    <a href="<?=$base;?>/app/predios/delete_reserva?id=<?=$reservaItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></a>
+                                    <?php if($reservaItem->status != 'Rejeitado'):?>
+                                    <a href="<?=$base;?>/app/reservas/aprovar?id=<?=$reservaItem->id;?>" class="btn btn-outline-success btn-sm" title="Aprovar"><i class="fa fa-check-square"></i></a>
+                                    <a href="<?=$base;?>/app/reservas/rejeitar?id=<?=$reservaItem->id;?>" class="btn btn-outline-danger btn-sm" title="Rejeitar"><i class="fa fa-window-close"></i></a>
+                                    <a href="<?=$base;?>/app/reservas/edit_reserva/<?=$reservaItem->id;?>" class="btn btn-outline-warning btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
+                                    <?php endif; ?>
+                                    <button data-toggle="modal" data-target="#del-modal-<?=$reservaItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
+  
+                            <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="del-modal-<?=$reservaItem->id;?>">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+
+                                        <div class="modal-body" id="modal-content">
+                                            <h5>Tem certeza que deseja excluir: <?=$reservaItem->evento;?>?</h5>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <a href="<?=$base;?>/app/reservas/delete_reserva?id=<?=$reservaItem->id;?>" class="btn btn-outline-info" title="Excluir"><i></i>Sim</a>
+                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Não</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                             <?php endforeach; ?>
                         </tbody>
                     </table>

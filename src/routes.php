@@ -1,5 +1,6 @@
 <?php
 use core\Router;
+use src\controllers\AppController;
 
 $router = new Router();
 
@@ -50,7 +51,12 @@ $router->get('/app/reservas', 'AppController@reservas');
 $router->post('/app/reservas/getarea', 'AppController@getAreaField');
 $router->post('/app/reservas/getmorador', 'AppController@getMoradorField');
 $router->post('/app/reservas/add_reserva', 'AppController@addReserva');
+$router->get('/app/reservas/edit_reserva/{id}', 'AppController@editReserva');
+$router->post('/app/reservas/edit_reserva/save', 'AppController@saveReserva');
+$router->get('/app/reservas/aprovar', 'AppController@aprovar');
+$router->get('/app/reservas/rejeitar', 'AppController@rejeitar');
+$router->get('/app/reservas/delete_reserva', 'AppController@deleteReserva');
 
-//Rotas formularios
+//Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');
 $router->get('/registro', 'LoginController@getRegistroForm');

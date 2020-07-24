@@ -66,7 +66,7 @@
                                         <div class="modal-content">
 
                                             <div class="modal-body" id="modal-content">
-                                                <h5>Tem certeza que deseja desabilitar <?=$moradorItem->name;?>?</h5>
+                                                <h5>Tem certeza que deseja desabilitar: <?=$moradorItem->name;?>?</h5>
                                             </div>
 
                                             <div class="modal-footer">

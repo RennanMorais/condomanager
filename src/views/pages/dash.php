@@ -26,7 +26,7 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>54</h3>
+                  <h3>0</h3>
   
                   <p>Visitantes Hoje</p>
                 </div>
@@ -42,7 +42,7 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>7<sup style="font-size: 20px"></sup></h3>
+                  <h3><?=$countReservas;?><sup style="font-size: 20px"></sup></h3>
   
                   <p>Reservas Pendentes</p>
                 </div>
@@ -74,7 +74,7 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>3</h3>
+                  <h3>0</h3>
   
                   <p>Ocorrências</p>
                 </div>
