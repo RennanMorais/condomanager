@@ -91,7 +91,7 @@
             <?php endif;?>
 
             <div class="modal" tabindex="-1" role="dialog" id="condominio-modal">
-                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
 
                         <div class="modal-body" id="modal-content">

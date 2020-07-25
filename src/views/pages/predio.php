@@ -28,7 +28,7 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <table class="table table-bordered table-hover table-responsive-sm table-center">
+                    <table class="table table-bordered table-hover table-responsive-">
                         <thead class="bg-info">
                             <tr>
                                 <th>Nome</th>

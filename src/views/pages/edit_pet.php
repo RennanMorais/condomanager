@@ -8,7 +8,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Pagina</h1>
+              <h1 class="m-0 text-dark">Pets</h1>
             </div>
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -23,6 +23,8 @@
         <form action="<?=$base;?>/app/pets/edit_pet/save" method="POST">
 
             <h6>Editar Dados</h6>
+            
+            <input type="hidden" name="id" value="<?=$petItem['id'];?>">
 
             <div class="form-group">
                 <div class="input-group">
@@ -74,7 +76,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">Telefone/Celular</div>
                     </div>
-                    <input type="text" class="form-control" name='phone' id="phone-field" value="<?=$petItem['phone'];?>"/>
+                    <input type="text" class="form-control" name='phone' id="phone-field" value=""/>
                 </div>
             </div>
 

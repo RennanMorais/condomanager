@@ -63,6 +63,7 @@ $router->post('/app/pets', 'AppController@getMoradorPhoneField');
 $router->post('/app/pets/add_pet', 'AppController@addPet');
 $router->get('/app/pets/edit_pet/{id}', 'AppController@editPet');
 $router->post('/app/pets/edit_pet/save', 'AppController@savePet');
+$router->get('/app/pets/delete_pet', 'AppController@deletePet');
 
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');

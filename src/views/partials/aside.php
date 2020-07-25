@@ -29,7 +29,7 @@
 
       <!-- Sidebar -->
       <div class="sidebar">
-        <!-- Sidebar Users panel (optional) -->
+        <!-- Sidebar Users panel -->
         <div class="Users-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
             <img src="<?=$base;?>/assets/images/avatar.png" class="img-circle elevation-2" alt="Users Image">
@@ -213,8 +213,8 @@
 
             </li>
 
-            <li class="nav-item has-treeview <?= ($activeMenu == 'usuarios') ? 'menu-open':''; ?>">
-              <a href="<?=$base;?>/app/config" class="nav-link <?= ($activeMenu == 'usuarios') ? 'active':''; ?>">
+            <li class="nav-item has-treeview <?= ($activeMasterMenu == 'config') ? 'menu-open':''; ?>">
+              <a href="<?=$base;?>/app/config" class="nav-link <?= ($activeMasterMenu == 'config') ? 'active':''; ?>">
                 <i class="nav-icon fa fa-cog"></i>
                 <p>
                   Configurações
@@ -223,12 +223,21 @@
               </a>
 
               <ul class="nav nav-treeview">
+
+                <li class="nav-item">
+                  <a href="<?=$base;?>/app/usuarios" class="nav-link <?= ($activeMenu == 'altsenha') ? 'active':''; ?>">
+                    <i class="fa fa-user-circle nav-icon"></i>
+                    <p>Perfil</p>
+                  </a>
+                </li>
+
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/usuarios" class="nav-link <?= ($activeMenu == 'usuarios') ? 'active':''; ?>">
                     <i class="fa fa-users nav-icon"></i>
                     <p>Usuários</p>
                   </a>
                 </li>
+
               </ul>
 
             </li>

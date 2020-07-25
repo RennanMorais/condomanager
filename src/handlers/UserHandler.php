@@ -10,8 +10,10 @@ class UserHandler {
 
     public static function checkLogin() {
         if(!empty($_SESSION['token'])) {
+            
             $token = $_SESSION['token'];
             $data = User::select()->where('token', $token)->one();
+            
             if(count($data) > 0) {
                 $loggedUser = new User;
                 $loggedUser->id = $data['id'];
@@ -145,6 +147,25 @@ class UserHandler {
     public static function getPetItem($id_pet) {
         $petItem = Pet::select()->where('id', $id_pet)->one();
         return $petItem;
+    }
+
+    public static function savePets($id, $nome, $tipo, $sexo, $id_morador, $phone) {
+        $morador = User::select()->where('id', $id_morador)->one();
+        $nome_morador = $morador['name'];
+
+        Pet::update()
+            ->set('nome', $nome)
+            ->set('tipo', $tipo)
+            ->set('sexo', $sexo)
+            ->set('id_morador', $id_morador)
+            ->set('morador', $nome_morador)
+            ->set('phone', $phone)->where('id', $id)->execute();
+        return true;
+    }
+
+    public static function delPet($id) {
+        Pet::delete()->where('id', $id)->execute();
+        return true;
     }
 
 }

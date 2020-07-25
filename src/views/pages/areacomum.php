@@ -32,9 +32,9 @@
                         <thead class="bg-info">
                             <tr>
                                 <th>Nome</th>
-                                    <th>Condomínio</th>
-                                    <th>Ação</th>
-                                </tr>
+                                <th>Condomínio</th>
+                                <th>Ação</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <?php foreach($areas as $areaItem): ?>

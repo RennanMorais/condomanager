@@ -10,6 +10,7 @@ use src\models\Condominio;
 class AppController extends Controller {
 
     private $loggedUser;
+    private $tokendiff;
     
     public function __construct() {
         $this->loggedUser = UserHandler::checkLogin();
@@ -436,5 +437,29 @@ class AppController extends Controller {
             'moradores' => $moradorList,
             'petItem' => $petItem
         ]);
+    }
+
+    public function savePet() {
+        $id = filter_input(INPUT_POST, 'id');
+        $nome = filter_input(INPUT_POST, 'nome');
+        $tipo = filter_input(INPUT_POST, 'tipo');
+        $sexo = filter_input(INPUT_POST, 'sexo');
+        $id_morador = filter_input(INPUT_POST, 'proprietario');
+        $phone = filter_input(INPUT_POST, 'phone');
+
+        if($nome && $tipo) {
+            UserHandler::savePets($id, $nome, $tipo, $sexo, $id_morador, $phone);
+            $this->redirect('/app/pets');
+        } else {
+            $this->redirect('/app/pets');
+        }
+    }
+
+    public function deletePet() {
+        $id_pet = filter_input(INPUT_GET, 'id');
+        if($id_pet) {
+            UserHandler::delPet($id_pet);
+            $this->redirect('/app/pets');
+        }
     }
 }

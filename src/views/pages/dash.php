@@ -115,7 +115,7 @@
             <?php foreach($statementsFeed as $statementsFeedItem):?>
             <div class="statement-card">
               <h5><?=$statementsFeedItem->name;?></h5>
-              <span>Em: <?php echo date('d/m/Y', strtotime($statementsFeedItem->date)); ?> às <?php echo date('H:i:s', strtotime($statementsFeedItem->date)); ?></span>
+              <span>Em: <?php echo date('d/m/Y', strtotime($statementsFeedItem->date)); ?> às <?php echo date('H:i', strtotime($statementsFeedItem->date)); ?></span>
               <hr>
               <p><?php echo $statementsFeedItem->text; ?></p>
             </div>
