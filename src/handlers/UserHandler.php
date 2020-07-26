@@ -5,9 +5,11 @@ use \src\models\Condominio;
 use \src\models\Predio;
 use \src\models\User;
 use \src\models\Pet;
+use \src\models\Veiculo;
 
 class UserHandler {
 
+    // Funções de Login
     public static function checkLogin() {
         if(!empty($_SESSION['token'])) {
             
@@ -59,6 +61,8 @@ class UserHandler {
         return $token;
     }
 
+
+    // Funções de usuários
     public static function addUserFromMorador($nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
         $cond = Condominio::select()->where('id', $condominio)->one();
         $prd = Predio::select()->where('id', $predio)->one();
@@ -109,6 +113,8 @@ class UserHandler {
         return $morador_phone;
     }
 
+
+    // Funções de pets
     public static function addPets($nome, $tipo, $sexo, $id_morador, $phone) {
         $morador = User::select()->where('id', $id_morador)->one();
         $nome_morador = $morador['name'];
@@ -165,6 +171,92 @@ class UserHandler {
 
     public static function delPet($id) {
         Pet::delete()->where('id', $id)->execute();
+        return true;
+    }
+
+
+    // Funções de veiculos
+    public static function addVeiculo($condominio_id, $predio_id, $morador_id, $tipo, $marca, $modelo, $placa) {
+        $get_cond_name = Condominio::select()->where('id', $condominio_id)->one();
+        $nome_condominio = $get_cond_name['nome'];
+
+        $get_predio_name = Predio::select()->where('id', $predio_id)->one();
+        $nome_predio = $get_predio_name['nome'];
+
+        $get_morador_name = User::select()->where('id', $morador_id)->one();
+        $nome_morador = $get_morador_name['name'];
+
+        Veiculo::insert([
+            'id_condominio' => $condominio_id,
+            'condominio' => $nome_condominio,
+            'id_predio' => $predio_id,
+            'predio' => $nome_predio,
+            'id_morador' => $morador_id,
+            'morador' => $nome_morador,
+            'tipo' => $tipo,
+            'marca' => $marca,
+            'modelo' => $modelo,
+            'placa' => $placa
+        ])->execute();
+
+        return true;
+    }
+
+    public static function getVeiculos() {
+        $veiculosList = Veiculo::select()->get();
+        $veiculos = [];
+        
+        foreach($veiculosList as $veiculoItem) {
+            $newVeiculo = new Veiculo();
+            $newVeiculo->id = $veiculoItem['id'];
+            $newVeiculo->id_condominio = $veiculoItem['id_condominio'];
+            $newVeiculo->condominio = $veiculoItem['condominio'];
+            $newVeiculo->id_predio = $veiculoItem['id_predio'];
+            $newVeiculo->predio = $veiculoItem['predio'];
+            $newVeiculo->id_morador = $veiculoItem['id_morador'];
+            $newVeiculo->morador = $veiculoItem['morador'];
+            $newVeiculo->tipo = $veiculoItem['tipo'];
+            $newVeiculo->marca = $veiculoItem['marca'];
+            $newVeiculo->modelo = $veiculoItem['modelo'];
+            $newVeiculo->placa = $veiculoItem['placa'];
+
+            $veiculos[] = $newVeiculo;
+        }
+        return $veiculos;
+    }
+
+    public static function saveVeiculo($id, $condominio_id, $predio_id, $morador_id, $tipo, $marca, $modelo, $placa) {
+        $get_cond_name = Condominio::select()->where('id', $condominio_id)->one();
+        $nome_condominio = $get_cond_name['nome'];
+
+        $get_predio_name = Predio::select()->where('id', $predio_id)->one();
+        $nome_predio = $get_predio_name['nome'];
+
+        $get_morador_name = User::select()->where('id', $morador_id)->one();
+        $nome_morador = $get_morador_name['name'];
+
+        Veiculo::update()
+            ->set('id_condominio', $condominio_id)
+            ->set('condominio',$nome_condominio)
+            ->set('id_predio',$predio_id)
+            ->set('predio',$nome_predio)
+            ->set('id_morador',$morador_id)
+            ->set('morador',$nome_morador)
+            ->set('tipo',$tipo)
+            ->set('marca',$marca)
+            ->set('modelo',$modelo)
+            ->set('placa',$placa)->where('id', $id)->execute();
+
+        return true;
+    }
+
+    public static function getVeiculoItem($id) {
+        $veiculoItem = Veiculo::select()->where('id', $id)->one();
+        return $veiculoItem;
+    }
+
+    public static function deleteVeiculo($id) {
+        Veiculo::delete()->where('id', $id)->execute();
         return true;
     }
 

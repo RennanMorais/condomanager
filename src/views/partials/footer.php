@@ -17,7 +17,7 @@
   <!-- Bootstrap 4 -->
   <script type="text/javascript" src="<?=$base;?>/assets/js/bootstrap.min.js"></script>
   <!-- Bootstrap Select -->
-  <script type="text/javascript" src="<?=$base;?>/assets/js/select2.min.js"></script>
+  <script type="text/javascript" src="<?=$base;?>/assets/js/select2.full.min.js"></script>
   <!-- AdminLTE App -->
   <script type="text/javascript" src="<?=$base;?>/assets/js/adminlte.min.js"></script>
   <!-- Font aewsome -->

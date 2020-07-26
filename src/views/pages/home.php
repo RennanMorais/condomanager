@@ -72,7 +72,7 @@
             <h1>Sistema responsivo, acesse de qualquer dispositivo!</h1>
             <p>Nosso sistema foi desenhado para que voce não tenha complicações na hora de solicitar ou resolver seus problemas no seu apartamento ou no prédio comercial. Ele é rápido, visual limpo e muito fácil de usar!</p>
             <p>Acesse pelo computador, celular e pelo seu tablet. Ele é responsivo e funciona perfeitamente em qualquer dispositivo.</p>
-            <a href="<?=$base;?>/login" class="btn btn-info" style="margin-left:50px;margin-top:10px">Acesso ao sistema</a>
+            <a href="<?=$base;?>/app" class="btn btn-info" style="margin-left:50px;margin-top:10px">Acesso ao sistema</a>
         </div>
     </section>
 

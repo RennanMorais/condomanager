@@ -114,7 +114,7 @@ function carrega_predios()
     var valCond = $('#combo-condominio').val();
 
     $.ajax({
-        url: "<?=$base;?>/app/moradores",
+        url: "<?=$base;?>/app/getpredios",
         method: "POST",
         data: {id_cond: valCond},
         dataType: "json",
@@ -127,6 +127,7 @@ function carrega_predios()
                 html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
             }
             
+            $('#combo-morador').html('<option value="">Selecionar...</option>');
             $('#combo-predio').append(html);
 
         }
@@ -139,7 +140,7 @@ function carrega_prediosOnChange() {
         var valCond = $('#combo-condominio').val();
 
         $.ajax({
-            url: "<?=$base;?>/app/moradores",
+            url: "<?=$base;?>/app/getpredios",
             method: "POST",
             data: {id_cond: valCond},
             dataType: "json",
@@ -152,6 +153,7 @@ function carrega_prediosOnChange() {
                     html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
                 }
                 
+                $('#combo-morador').html('<option value="">Selecionar...</option>');
                 $('#combo-predio').html(html);
 
             }

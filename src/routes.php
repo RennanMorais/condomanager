@@ -33,7 +33,6 @@ $router->get('/app/predios/delete_prd', 'AppController@deletePredio');
 
 //Rotas Moradores
 $router->get('/app/moradores', 'AppController@morador');
-$router->post('/app/moradores', 'AppController@getPredioField');
 $router->post('/app/moradores/add_morador', 'AppController@addMorador');
 $router->get('/app/moradores/edit_morador/{id}', 'AppController@editMorador');
 $router->post('/app/moradores/edit_morador/save', 'AppController@saveMorador');
@@ -48,8 +47,6 @@ $router->get('/app/area_comum/delete_area', 'AppController@deleteArea');
 
 //Rotas Reservas de Areas Comuns
 $router->get('/app/reservas', 'AppController@reservas');
-$router->post('/app/reservas/getarea', 'AppController@getAreaField');
-$router->post('/app/reservas/getmorador', 'AppController@getMoradorField');
 $router->post('/app/reservas/add_reserva', 'AppController@addReserva');
 $router->get('/app/reservas/edit_reserva/{id}', 'AppController@editReserva');
 $router->post('/app/reservas/edit_reserva/save', 'AppController@saveReserva');
@@ -59,12 +56,24 @@ $router->get('/app/reservas/delete_reserva', 'AppController@deleteReserva');
 
 //Rotas Pets
 $router->get('/app/pets', 'AppController@pets');
-$router->post('/app/pets', 'AppController@getMoradorPhoneField');
 $router->post('/app/pets/add_pet', 'AppController@addPet');
 $router->get('/app/pets/edit_pet/{id}', 'AppController@editPet');
 $router->post('/app/pets/edit_pet/save', 'AppController@savePet');
 $router->get('/app/pets/delete_pet', 'AppController@deletePet');
 
+//Rotas Veiculos
+$router->get('/app/veiculos', 'AppController@veiculos');
+$router->post('/app/veiculos/add_veiculo', 'AppController@addVeiculo');
+$router->get('/app/veiculos/edit_veiculo/{id}', 'AppController@editVeiculo');
+$router->post('/app/veiculos/edit_veiculo/save', 'AppController@saveVeiculo');
+$router->get('/app/veiculos/delete_veiculo', 'AppController@deleteVeiculo');
+
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');
 $router->get('/registro', 'LoginController@getRegistroForm');
+
+//Requisições Ajax
+$router->post('/app/getpets', 'AppController@getMoradorPhoneField');
+$router->post('/app/getarea', 'AppController@getAreaField');
+$router->post('/app/getmorador', 'AppController@getMoradorField');
+$router->post('/app/getpredios', 'AppController@getPredioField');

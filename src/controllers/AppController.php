@@ -44,6 +44,32 @@ class AppController extends Controller {
 
     }
 
+
+    //Requisições Ajax para os campos select
+    public function getMoradorPhoneField() {
+        $id_morador = filter_input(INPUT_POST, 'id_morador');
+        $phone = UserHandler::getMoradorPhone($id_morador);
+        echo json_encode($phone);
+    }
+
+    public function getAreaField() {
+        $idCond = filter_input(INPUT_POST, 'id_cond');
+        $areaList = CondominioHandler::getAreaListByCond($idCond);
+        echo json_encode($areaList);
+    }
+
+    public function getMoradorField() {
+        $idCond = filter_input(INPUT_POST, 'id_cond');
+        $moradorList = UserHandler::getMoradorField($idCond);
+        echo json_encode($moradorList);
+    }
+
+    public function getPredioField() {
+        $idCond = filter_input(INPUT_POST, 'id_cond');
+        $prdList = CondominioHandler::getPrdListByCond($idCond);
+        echo json_encode($prdList);
+    }
+
     
     //Funções da pagina de condominio
     public function condominio() {
@@ -228,12 +254,6 @@ class AppController extends Controller {
         }
     }
 
-    public function getPredioField() {
-        $idCond = filter_input(INPUT_POST, 'id_cond');
-        $prdList = CondominioHandler::getPrdListByCond($idCond);
-        echo json_encode($prdList);
-    }
-
 
     //Funções da página de areas comuns
     public function areas() {
@@ -304,18 +324,6 @@ class AppController extends Controller {
             'reservas' => $reservaList,
             'flashDateCheck' => $flashDateCheck
         ]);
-    }
-
-    public function getAreaField() {
-        $idCond = filter_input(INPUT_POST, 'id_cond');
-        $areaList = CondominioHandler::getAreaListByCond($idCond);
-        echo json_encode($areaList);
-    }
-
-    public function getMoradorField() {
-        $idCond = filter_input(INPUT_POST, 'id_cond');
-        $moradorList = UserHandler::getMoradorField($idCond);
-        echo json_encode($moradorList);
     }
 
     public function addReserva() {
@@ -408,12 +416,6 @@ class AppController extends Controller {
         ]);
     }
 
-    public function getMoradorPhoneField() {
-        $id_morador = filter_input(INPUT_POST, 'id_morador');
-        $phone = UserHandler::getMoradorPhone($id_morador);
-        echo json_encode($phone);
-    }
-
     public function addPet() {
         $nome = filter_input(INPUT_POST, 'nome');
         $tipo = filter_input(INPUT_POST, 'tipo');
@@ -462,4 +464,72 @@ class AppController extends Controller {
             $this->redirect('/app/pets');
         }
     }
+
+
+    // Pagina de veiculos
+    public function veiculos() {
+        $veiculosList = UserHandler::getVeiculos();
+        $condominiosList = CondominioHandler::getCond();
+        $this->render('veiculo', [
+            'loggedUser' => $this->loggedUser,
+            'veiculos' => $veiculosList,
+            'condominios' => $condominiosList
+        ]);
+    }
+
+    public function addVeiculo() {
+        $condominio_id = filter_input(INPUT_POST, 'condominio');
+        $predio_id = filter_input(INPUT_POST, 'predio');
+        $morador_id = filter_input(INPUT_POST, 'morador');
+        $tipo = filter_input(INPUT_POST, 'tipo');
+        $marca = filter_input(INPUT_POST, 'marca');
+        $modelo = filter_input(INPUT_POST, 'modelo');
+        $placa = filter_input(INPUT_POST, 'placa');
+
+        if($condominio_id) {
+            UserHandler::addVeiculo($condominio_id, $predio_id, $morador_id, $tipo, $marca, $modelo, $placa);
+            $this->redirect('/app/veiculos');
+        } else {
+            $this->redirect('/app/veiculos');
+        }
+    }
+
+    public function editVeiculo($atts) {
+        $condominiosList = CondominioHandler::getCond();
+        $veiculoItem = UserHandler::getVeiculoItem($atts['id']);
+        $this->render('edit_veiculo', [
+            'loggedUser' => $this->loggedUser,
+            'condominios' => $condominiosList,
+            'veiculo' => $veiculoItem
+        ]);
+    }
+
+    public function saveVeiculo() {
+        $id = filter_input(INPUT_POST, 'id');
+        $condominio_id = filter_input(INPUT_POST, 'condominio');
+        $predio_id = filter_input(INPUT_POST, 'predio');
+        $morador_id = filter_input(INPUT_POST, 'morador');
+        $tipo = filter_input(INPUT_POST, 'tipo');
+        $marca = filter_input(INPUT_POST, 'marca');
+        $modelo = filter_input(INPUT_POST, 'modelo');
+        $placa = filter_input(INPUT_POST, 'placa');
+
+        if($condominio_id) {
+            UserHandler::saveVeiculo($id, $condominio_id, $predio_id, $morador_id, $tipo, $marca, $modelo, $placa);
+            $this->redirect('/app/veiculos');
+        } else {
+            $this->redirect('/app/veiculos');
+        }
+    }
+
+    public function deleteVeiculo() {
+        $id_veiculo = filter_input(INPUT_GET, 'id');
+        if($id_veiculo) {
+            UserHandler::deleteVeiculo($id_veiculo);
+            $this->redirect('/app/veiculos');
+        }
+    }
+
+
+    //Agenda Assembleias
 }
