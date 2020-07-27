@@ -4,9 +4,10 @@ namespace src\handlers;
 use \src\models\Condominio;
 use \src\models\Predio;
 use \src\models\Areascomum;
+use src\models\Assembleia;
 use \src\models\User;
 use \src\models\Reserva;
-
+use src\models\Veiculo;
 
 class CondominioHandler {
 
@@ -41,11 +42,6 @@ class CondominioHandler {
         return $cond;
     }
 
-    public static function delCond($id) {
-        Condominio::delete()->where('id', $id)->execute();
-        return true;
-    }
-
     public static function getCondItem($id) {
         $condItem = Condominio::select()->where('id', $id)->one();
         return $condItem;
@@ -73,6 +69,17 @@ class CondominioHandler {
         Reserva::update()
         ->set('condominio', $nome)->where('id_condominio', $id)->execute();
 
+        Veiculo::update()
+        ->set('condominio', $nome)->where('id_condominio', $id)->execute();
+
+        Assembleia::update()
+        ->set('local_condominio', $nome)->where('local', $id)->execute();
+
+        return true;
+    }
+
+    public static function delCond($id) {
+        Condominio::delete()->where('id', $id)->execute();
         return true;
     }
 
@@ -354,6 +361,46 @@ class CondominioHandler {
         ->where('status', '!=', $status)->one();
 
         return $dateCheck ? true : false;
+    }
+
+
+    //Funções da pagina Assembleias
+    public static function addAssembleia($titulo, $descricao, $data, $hora, $local, $descricao_local) {
+        $cond_list = Condominio::select()->where('id', $local)->one();
+        $cond_nome = $cond_list['nome'];
+
+        Assembleia::insert([
+            'titulo' => $titulo,
+            'descricao' => $descricao,
+            'data' => $data,
+            'hora' => $hora,
+            'local' => $local,
+            'local_condominio' => $cond_nome,
+            'descricao_local' => $descricao_local
+        ])->execute();
+
+        return true;
+    }
+
+    public static function getAssembleias() {
+        $assembleiasList = Assembleia::select()->get();
+        $assembleias = [];
+
+        foreach($assembleiasList as $assembleiaItem) {
+            $newAssembleia = new Assembleia();
+            $newAssembleia->id = $assembleiaItem['id'];
+            $newAssembleia->titulo = $assembleiaItem['titulo'];
+            $newAssembleia->descricao = $assembleiaItem['descricao'];
+            $newAssembleia->data = $assembleiaItem['data'];
+            $newAssembleia->hora = $assembleiaItem['hora'];
+            $newAssembleia->local = $assembleiaItem['local'];
+            $newAssembleia->local_condominio = $assembleiaItem['local_condominio'];
+            $newAssembleia->descricao_local = $assembleiaItem['descricao_local'];
+
+            $assembleias[] = $newAssembleia;
+        }
+
+        return $assembleias;
     }
 
 }

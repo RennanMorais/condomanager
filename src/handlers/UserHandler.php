@@ -108,6 +108,11 @@ class UserHandler {
         return $moradorList;
     }
 
+    public static function getMoradorListPorPredio($id) {
+        $morador_por_predio = User::select()->where('id_predio', $id)->get();
+        return $morador_por_predio;
+    }
+
     public static function getMoradorPhone($id) {
         $morador_phone = User::select('phone')->where('id', $id)->one();
         return $morador_phone;

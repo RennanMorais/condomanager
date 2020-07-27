@@ -5,7 +5,6 @@ use \core\Controller;
 use \src\handlers\UserHandler;
 use \src\handlers\StatementHandler;
 use \src\handlers\CondominioHandler;
-use src\models\Condominio;
 
 class AppController extends Controller {
 
@@ -68,6 +67,12 @@ class AppController extends Controller {
         $idCond = filter_input(INPUT_POST, 'id_cond');
         $prdList = CondominioHandler::getPrdListByCond($idCond);
         echo json_encode($prdList);
+    }
+
+    public function getMoradorPredioField() {
+        $id_predio = filter_input(INPUT_POST, 'id_predio');
+        $morador_predio = UserHandler::getMoradorListPorPredio($id_predio);
+        echo json_encode($morador_predio); 
     }
 
     
@@ -532,4 +537,28 @@ class AppController extends Controller {
 
 
     //Agenda Assembleias
+    public function assembleias() {
+        $condominiosList = CondominioHandler::getCond();
+        $assembleiasList = CondominioHandler::getAssembleias();
+
+        $this->render('assembleias', [
+            'loggedUser' => $this->loggedUser,
+            'condominios' => $condominiosList,
+            'assembleias' => $assembleiasList
+        ]);
+    }
+
+    public function addAssembleia() {
+        $titulo = filter_input(INPUT_POST, 'titulo');
+        $descricao = filter_input(INPUT_POST, 'descricao');
+        $data = filter_input(INPUT_POST, 'data');
+        $hora = filter_input(INPUT_POST, 'hora');
+        $local = filter_input(INPUT_POST, 'local');
+        $descricao_local = filter_input(INPUT_POST, 'descricao_local');
+
+        if($titulo && $descricao) {
+            CondominioHandler::addAssembleia($titulo, $descricao, $data, $hora, $local, $descricao_local);
+            $this->redirect('/app/assembleias');
+        }
+    }
 }

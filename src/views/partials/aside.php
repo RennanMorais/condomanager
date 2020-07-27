@@ -130,7 +130,7 @@
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/assembleias" class="nav-link <?= ($activeMenu == 'assembleia') ? 'active':''; ?>">
                     <i class="fa fa-handshake nav-icon"></i>
-                    <p>Agenda de Assembleias</p>
+                    <p>Assembleias</p>
                   </a>
                 </li>
               </ul>

@@ -68,12 +68,18 @@ $router->get('/app/veiculos/edit_veiculo/{id}', 'AppController@editVeiculo');
 $router->post('/app/veiculos/edit_veiculo/save', 'AppController@saveVeiculo');
 $router->get('/app/veiculos/delete_veiculo', 'AppController@deleteVeiculo');
 
+//Rotas Assembleias
+$router->get('/app/assembleias', 'AppController@assembleias');
+$router->post('/app/assembleias/add_assembleia', 'AppController@addAssembleia');
+
+
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');
 $router->get('/registro', 'LoginController@getRegistroForm');
 
 //Requisições Ajax
-$router->post('/app/getpets', 'AppController@getMoradorPhoneField');
+$router->post('/app/getphone', 'AppController@getMoradorPhoneField');
 $router->post('/app/getarea', 'AppController@getAreaField');
 $router->post('/app/getmorador', 'AppController@getMoradorField');
+$router->post('/app/getmoradorbypredio', 'AppController@getMoradorPredioField');
 $router->post('/app/getpredios', 'AppController@getPredioField');

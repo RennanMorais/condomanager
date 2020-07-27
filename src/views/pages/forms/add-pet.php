@@ -25,7 +25,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">Sexo</div>
             </div>
-            <select class="form-control" name="sexo" id="select-cond">
+            <select class="form-control" name="sexo">
                 <option value="">Selecione...</option>
                 <option value="Feminino">Feminino</option>
                 <option value="Masculino">Masculino</option>
@@ -80,7 +80,7 @@ function carrega_telefones() {
     var valMorador = $('#combo-morador').val();
 
     $.ajax({
-        url: "<?=$base;?>/app/pets",
+        url: "<?=$base;?>/app/getphone",
         method: "POST",
         data: {id_morador: valMorador},
         dataType: "json",
@@ -104,7 +104,7 @@ function carrega_telefones_change() {
         var valMorador = $('#combo-morador').val();
 
         $.ajax({
-            url: "<?=$base;?>/app/pets",
+            url: "<?=$base;?>/app/getphone",
             method: "POST",
             data: {id_morador: valMorador},
             dataType: "json",
