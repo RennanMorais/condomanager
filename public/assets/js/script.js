@@ -43,7 +43,7 @@ $("#btn-contato").click(function(){
 
 });
 
-$("#btn-banner").click(function(){
+$(".btn-banner").click(function(){
   
   var body = $("html, body");
   var target = $(".section-1");

@@ -146,16 +146,34 @@ function dashgraphs()
     var ctx = document.getElementById('visitor-chart').getContext('2d');
     var myChart = new Chart(ctx, {
 
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: ['<?=$mes;?>', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            labels: ['<?=$mes;?>', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'],
             datasets: [{
                 label: 'Visitantes',
-                data: [12, 19, 3, 5, 2, 3, 5, 6, 12, 25, 23, 21],
+                data: [12, 19, 3, 5, 2, 3, 5, 6, 12, 25],
                 backgroundColor: [
+                    '#C7E8ED',
+                    '#C7E8ED',
+                    '#C7E8ED',
+                    '#C7E8ED',
+                    '#C7E8ED',
+                    '#C7E8ED',
+                    '#C7E8ED',
+                    '#C7E8ED',
+                    '#C7E8ED',
                     '#C7E8ED'
                 ],
                 borderColor: [
+                    '#148A9D',
+                    '#148A9D',
+                    '#148A9D',
+                    '#148A9D',
+                    '#148A9D',
+                    '#148A9D',
+                    '#148A9D',
+                    '#148A9D',
+                    '#148A9D',
                     '#148A9D'
                 ],
                 borderWidth: 3
@@ -175,16 +193,34 @@ function dashgraphs()
     var ctx = document.getElementById('occurrence-chart').getContext('2d');
     var myChart = new Chart(ctx, {
 
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'],
             datasets: [{
                 label: 'Ocorrências',
-                data: [11, 7, 2, 5, 9, 4, 2, 3, 12, 1, 4, 5],
+                data: [11, 7, 2, 5, 9, 4, 2, 3, 12, 1],
                 backgroundColor: [
+                    '#e5a0a6',
+                    '#e5a0a6',
+                    '#e5a0a6',
+                    '#e5a0a6',
+                    '#e5a0a6',
+                    '#e5a0a6',
+                    '#e5a0a6',
+                    '#e5a0a6',
+                    '#e5a0a6',
                     '#e5a0a6'
                 ],
                 borderColor: [
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
                     '#DC3545'
                 ],
                 borderWidth: 3

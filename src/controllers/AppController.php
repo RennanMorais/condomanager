@@ -29,7 +29,7 @@ class AppController extends Controller {
             'statementsFeed' => $statementsFeed,
             'countMoradores' => $countMoradores,
             'countReservas' => $countReservasPendentes,
-            'mes' => 'Rennan'
+            'mes' => 'Jan'
         ]);
     }
 
@@ -558,6 +558,39 @@ class AppController extends Controller {
 
         if($titulo && $descricao) {
             CondominioHandler::addAssembleia($titulo, $descricao, $data, $hora, $local, $descricao_local);
+            $this->redirect('/app/assembleias');
+        }
+    }
+
+    public function editAssembleia($atts) {
+        $condominiosList = CondominioHandler::getCond();
+        $assembleiaItem = CondominioHandler::getAssembleiaItem($atts['id']);
+        $this->render('edit_assembleia', [
+            'loggedUser' => $this->loggedUser,
+            'condominios' => $condominiosList,
+            'assembleia' => $assembleiaItem
+        ]);
+    }
+
+    public function saveAssembleia() {
+        $id = filter_input(INPUT_POST, 'id');
+        $titulo = filter_input(INPUT_POST, 'titulo');
+        $descricao = filter_input(INPUT_POST, 'descricao');
+        $data = filter_input(INPUT_POST, 'data');
+        $hora = filter_input(INPUT_POST, 'hora');
+        $local = filter_input(INPUT_POST, 'local');
+        $descricao_local = filter_input(INPUT_POST, 'descricao_local');
+
+        if($titulo && $descricao) {
+            CondominioHandler::saveAssembleia($id, $titulo, $descricao, $data, $hora, $local, $descricao_local);
+            $this->redirect('/app/assembleias');
+        }
+    }
+
+    public function deleteAssembleia() {
+        $id_assembleia = filter_input(INPUT_GET, 'id');
+        if($id_assembleia) {
+            CondominioHandler::deleteAssembleia($id_assembleia);
             $this->redirect('/app/assembleias');
         }
     }

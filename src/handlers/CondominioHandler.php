@@ -403,4 +403,30 @@ class CondominioHandler {
         return $assembleias;
     }
 
+    public static function getAssembleiaItem($id) {
+        $assembleia = Assembleia::select()->where('id', $id)->one();
+        return $assembleia;
+    }
+
+    public static function saveAssembleia($id, $titulo, $descricao, $data, $hora, $local, $descricao_local) {
+        $cond = Condominio::select()->where('id', $local)->one();
+        $nome_condominio = $cond['nome'];
+
+        Assembleia::update()
+        ->set('titulo', $titulo)
+        ->set('descricao', $descricao)
+        ->set('data', $data)
+        ->set('hora', $hora)
+        ->set('local', $local)
+        ->set('local_condominio', $nome_condominio)
+        ->set('descricao_local', $descricao_local)->where('id', $id)->execute();
+
+        return true;
+    }
+
+    public static function deleteAssembleia($id) {
+        Assembleia::delete()->where('id', $id)->execute();
+        return true;
+    }
+
 }

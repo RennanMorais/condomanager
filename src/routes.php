@@ -71,6 +71,9 @@ $router->get('/app/veiculos/delete_veiculo', 'AppController@deleteVeiculo');
 //Rotas Assembleias
 $router->get('/app/assembleias', 'AppController@assembleias');
 $router->post('/app/assembleias/add_assembleia', 'AppController@addAssembleia');
+$router->get('/app/assembleias/edit_assembleia/{id}', 'AppController@editAssembleia');
+$router->post('/app/assembleias/edit_assembleia/save', 'AppController@saveAssembleia');
+$router->get('/app/assembleias/delete_assembleia', 'AppController@deleteAssembleia');
 
 
 //Rotas formularios Login
