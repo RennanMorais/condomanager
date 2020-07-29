@@ -594,4 +594,29 @@ class AppController extends Controller {
             $this->redirect('/app/assembleias');
         }
     }
+
+
+    //Pagina Ocorrencias
+    public function ocorrencias() {
+        $condominiosList = CondominioHandler::getCond();
+
+
+        $this->render('ocorrencias', [
+            'loggedUser' => $this->loggedUser,
+            'condominios' => $condominiosList
+        ]);
+    }
+
+    public function addOcorrencia() {
+        $data = filter_input(INPUT_POST, 'data');
+        $descricao = filter_input(INPUT_POST, 'descricao');
+        $id_condominio = filter_input(INPUT_POST, 'condominio');
+        $id_morador = filter_input(INPUT_POST, 'morador');
+        $contato = filter_input(INPUT_POST, 'phone');
+
+        if($data) {
+            CondominioHandler::addNewOcorrencia($data, $descricao, $id_condominio, $id_morador, $contato);
+            $this->redirect('/app/ocorrencias');
+        }
+    }
 }

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>CondoSystem | Bem-Vindo</title>
+  <title>CondoSystem | Sistema</title>
 
   <!-- Boostrap 4 -->
   <link rel="stylesheet" href="<?=$base;?>/assets/css/bootstrap.min.css">

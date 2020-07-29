@@ -1,5 +1,5 @@
 .statement-card {
-    background-color: #C7E8ED;
+    background-color: #94e0c9;
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -7,13 +7,17 @@
 }
 
 #form {
-    border: 2px solid #0099A0;
+    border: 2px solid #46B191;
     border-radius: 10px;
     padding: 10px;
 }
 
 #form-new {
-    border: 2px solid #0099A0;
+    border: 2px solid #46B191;
     border-radius: 10px;
     padding: 10px;
+}
+
+#top-bar {
+    background-color:#46B191;
 }

@@ -8,6 +8,7 @@ use src\models\Assembleia;
 use \src\models\User;
 use \src\models\Reserva;
 use src\models\Veiculo;
+use src\models\Ocorrencia;
 
 class CondominioHandler {
 
@@ -427,6 +428,29 @@ class CondominioHandler {
     public static function deleteAssembleia($id) {
         Assembleia::delete()->where('id', $id)->execute();
         return true;
+    }
+
+
+    // Funções pagina de Ocorrencias
+    public static function addNewOcorrencia($data, $descricao, $id_condominio, $id_morador, $contato) {
+        $cond = Condominio::select()->where('id', $id_condominio)->one();
+        $nome_condominio = $cond['nome'];
+
+        $morador = User::select()->where('id', $id_morador)->one();
+        $nome_morador = $morador['name'];
+
+        $status = 'Pendente';
+
+        Ocorrencia::insert([
+            'data' => $data,
+            'descricao' => $descricao,
+            'id_condominio' => $id_condominio,
+            'condominio' => $nome_condominio,
+            'id_morador' => $id_morador,
+            'morador' => $nome_morador,
+            'contato' => $contato,
+            'status' => $status
+        ])->execute();
     }
 
 }

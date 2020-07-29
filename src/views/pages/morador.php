@@ -22,7 +22,7 @@
           
             <div class="row">
                 <div class="col-sm-12">
-                    <button id="add-cond" class="btn btn-outline-success" style="margin-bottom:10px">Adicionar Novo</button>
+                    <button id="add" class="btn btn-outline-success" style="margin-bottom:10px">Adicionar Novo</button>
                 </div>
             </div>
 

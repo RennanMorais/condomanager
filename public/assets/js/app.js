@@ -1,5 +1,5 @@
 //Modal condominio Add
-$('#add-cond').on('click', function () {
+$('#add').on('click', function () {
     $('#condominio-modal').show('fade');
 });
 

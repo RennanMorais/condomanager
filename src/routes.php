@@ -75,6 +75,10 @@ $router->get('/app/assembleias/edit_assembleia/{id}', 'AppController@editAssembl
 $router->post('/app/assembleias/edit_assembleia/save', 'AppController@saveAssembleia');
 $router->get('/app/assembleias/delete_assembleia', 'AppController@deleteAssembleia');
 
+//Rotas Ocorrencias
+$router->get('/app/ocorrencias', 'AppController@ocorrencias');
+$router->post('/app/ocorrencias/add_ocorrencia', 'AppController@addOcorrencia');
+
 
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');
