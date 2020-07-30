@@ -78,6 +78,11 @@ $router->get('/app/assembleias/delete_assembleia', 'AppController@deleteAssemble
 //Rotas Ocorrencias
 $router->get('/app/ocorrencias', 'AppController@ocorrencias');
 $router->post('/app/ocorrencias/add_ocorrencia', 'AppController@addOcorrencia');
+$router->get('/app/ocorrencias/edit_ocorrencia/{id}', 'AppController@editOcorrencia');
+$router->post('/app/ocorrencias/edit_ocorrencia/save', 'AppController@saveOcorrencia');
+$router->get('/app/ocorrencias/aceitar', 'AppController@aceitar');
+$router->post('/app/ocorrencias/finalizar', 'AppController@finalizar');
+$router->get('/app/ocorrencias/delete_ocorrencia', 'AppController@deleteOcorrencia');
 
 
 //Rotas formularios Login
@@ -90,3 +95,5 @@ $router->post('/app/getarea', 'AppController@getAreaField');
 $router->post('/app/getmorador', 'AppController@getMoradorField');
 $router->post('/app/getmoradorbypredio', 'AppController@getMoradorPredioField');
 $router->post('/app/getpredios', 'AppController@getPredioField');
+$router->post('/app/getdatas', 'AppController@getDatasOcorrencias');
+$router->post('/app/countocorrencias', 'AppController@countOcorrencias');

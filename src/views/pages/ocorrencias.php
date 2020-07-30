@@ -29,18 +29,79 @@
             <table class="table table-bordered table-hover table-responsive-lg table-center">
                 <thead class="bg-info">
                     <tr>
+                        <th>Id</th>
                         <th>Data</th>
                         <th>Descrição</th>
                         <th>Condominio</th>
                         <th>Morador</th>
                         <th>Contato</th>
                         <th>Status</th>
-                        <th>Feedback</th>
+                        <th>Mensagem</th>
                         <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php foreach($ocorrencias as $ocorrenciaItem): ?>
+                    <tr>
+                        <td><?=$ocorrenciaItem->id;?></td>
+                        <td><?=date('d/m/Y', strtotime($ocorrenciaItem->data));?></td>
+                        <td><?=$ocorrenciaItem->descricao;?></td>
+                        <td><?=$ocorrenciaItem->condominio;?></td>
+                        <td><?=$ocorrenciaItem->morador;?></td>
+                        <td><?=$ocorrenciaItem->contato;?></td>
+                        <td><?=$ocorrenciaItem->status;?></td>
+                        <td><?=$ocorrenciaItem->feedback;?></td>
+                        <td style="text-align:center;">
+                            <?php if($ocorrenciaItem->status == 'Em Andamento'): ?>
+                            <button data-toggle="modal" data-target="#finalizar-modal-<?=$ocorrenciaItem->id;?>" class="btn btn-outline-success btn-sm" title="Finalizar"><i class="fa fa-check-double"></i></button>
+                            <?php endif; ?>
+                            <?php if($ocorrenciaItem->status == 'Pendente'):?>
+                            <a href="<?=$base;?>/app/ocorrencias/aceitar?id=<?=$ocorrenciaItem->id;?>" class="btn btn-outline-primary btn-sm" title="Aceitar"><i class="fa fa-check"></i></a>
+                            <?php endif; ?>
+                            <a href="<?=$base;?>/app/ocorrencias/edit_ocorrencia/<?=$ocorrenciaItem->id;?>" class="btn btn-outline-warning btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
+                            <button data-toggle="modal" data-target="#del-modal-<?=$ocorrenciaItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
 
+                    <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="finalizar-modal-<?=$ocorrenciaItem->id;?>">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                
+                                <form action="<?=$base;?>/app/ocorrencias/finalizar" method="POST">
+                                    <div class="modal-body" id="modal-content">
+                                        <h5>Mensagem</h5>
+                                        <input type="hidden" name="id" value="<?=$ocorrenciaItem->id;?>">
+                                        <textarea class="form-control" name="mensagem" cols="50" rows="5"></textarea>
+                                    </div>
+    
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-outline-info" title="Excluir"><i></i>Finalizar</button>
+                                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="del-modal-<?=$ocorrenciaItem->id;?>">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <div class="modal-body" id="modal-content">
+                                    <h5>Tem certeza que deseja excluir a Ocorrência Id: <?=$ocorrenciaItem->id;?>?</h5>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <a href="<?=$base;?>/app/ocorrencias/delete_ocorrencia?id=<?=$ocorrenciaItem->id;?>" class="btn btn-outline-info" title="Excluir"><i></i>Sim</a>
+                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Não</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                <?php endforeach; ?>
                 </tbody>
             </table>
             <?php if(empty($ocorrencias)): ?>

@@ -2,7 +2,6 @@
     background-color: #94e0c9;
     padding: 20px;
     margin-top: 20px;
-    margin-bottom: 20px;
     border-radius: 10px;
 }
 
@@ -20,4 +19,8 @@
 
 #top-bar {
     background-color:#46B191;
+}
+
+.container-fluid {
+    padding-bottom: 20px;
 }

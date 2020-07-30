@@ -12,6 +12,19 @@ use src\models\Ocorrencia;
 
 class CondominioHandler {
 
+    //Funções graficos da Dashboard
+    public static function getUltimasDatas() {
+        $ocorrencias = Ocorrencia::select()->orderBy('data', 'desc')->groupBy('data')->limit(5)->get();
+        return $ocorrencias;
+    }
+
+    public static function countOcorrencias($dia) {
+        $count = Ocorrencia::select()->where('data', $dia)->count();
+        return $count;
+    }
+
+
+    //Funções da pagina de condominios
     public static function addCond($name, $cnpj, $email, $endereco, $numero, $complemento, $bairro) {
         Condominio::insert([
             'nome' => $name,
@@ -451,6 +464,86 @@ class CondominioHandler {
             'contato' => $contato,
             'status' => $status
         ])->execute();
+    }
+
+    public static function getOcorrencias() {
+        $ocorrenciasList = Ocorrencia::select()->get();
+        $ocorrencias = [];
+
+        foreach($ocorrenciasList as $ocorrenciasItem) {
+            $newOcorrencia = new Ocorrencia();
+            $newOcorrencia->id = $ocorrenciasItem['id'];
+            $newOcorrencia->data = $ocorrenciasItem['data'];
+            $newOcorrencia->descricao = $ocorrenciasItem['descricao'];
+            $newOcorrencia->id_condominio = $ocorrenciasItem['id_condominio'];
+            $newOcorrencia->condominio = $ocorrenciasItem['condominio'];
+            $newOcorrencia->id_morador = $ocorrenciasItem['id_morador'];
+            $newOcorrencia->morador = $ocorrenciasItem['morador'];
+            $newOcorrencia->contato = $ocorrenciasItem['contato'];
+            $newOcorrencia->status = $ocorrenciasItem['status'];
+            $newOcorrencia->feedback = $ocorrenciasItem['feedback'];
+            $ocorrencias[] = $newOcorrencia;
+        }
+        return $ocorrencias;
+    }
+
+    public static function getOcorrenciaItem($id) {
+        $ocorrencia = Ocorrencia::select()->where('id', $id)->one();
+        return $ocorrencia;
+    }
+
+    public static function saveOcorrencia($id, $data, $descricao, $id_condominio, $id_morador, $contato) {
+        $cond = Condominio::select()->where('id', $id_condominio)->one();
+        $nome_condominio = $cond['nome'];
+
+        $morador = User::select()->where('id', $id_morador)->one();
+        $nome_morador = $morador['name'];
+
+        $status = 'Pendente';
+
+        Ocorrencia::update()
+        ->set('data', $data)
+        ->set('descricao', $descricao)
+        ->set('id_condominio', $id_condominio)
+        ->set('condominio', $nome_condominio)
+        ->set('id_morador', $id_morador)
+        ->set('morador', $nome_morador)
+        ->set('contato', $contato)
+        ->set('status', $status)->where('id', $id)->execute();
+
+        return true;
+    }
+
+    public static function aceitarOcorrencia($id_ocorrencia) {
+        $status = 'Em Andamento';
+        Ocorrencia::update()->set('status', $status)->where('id', $id_ocorrencia)->execute();
+
+        return true;
+    }
+
+    public static function finalizarOcorrencia($id_ocorrencia, $mensagem) {
+        $status = 'Finalizado';
+
+        Ocorrencia::update()
+        ->set('status', $status)
+        ->set('feedback', $mensagem)->where('id', $id_ocorrencia)->execute();
+
+        return true;
+    }
+
+    public static function deleteOcorrencia($id_ocorrencia) {
+        Ocorrencia::delete()->where('id', $id_ocorrencia)->execute();
+
+        return true;
+    }
+
+    public static function countOcorrenciaPendente() {
+        $status = "Pendente";
+
+        $count_ocorrencia = Ocorrencia::select()->where('status', $status)->count();
+
+        return $count_ocorrencia;
+
     }
 
 }

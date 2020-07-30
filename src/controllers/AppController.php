@@ -21,15 +21,18 @@ class AppController extends Controller {
 
     //Funções da pagina inicial do sistema
     public function index() {
-        $statementsFeed = StatementHandler::getStatement();
-        $countMoradores = UserHandler::countMoradores();
-        $countReservasPendentes = CondominioHandler::countReservaPendente();
+
+        $statementsFeed = StatementHandler::getStatement(); //Pega todos os comunicados da Administração
+        $countMoradores = UserHandler::countMoradores(); //Conta todos os moradores registrados
+        $countReservasPendentes = CondominioHandler::countReservaPendente(); //Conta todas as reservas pendentes
+        $countOcorrenciasPendentes = CondominioHandler::countOcorrenciaPendente(); //Conta todas as ocorrências pendentes
+
         $this->render('dash', [
             'loggedUser' => $this->loggedUser,
             'statementsFeed' => $statementsFeed,
             'countMoradores' => $countMoradores,
             'countReservas' => $countReservasPendentes,
-            'mes' => 'Jan'
+            'countOcorrencias' => $countOcorrenciasPendentes,
         ]);
     }
 
@@ -73,6 +76,17 @@ class AppController extends Controller {
         $id_predio = filter_input(INPUT_POST, 'id_predio');
         $morador_predio = UserHandler::getMoradorListPorPredio($id_predio);
         echo json_encode($morador_predio); 
+    }
+
+    public function getDatasOcorrencias() {
+        $datas = CondominioHandler::getUltimasDatas();
+        echo json_encode($datas);
+    }
+
+    public function countOcorrencias() {
+        $dia = filter_input(INPUT_POST, 'data');
+        $count_ocorrencia = CondominioHandler::countOcorrencias($dia);
+        echo json_encode($count_ocorrencia);
     }
 
     
@@ -599,11 +613,12 @@ class AppController extends Controller {
     //Pagina Ocorrencias
     public function ocorrencias() {
         $condominiosList = CondominioHandler::getCond();
-
+        $ocorrenciasList = CondominioHandler::getOcorrencias();
 
         $this->render('ocorrencias', [
             'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList
+            'condominios' => $condominiosList,
+            'ocorrencias' => $ocorrenciasList
         ]);
     }
 
@@ -616,6 +631,67 @@ class AppController extends Controller {
 
         if($data) {
             CondominioHandler::addNewOcorrencia($data, $descricao, $id_condominio, $id_morador, $contato);
+            $this->redirect('/app/ocorrencias');
+        }
+    }
+
+    public function editOcorrencia($atts) {
+        $condominiosList = CondominioHandler::getCond();
+        $ocorrenciaItem = CondominioHandler::getOcorrenciaItem($atts['id']); 
+
+        $this->render('edit_ocorrencia', [
+            'loggedUser' => $this->loggedUser,
+            'condominios' => $condominiosList,
+            'ocorrencia' => $ocorrenciaItem
+        ]);
+    }
+
+    public function saveOcorrencia() {
+        $id = filter_input(INPUT_POST, 'id');
+        $data = filter_input(INPUT_POST, 'data');
+        $descricao = filter_input(INPUT_POST, 'descricao');
+        $id_condominio = filter_input(INPUT_POST, 'condominio');
+        $id_morador = filter_input(INPUT_POST, 'morador');
+        $contato = filter_input(INPUT_POST, 'phone');
+
+        if($data) {
+            CondominioHandler::saveOcorrencia($id, $data, $descricao, $id_condominio, $id_morador, $contato);
+            $this->redirect('/app/ocorrencias');
+        }
+    }
+
+    public function aceitar() {
+        $id_ocorrencia = filter_input(INPUT_GET, 'id');
+        
+        if($id_ocorrencia) {
+            CondominioHandler::aceitarOcorrencia($id_ocorrencia);
+            $this->redirect('/app/ocorrencias');
+        } else {
+            $this->redirect('/app/ocorrencias');
+        }
+
+    }
+
+    public function finalizar() {
+        $id_ocorrencia = filter_input(INPUT_POST, 'id');
+        $mensagem = filter_input(INPUT_POST, 'mensagem');
+        
+        if($id_ocorrencia) {
+            CondominioHandler::finalizarOcorrencia($id_ocorrencia, $mensagem);
+            $this->redirect('/app/ocorrencias');
+        } else {
+            $this->redirect('/app/ocorrencias');
+        }
+
+    }
+
+    public function deleteOcorrencia() {
+        $id_ocorrencia = filter_input(INPUT_GET, 'id');
+
+        if($id_ocorrencia) {
+            CondominioHandler::deleteOcorrencia($id_ocorrencia);
+            $this->redirect('/app/ocorrencias');
+        } else {
             $this->redirect('/app/ocorrencias');
         }
     }
