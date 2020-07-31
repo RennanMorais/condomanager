@@ -207,7 +207,7 @@ function carrega_areas()
 {
     var valCond = $('#combo-condominio').val();
     $.ajax({
-        url: "<?=$base;?>/app/reservas/getmorador",
+        url: "<?=$base;?>/app/request/getmorador",
         method: "POST",
         data: {id_cond: valCond},
         dataType: "json",
@@ -227,7 +227,7 @@ function carrega_areas()
     });
     
     $.ajax({
-        url: "<?=$base;?>/app/getarea",
+        url: "<?=$base;?>/app/request/getarea",
         method: "POST",
         data: {id_cond: valCond},
         dataType: "json",
@@ -254,7 +254,7 @@ function carrega_areasOnChange()
         var valCond = $('#combo-condominio').val();
 
         $.ajax({
-            url: "<?=$base;?>/app/getmorador",
+            url: "<?=$base;?>/app/request/getmorador",
             method: "POST",
             data: {id_cond: valCond},
             dataType: "json",
@@ -274,7 +274,7 @@ function carrega_areasOnChange()
         });
         
         $.ajax({
-            url: "<?=$base;?>/app/getarea",
+            url: "<?=$base;?>/app/request/getarea",
             method: "POST",
             data: {id_cond: valCond},
             dataType: "json",

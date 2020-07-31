@@ -101,7 +101,7 @@ function carrega_comboOnChange()
         var valCond = $('#combo-condominio').val();
 
         $.ajax({
-            url: "<?=$base;?>/app/getpredios",
+            url: "<?=$base;?>/app/request/getpredios",
             method: "POST",
             data: {id_cond: valCond},
             dataType: "json",
@@ -127,7 +127,7 @@ function carrega_comboOnChange()
         var val_predio = $('#combo-predio').val();
         
         $.ajax({
-            url: "<?=$base;?>/app/getmoradorbypredio",
+            url: "<?=$base;?>/app/request/getmoradorbypredio",
             method: "POST",
             data: {id_predio: val_predio},
             dataType: "json",
@@ -153,7 +153,7 @@ function carrega_combobox()
     var valCond = $('#combo-condominio').val();
 
     $.ajax({
-        url: "<?=$base;?>/app/getpredios",
+        url: "<?=$base;?>/app/request/getpredios",
         method: "POST",
         data: {id_cond: valCond},
         dataType: "json",
@@ -174,7 +174,7 @@ function carrega_combobox()
     var val_predio = $('#combo-predio').val();
         
         $.ajax({
-            url: "<?=$base;?>/app/getmoradorbypredio",
+            url: "<?=$base;?>/app/request/getmoradorbypredio",
             method: "POST",
             data: {id_predio: val_predio},
             dataType: "json",

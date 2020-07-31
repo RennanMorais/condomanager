@@ -143,60 +143,64 @@ $(document).ready(function()
 
 function popOcorrencias()
 {
-  $.ajax(
+  var
+  quantidade = 5,
+  datas = [],
+  countDatas = [],
+  index = 1;
+
+  while (index <= quantidade) 
   {
-    url: "<?=$base;?>/app/getdatas",
-    method: "POST",
-    dataType: "json",
-    success: function (data)
+    dt = new Date();
+
+    if(index > 1) {
+        dt.setDate(dt.getDate() + (index - 1));
+    }
+
+    fotmatDate = dt.getDate()+"/"+(dt.getMonth() + 1)+"/"+dt.getFullYear();
+
+    datas.push(fotmatDate);
+
+    var day = dt.getDate() < 10 ? '0' + dt.getDate() : '' + dt.getDate();
+    var month = dt.getMonth() < 10 ? '0' + (dt.getMonth() + 1) : '' + dt.getMonth();
+
+    fotmatDateBD = dt.getFullYear()+"-"+month+"-"+day;
+
+    $.ajax(
     {
-        
-      //console.log(data);
-      var 
-      data_array = [],
-      qtd_array = [];
-
-      for (var i = 0; i < data.length; i++)
+      url: "<?=$base;?>/app/request/countocorrencias",
+      method: "POST",
+      data:{date: fotmatDateBD},
+      success: function (data)
       {
-
-          //console.log(data_array);
-          var formatDate = data[i].data[8]+data[i].data[9]+'/'+data[i].data[5]+data[i].data[6]+'/'+data[i].data[0]+data[i].data[1]+data[i].data[2]+data[i].data[3];
-
-          data_array.push(formatDate);
-          
-          $.ajax(
-          {
-            url: "<?=$base;?>/app/countocorrencias",
-            method: "POST",
-            data:{date: data[i].data},
-            success: function (data)
-            {
-
-                for (var i = 0; i < data.length; i++)
-                {
-                  qtd_array.push(data[i]);
-                  graficosDash(data_array, qtd_array);
-                }
-                
-            }
         
-          });
-
-          
-
+        for(i = 0; i < data.length; i++)
+        {
+          countDatas.push(data[i]);
+        }  
+        
       }
 
-    }
-  });
-}
+    });
 
-function graficosDash(data_array, qtd_array)
+    graficosDash();
+
+    $(document).ready(function(){
+      graficosDash(datas, countDatas);
+    });
+
+    index = index + 1
+  }
+
+};
+
+function graficosDash(datas, countDatas)
 {
     
     var ctx = document.getElementById('visitor-chart').getContext('2d');
     var myChart = new Chart(ctx, {
 
-        type: 'line',
+        type: 'bar',
         data: {
             labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Jun'],
             datasets: [{
@@ -204,11 +208,19 @@ function graficosDash(data_array, qtd_array)
                 data: [12, 19, 3, 5, 2],
                 backgroundColor: [
                     '#C7E8ED',
+                    '#C7E8ED',
+                    '#C7E8ED',
+                    '#C7E8ED',
+                    '#C7E8ED'
                 ],
                 borderColor: [
                     '#148A9D',
+                    '#148A9D',
+                    '#148A9D',
+                    '#148A9D',
+                    '#148A9D'    
                 ],
-                borderWidth: 3
+                borderWidth: 1
             }]
         },
         options: {
@@ -225,19 +237,27 @@ function graficosDash(data_array, qtd_array)
     var ctx = document.getElementById('occurrence-chart').getContext('2d');
     var myChart = new Chart(ctx, {
 
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: data_array,
+            labels: datas,
             datasets: [{
                 label: 'Ocorrências <?=date('Y')?>',
-                data: qtd_array,
+                data: countDatas,
                 backgroundColor: [
                     '#e5a0a6',
+                    '#e5a0a6',
+                    '#e5a0a6',
+                    '#e5a0a6',
+                    '#e5a0a6'
                 ],
                 borderColor: [
                     '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545'
                 ],
-                borderWidth: 3
+                borderWidth: 1
             }]
         },
         options: {

@@ -9,15 +9,11 @@ use \src\models\User;
 use \src\models\Reserva;
 use src\models\Veiculo;
 use src\models\Ocorrencia;
+use src\models\Categoria_conta;
 
 class CondominioHandler {
 
     //Funções graficos da Dashboard
-    public static function getUltimasDatas() {
-        $ocorrencias = Ocorrencia::select()->orderBy('data', 'desc')->groupBy('data')->limit(5)->get();
-        return $ocorrencias;
-    }
-
     public static function countOcorrencias($dia) {
         $count = Ocorrencia::select()->where('data', $dia)->count();
         return $count;
@@ -544,6 +540,27 @@ class CondominioHandler {
 
         return $count_ocorrencia;
 
+    }
+
+
+    //Funções da página Categoria de Contas
+    public static function addNewCategoriaContas($nome) {
+        Categoria_conta::insert([
+            'nome' => $nome
+        ])->execute();
+    }
+
+    public static function getCategoriaContas() {
+        $categoria_list = Categoria_conta::select()->get();
+        $categorias = [];
+
+        foreach($categoria_list as $categorias_item) {
+            $new_categoria = new Categoria_conta();
+            $new_categoria->id = $categorias_item['id'];
+            $new_categoria->nome = $categorias_item['nome'];
+            $categorias[] = $new_categoria;
+        }
+        return $categorias;
     }
 
 }

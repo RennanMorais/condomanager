@@ -119,6 +119,7 @@
     <!-- /.content-wrapper -->
 
 <?php $render('footer'); ?>
+
 <script type="text/javascript">
     
 $(document).ready(function()
@@ -134,7 +135,7 @@ function carrega_comboOnChange()
         var valCond = $('#combo-condominio').val();
 
         $.ajax({
-            url: "<?=$base;?>/app/getpredios",
+            url: "<?=$base;?>/app/request/getpredios",
             method: "POST",
             data: {id_cond: valCond},
             dataType: "json",
@@ -152,11 +153,17 @@ function carrega_comboOnChange()
 
             }
         });
+
+    });
+
+    $('#combo-predio').on('change', function()
+    {
+        var val_predio = $('#combo-predio').val();
         
         $.ajax({
-            url: "<?=$base;?>/app/getmorador",
+            url: "<?=$base;?>/app/request/getmoradorbypredio",
             method: "POST",
-            data: {id_cond: valCond},
+            data: {id_predio: val_predio},
             dataType: "json",
             success: function (data)
             {
@@ -180,7 +187,7 @@ function carrega_combobox()
     var valCond = $('#combo-condominio').val();
 
     $.ajax({
-        url: "<?=$base;?>/app/getpredios",
+        url: "<?=$base;?>/app/request/getpredios",
         method: "POST",
         data: {id_cond: valCond},
         dataType: "json",
@@ -197,25 +204,28 @@ function carrega_combobox()
 
         }
     });
-    
-    $.ajax({
-        url: "<?=$base;?>/app/getmorador",
-        method: "POST",
-        data: {id_cond: valCond},
-        dataType: "json",
-        success: function (data)
-        {
-            
-            //console(data);
-            var html = '';
-            for (var count = 0; count < data.length; count++){
-                html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
-            }
-                  
-            $('#combo-morador').append(html);
 
-        }
-    });
+    var val_predio = $('#combo-predio').val();
+        
+        $.ajax({
+            url: "<?=$base;?>/app/request/getmoradorbypredio",
+            method: "POST",
+            data: {id_predio: val_predio},
+            dataType: "json",
+            success: function (data)
+            {
+                
+                //console(data);
+                var html = '';
+                for (var count = 0; count < data.length; count++){
+                    html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
+                }
+                
+                $('#combo-morador').append(html);
+
+            }
+        });
+    
 }
 
 </script>

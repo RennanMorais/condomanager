@@ -147,7 +147,7 @@
             </li>
 
             <li class="nav-item has-treeview <?= ($activeMasterMenu == 'financeiro') ? 'menu-open':''; ?>">
-              <a href="" class="nav-link <?= ($activeMenu == 'financeiro') ? 'active':''; ?>">
+              <a href="" class="nav-link <?= ($activeMasterMenu == 'financeiro') ? 'active':''; ?>">
                 <i class="nav-icon fa fa-dollar-sign"></i>
                 <p>
                   Financeiro

@@ -104,7 +104,7 @@ function carrega_telefones_change() {
         var valMorador = $('#combo-morador').val();
 
         $.ajax({
-            url: "<?=$base;?>/app/getphone",
+            url: "<?=$base;?>/app/request/getphone",
             method: "POST",
             data: {id_morador: valMorador},
             dataType: "json",

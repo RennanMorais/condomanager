@@ -7,6 +7,19 @@ $router = new Router();
 //Rota Landing Page
 $router->get('/', 'HomeController@index');
 
+
+
+//Requisições Ajax
+$router->post('/app/request/getphone', 'AppController@getMoradorPhoneField');
+$router->post('/app/request/getarea', 'AppController@getAreaField');
+$router->post('/app/request/getmorador', 'AppController@getMoradorField');
+$router->post('/app/request/getmoradorbypredio', 'AppController@getMoradorPredioField');
+$router->post('/app/request/getpredios', 'AppController@getPredioField');
+$router->post('/app/request/getdatas', 'AppController@getDatasOcorrencias');
+$router->post('/app/request/countocorrencias', 'AppController@countOcorrencias');
+
+
+
 //Rotas de login
 $router->get('/login', 'LoginController@index');
 $router->post('/login', 'LoginController@login');
@@ -14,7 +27,10 @@ $router->post('/login/registro', 'LoginController@registro');
 $router->post('/login/forgot', 'LoginController@forgotpass');
 $router->get('/sair', 'LoginController@logout');
 
+
+
 //Rotas do sistema
+//Menu Condominios
 //Rotas dos Condominios
 $router->get('/app', 'AppController@index');
 $router->post('/app/send_statement', 'AppController@send_statement');
@@ -85,15 +101,15 @@ $router->post('/app/ocorrencias/finalizar', 'AppController@finalizar');
 $router->get('/app/ocorrencias/delete_ocorrencia', 'AppController@deleteOcorrencia');
 
 
+
+//Menu Financeiro
+//Categoria de Contas
+$router->get('/app/categoria_contas', 'AppController@categoriaContas');
+$router->post('/app/categoria_contas/add_categoria_contas', 'AppController@addCategoriaContas');
+$router->get('/app/veiculos/edit_veiculo/{id}', 'AppController@editVeiculo');
+$router->post('/app/veiculos/edit_veiculo/save', 'AppController@saveVeiculo');
+$router->get('/app/veiculos/delete_veiculo', 'AppController@deleteVeiculo');
+
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');
 $router->get('/registro', 'LoginController@getRegistroForm');
-
-//Requisições Ajax
-$router->post('/app/getphone', 'AppController@getMoradorPhoneField');
-$router->post('/app/getarea', 'AppController@getAreaField');
-$router->post('/app/getmorador', 'AppController@getMoradorField');
-$router->post('/app/getmoradorbypredio', 'AppController@getMoradorPredioField');
-$router->post('/app/getpredios', 'AppController@getPredioField');
-$router->post('/app/getdatas', 'AppController@getDatasOcorrencias');
-$router->post('/app/countocorrencias', 'AppController@countOcorrencias');

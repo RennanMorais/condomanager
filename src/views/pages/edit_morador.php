@@ -148,7 +148,7 @@ function carrega_predios()
     var valCond = $('#combo-condominio').val();
 
     $.ajax({
-        url: "<?=$base;?>/app/getpredios",
+        url: "<?=$base;?>/app/request/getpredios",
         method: "POST",
         data: {id_cond: valCond},
         dataType: "json",
@@ -174,7 +174,7 @@ function carrega_prediosOnChange() {
         var valCond = $('#combo-condominio').val();
 
         $.ajax({
-            url: "<?=$base;?>/app/getpredios",
+            url: "<?=$base;?>/app/request/getpredios",
             method: "POST",
             data: {id_cond: valCond},
             dataType: "json",

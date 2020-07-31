@@ -113,7 +113,7 @@ function carrega_telefones() {
     var valMorador = $('#combo-morador').val();
 
     $.ajax({
-        url: "<?=$base;?>/app/pets",
+        url: "<?=$base;?>/app/request/getphone",
         method: "POST",
         data: {id_morador: valMorador},
         dataType: "json",
@@ -137,7 +137,7 @@ function carrega_telefones_change() {
         var valMorador = $('#combo-morador').val();
 
         $.ajax({
-            url: "<?=$base;?>/app/pets",
+            url: "<?=$base;?>/app/request/getphone",
             method: "POST",
             data: {id_morador: valMorador},
             dataType: "json",

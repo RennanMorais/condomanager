@@ -111,7 +111,7 @@ function carrega_OnChange()
         var valCond = $('#combo-condominio').val();
 
         $.ajax({
-            url: "<?=$base;?>/app/getmorador",
+            url: "<?=$base;?>/app/request/getmorador",
             method: "POST",
             data: {id_cond: valCond},
             dataType: "json",
@@ -137,7 +137,7 @@ function carrega_OnChange()
         var valMorador = $('#combo-morador').val();
 
         $.ajax({
-            url: "<?=$base;?>/app/getphone",
+            url: "<?=$base;?>/app/request/getphone",
             method: "POST",
             data: {id_morador: valMorador},
             dataType: "json",
@@ -160,7 +160,7 @@ function carrega_combo()
     var valCond = $('#combo-condominio').val();
 
     $.ajax({
-        url: "<?=$base;?>/app/getmorador",
+        url: "<?=$base;?>/app/request/getmorador",
         method: "POST",
         data: {id_cond: valCond},
         dataType: "json",
@@ -181,7 +181,7 @@ function carrega_combo()
     var valMorador = $('#combo-morador').val();
 
     $.ajax({
-        url: "<?=$base;?>/app/getphone",
+        url: "<?=$base;?>/app/request/getphone",
         method: "POST",
         data: {id_morador: valMorador},
         dataType: "json",

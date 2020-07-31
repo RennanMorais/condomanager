@@ -46,7 +46,7 @@ class AppController extends Controller {
 
     }
 
-
+    //Funções menu Condominios
     //Requisições Ajax para os campos select
     public function getMoradorPhoneField() {
         $id_morador = filter_input(INPUT_POST, 'id_morador');
@@ -76,11 +76,6 @@ class AppController extends Controller {
         $id_predio = filter_input(INPUT_POST, 'id_predio');
         $morador_predio = UserHandler::getMoradorListPorPredio($id_predio);
         echo json_encode($morador_predio); 
-    }
-
-    public function getDatasOcorrencias() {
-        $datas = CondominioHandler::getUltimasDatas();
-        echo json_encode($datas);
     }
 
     public function countOcorrencias() {
@@ -693,6 +688,28 @@ class AppController extends Controller {
             $this->redirect('/app/ocorrencias');
         } else {
             $this->redirect('/app/ocorrencias');
+        }
+    }
+
+
+    //Funções do menu Financeiro
+    //Página categoria de contas
+    public function categoriaContas() {
+        $categoria_contas = CondominioHandler::getCategoriaContas();
+
+        $this->render('categoria_contas', [
+            'loggedUser' => $this->loggedUser,
+            'categoria_contas' => $categoria_contas
+        ]);
+    }
+
+    public function addCategoriaContas() {
+        $nome = filter_input(INPUT_POST, 'name');
+        if($nome) {
+            CondominioHandler::addNewCategoriaContas($nome);
+            $this->redirect('/app/categoria_contas');
+        } else {
+            $this->redirect('/app/categoria_contas');
         }
     }
 }
