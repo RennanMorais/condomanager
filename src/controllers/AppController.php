@@ -84,9 +84,9 @@ class AppController extends Controller {
     }
 
     public function countOcorrencias() {
-        $dia = filter_input(INPUT_POST, 'data');
+        $dia = filter_input(INPUT_POST, 'date');
         $count_ocorrencia = CondominioHandler::countOcorrencias($dia);
-        echo json_encode($count_ocorrencia);
+        echo $count_ocorrencia;
     }
 
     

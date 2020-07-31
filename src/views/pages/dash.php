@@ -134,82 +134,79 @@
 
 <script>
       
-$(document).ready(function(){
-
-  $.ajax({
-      url: "<?=$base;?>/app/getdatas",
-      method: "POST",
-      dataType: "json",
-      success: function (data)
-      {
-          
-          //console(data);
-          var data_array = [];
-          var qtd_array = [];
-
-          for (var i = 0; i < data.length; i++){
-              
-              data_array.push(data[i].data);
-
-              var dia = data[i].data;
-              
-              $.ajax({
-                  url: "<?=$base;?>/app/countocorrencias",
-                  method: "POST",
-                  data: {data: dia},
-                  dataType: "json",
-                  success: function (data)
-                  {
-                      
-                    qtd_array.push(data);
-
-                  }
-              });
-
-          }
-          
-          dashgraphs(data_array, qtd_array);
-
-      }
-  });
+$(document).ready(function()
+{
+   
+  popOcorrencias();
 
 });
 
-function dashgraphs(datas, qtd) 
+function popOcorrencias()
+{
+  $.ajax(
+  {
+    url: "<?=$base;?>/app/getdatas",
+    method: "POST",
+    dataType: "json",
+    success: function (data)
+    {
+        
+      //console.log(data);
+      var 
+      data_array = [],
+      qtd_array = [];
+
+      for (var i = 0; i < data.length; i++)
+      {
+
+          //console.log(data_array);
+          var formatDate = data[i].data[8]+data[i].data[9]+'/'+data[i].data[5]+data[i].data[6]+'/'+data[i].data[0]+data[i].data[1]+data[i].data[2]+data[i].data[3];
+
+          data_array.push(formatDate);
+          
+          $.ajax(
+          {
+            url: "<?=$base;?>/app/countocorrencias",
+            method: "POST",
+            data:{date: data[i].data},
+            success: function (data)
+            {
+
+                for (var i = 0; i < data.length; i++)
+                {
+                  qtd_array.push(data[i]);
+                  graficosDash(data_array, qtd_array);
+                }
+                
+            }
+        
+          });
+
+          
+
+      }
+
+    }
+  });
+}
+
+function graficosDash(data_array, qtd_array)
 {
     
     var ctx = document.getElementById('visitor-chart').getContext('2d');
     var myChart = new Chart(ctx, {
 
-        type: 'bar',
+        type: 'line',
         data: {
             labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Jun'],
             datasets: [{
-                label: 'Visitantes',
+                label: 'Visitantes <?=date('Y')?>',
                 data: [12, 19, 3, 5, 2],
                 backgroundColor: [
                     '#C7E8ED',
-                    '#C7E8ED',
-                    '#C7E8ED',
-                    '#C7E8ED',
-                    '#C7E8ED',
-                    '#C7E8ED',
-                    '#C7E8ED',
-                    '#C7E8ED',
-                    '#C7E8ED',
-                    '#C7E8ED'
                 ],
                 borderColor: [
                     '#148A9D',
-                    '#148A9D',
-                    '#148A9D',
-                    '#148A9D',
-                    '#148A9D',
-                    '#148A9D',
-                    '#148A9D',
-                    '#148A9D',
-                    '#148A9D',
-                    '#148A9D'
                 ],
                 borderWidth: 3
             }]
@@ -228,35 +225,17 @@ function dashgraphs(datas, qtd)
     var ctx = document.getElementById('occurrence-chart').getContext('2d');
     var myChart = new Chart(ctx, {
 
-        type: 'bar',
+        type: 'line',
         data: {
-            labels: [datas],
+            labels: data_array,
             datasets: [{
-                label: 'Ocorrências',
-                data: [qtd],
+                label: 'Ocorrências <?=date('Y')?>',
+                data: qtd_array,
                 backgroundColor: [
                     '#e5a0a6',
-                    '#e5a0a6',
-                    '#e5a0a6',
-                    '#e5a0a6',
-                    '#e5a0a6',
-                    '#e5a0a6',
-                    '#e5a0a6',
-                    '#e5a0a6',
-                    '#e5a0a6',
-                    '#e5a0a6'
                 ],
                 borderColor: [
                     '#DC3545',
-                    '#DC3545',
-                    '#DC3545',
-                    '#DC3545',
-                    '#DC3545',
-                    '#DC3545',
-                    '#DC3545',
-                    '#DC3545',
-                    '#DC3545',
-                    '#DC3545'
                 ],
                 borderWidth: 3
             }]
@@ -274,4 +253,4 @@ function dashgraphs(datas, qtd)
 
 }
 
-  </script>
+</script>
