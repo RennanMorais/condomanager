@@ -712,4 +712,45 @@ class AppController extends Controller {
             $this->redirect('/app/categoria_contas');
         }
     }
+
+    public function editCategoriaConta($atts) {
+        $categoria_conta_item = CondominioHandler::getCatContaItem($atts['id']);
+
+        $this->render('edit_categoria_conta',[
+            'loggedUser' => $this->loggedUser,
+            'categoria_conta_item' => $categoria_conta_item
+        ]);
+    }
+
+    public function saveCategoriaConta() {
+        $id_cat = filter_input(INPUT_POST, 'id');
+        $nome = filter_input(INPUT_POST, 'name');
+
+        if($id_cat && $nome) {
+            CondominioHandler::saveCat($id_cat, $nome);
+            $this->redirect('/app/categoria_contas');
+        } else {
+            $this->redirect('/app/categoria_contas');
+        }
+    }
+
+    public function deleteCategoriaConta() {
+        $id_cat = filter_input(INPUT_GET, 'id');
+
+        if($id_cat) {
+            CondominioHandler::deleteCat($id_cat);
+            $this->redirect('/app/categoria_contas');
+        } else {
+            $this->redirect('/app/categoria_contas');
+        }
+    }
+
+    
+    //Pagina Contas a pagar
+    public function contasPagar() {
+
+        $this->render('contas_pagar', [
+            'loggedUser' => $this->loggedUser
+        ]);
+    }
 }

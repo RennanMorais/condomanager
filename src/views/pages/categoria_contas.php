@@ -42,7 +42,7 @@
                                 <td><?=$categoria_item->id;?></td>
                                 <td><?=$categoria_item->nome;?></td>
                                 <td style="text-align:center;">
-                                    <a href="<?=$base;?>/app/categoria_contas/edit_conta/<?=$categoria_item->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
+                                    <a href="<?=$base;?>/app/categoria_contas/edit_categoria_conta/<?=$categoria_item->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
                                     <button data-toggle="modal" data-target="#del-modal-<?=$categoria_item->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
@@ -56,7 +56,7 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <a href="<?=$base;?>/app/predios/delete_prd?id=<?=$categoria_item->id;?>" class="btn btn-outline-info" title="Excluir"><i></i>Sim</a>
+                                            <a href="<?=$base;?>/app/categoria_contas/delete_cat?id=<?=$categoria_item->id;?>" class="btn btn-outline-info" title="Excluir"><i></i>Sim</a>
                                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Não</button>
                                         </div>
 

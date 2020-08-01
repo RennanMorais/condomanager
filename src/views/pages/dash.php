@@ -117,7 +117,7 @@
               <h5><?=$statementsFeedItem->name;?></h5>
               <span>Em: <?php echo date('d/m/Y', strtotime($statementsFeedItem->date)); ?> às <?php echo date('H:i', strtotime($statementsFeedItem->date)); ?></span>
               <hr>
-              <p><?php echo $statementsFeedItem->text; ?></p>
+              <p><?php echo nl2br($statementsFeedItem->text); ?></p>
             </div>
             <?php endforeach;?>
           </div>        
@@ -157,14 +157,17 @@ function popOcorrencias()
         dt.setDate(dt.getDate() + (index - 1));
     }
 
-    fotmatDate = dt.getDate()+"/"+(dt.getMonth() + 1)+"/"+dt.getFullYear();
-
-    datas.push(fotmatDate);
-
     var day = dt.getDate() < 10 ? '0' + dt.getDate() : '' + dt.getDate();
     var month = dt.getMonth() < 10 ? '0' + (dt.getMonth() + 1) : '' + dt.getMonth();
 
-    fotmatDateBD = dt.getFullYear()+"-"+month+"-"+day;
+    fotmatDate = day+"/"+month+"/"+dt.getFullYear();
+
+    datas.push(fotmatDate);
+
+    var day_bd = dt.getDate() < 10 ? '0' + dt.getDate() : '' + dt.getDate();
+    var month_bd = dt.getMonth() < 10 ? '0' + (dt.getMonth() + 1) : '' + dt.getMonth();
+
+    fotmatDateBD = dt.getFullYear()+"-"+month_bd+"-"+day_bd;
 
     $.ajax(
     {

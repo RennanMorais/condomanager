@@ -106,9 +106,16 @@ $router->get('/app/ocorrencias/delete_ocorrencia', 'AppController@deleteOcorrenc
 //Categoria de Contas
 $router->get('/app/categoria_contas', 'AppController@categoriaContas');
 $router->post('/app/categoria_contas/add_categoria_contas', 'AppController@addCategoriaContas');
-$router->get('/app/veiculos/edit_veiculo/{id}', 'AppController@editVeiculo');
-$router->post('/app/veiculos/edit_veiculo/save', 'AppController@saveVeiculo');
-$router->get('/app/veiculos/delete_veiculo', 'AppController@deleteVeiculo');
+$router->get('/app/categoria_contas/edit_categoria_conta/{id}', 'AppController@editCategoriaConta');
+$router->post('/app/categoria_contas/edit_categoria_conta/save', 'AppController@saveCategoriaConta');
+$router->get('/app/categoria_contas/delete_cat', 'AppController@deleteCategoriaConta');
+
+//Contas a pagar
+$router->get('/app/contas_pagar', 'AppController@contasPagar');
+$router->post('/app/categoria_contas/add_categoria_contas', 'AppController@addCategoriaContas');
+$router->get('/app/categoria_contas/edit_categoria_conta/{id}', 'AppController@editCategoriaConta');
+$router->post('/app/categoria_contas/edit_categoria_conta/save', 'AppController@saveCategoriaConta');
+$router->get('/app/categoria_contas/delete_cat', 'AppController@deleteCategoriaConta');
 
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');

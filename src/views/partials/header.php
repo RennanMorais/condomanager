@@ -15,8 +15,6 @@
   <link rel="stylesheet" href="<?=$base;?>/assets/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=$base;?>/assets/css/AdminLTE.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
   <!-- Chart -->
   <link rel="stylesheet" href="<?=$base;?>/assets/css/Chart.min.css">
   <!-- Default CSS -->

@@ -563,4 +563,19 @@ class CondominioHandler {
         return $categorias;
     }
 
+    public static function getCatContaItem($id) {
+        $cat_conta_item = Categoria_conta::select()->where('id', $id)->one();
+        return $cat_conta_item;
+    }
+
+    public static function saveCat($id, $nome) {
+        Categoria_conta::update()->set('nome', $nome)->where('id', $id)->execute();
+        return true;
+    }
+
+    public static function deleteCat($id) {
+        Categoria_conta::delete()->where('id', $id)->execute();
+        return true;
+    }
+
 }
