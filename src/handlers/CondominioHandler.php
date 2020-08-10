@@ -10,6 +10,7 @@ use \src\models\Reserva;
 use src\models\Veiculo;
 use src\models\Ocorrencia;
 use src\models\Categoria_conta;
+use src\models\Contas_pagar;
 
 class CondominioHandler {
 
@@ -576,6 +577,12 @@ class CondominioHandler {
     public static function deleteCat($id) {
         Categoria_conta::delete()->where('id', $id)->execute();
         return true;
+    }
+
+
+    //Funções da página de Contas a pagar
+    public static function addContaPagar($nome, $id_categoria, $valor, $data_vencimento, $pago_status) {
+        Contas_pagar::insert([])->execute();
     }
 
 }

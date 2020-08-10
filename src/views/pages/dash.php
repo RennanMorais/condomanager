@@ -144,17 +144,17 @@ $(document).ready(function()
 function popOcorrencias()
 {
   var
-  quantidade = 5,
+  quantidade = 1,
   datas = [],
   countDatas = [],
-  index = 1;
+  index = 7;
 
-  while (index <= quantidade) 
+  while (index >= quantidade) 
   {
     dt = new Date();
 
     if(index > 1) {
-        dt.setDate(dt.getDate() + (index - 1));
+        dt.setDate(dt.getDate() - (index - 1));
     }
 
     var day = dt.getDate() < 10 ? '0' + dt.getDate() : '' + dt.getDate();
@@ -187,12 +187,12 @@ function popOcorrencias()
     });
 
     graficosDash();
-
+    
     $(document).ready(function(){
       graficosDash(datas, countDatas);
     });
 
-    index = index + 1
+    index = index - 1;
   }
 
 };
@@ -251,9 +251,13 @@ function graficosDash(datas, countDatas)
                     '#e5a0a6',
                     '#e5a0a6',
                     '#e5a0a6',
+                    '#e5a0a6',
+                    '#e5a0a6',
                     '#e5a0a6'
                 ],
                 borderColor: [
+                    '#DC3545',
+                    '#DC3545',
                     '#DC3545',
                     '#DC3545',
                     '#DC3545',

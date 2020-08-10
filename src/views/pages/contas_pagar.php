@@ -60,7 +60,8 @@
 
                         <div class="modal-body" id="modal-content">
                             <?php $this->render('forms/add-contas_pagar',[
-                                'base' => $base
+                                'base' => $base,
+                                'categorias' => $categorias
                             ]); ?>
                         </div>
 

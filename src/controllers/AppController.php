@@ -749,8 +749,26 @@ class AppController extends Controller {
     //Pagina Contas a pagar
     public function contasPagar() {
 
+        $categorias = CondominioHandler::getCategoriaContas();
+
         $this->render('contas_pagar', [
-            'loggedUser' => $this->loggedUser
+            'loggedUser' => $this->loggedUser,
+            'categorias' => $categorias
         ]);
+    }
+
+    public function addContasPagar() {
+        $nome = filter_input(INPUT_POST, 'name');
+        $id_categoria = filter_input(INPUT_POST, 'categoria');
+        $valor = filter_input(INPUT_POST, 'valor');
+        $data_vencimento = filter_input(INPUT_POST, 'data_vencimento');
+        $pago_status = filter_input(INPUT_POST, 'pago_status');
+
+        if($nome) {
+            CondominioHandler::addContaPagar($nome, $id_categoria, $valor, $data_vencimento, $pago_status);
+            $this->redirect('/app/contas_pagar');
+        } else {
+            $this->redirect('/app/contas_pagar');
+        }
     }
 }

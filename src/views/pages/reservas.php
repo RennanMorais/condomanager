@@ -20,107 +20,114 @@
 
         <div class="container-fluid">
 
-            <div class="row">
-                <div class="col-sm-3">
+            <div class="container">
+                <div class="row">
                     
-                    <form id="form-new" action="<?=$base;?>/app/reservas/add_reserva" method="POST">
+                    <div class="col-sm-12">
+                        
+                        <form id="form-new" action="<?=$base;?>/app/reservas/add_reserva" method="POST">
 
-                        <h6>Nova Reserva</h6>
+                            <h6>Nova Reserva</h6>
 
-                        <?php if(!empty($flashDateCheck)): ?>
-                        <div class="flash alert alert-danger"><?= $flashDateCheck; ?></div>
-                        <?php endif; ?>
+                            <?php if(!empty($flashDateCheck)): ?>
+                            <div class="flash alert alert-danger"><?= $flashDateCheck; ?></div>
+                            <?php endif; ?>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Condomínio</div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Condomínio</div>
+                                    </div>
+                                    <select class="form-control" name="condominio" id="combo-condominio" required>
+                                        <option value="">Selecionar...</option>
+                                        <?php foreach($condominios as $condominiosItem):?>
+                                        <option value="<?=$condominiosItem->id;?>"><?=$condominiosItem->nome;?></option>
+                                        <?php endforeach;?>
+                                    </select>
                                 </div>
-                                <select class="form-control" name="condominio" id="combo-condominio" required>
-                                    <option value="">Selecionar...</option>
-                                    <?php foreach($condominios as $condominiosItem):?>
-                                    <option value="<?=$condominiosItem->id;?>"><?=$condominiosItem->nome;?></option>
-                                    <?php endforeach;?>
-                                </select>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Morador</div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Morador</div>
+                                    </div>
+                                    <select class="form-control" name="morador" id="combo-morador" required>
+                                        <option value="">Selecionar...</option>
+                                    </select>
                                 </div>
-                                <select class="form-control" name="morador" id="combo-morador" required>
-                                    <option value="">Selecionar...</option>
-                                </select>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Área</div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Área</div>
+                                    </div>
+                                    <select class="form-control" name="area" id="combo-area" required>
+                                        <option value="">Selecionar...</option>
+                                    </select>
                                 </div>
-                                <select class="form-control" name="area" id="combo-area" required>
-                                    <option value="">Selecionar...</option>
-                                </select>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Nome do Evento</div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Nome do Evento</div>
+                                    </div>
+                                    <input type="text" class="form-control" name='evento' required/>
                                 </div>
-                                <input type="text" class="form-control" name='evento' required/>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Data</div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Data</div>
+                                    </div>
+                                    <input type="date" class="form-control" name='data' required/>
                                 </div>
-                                <input type="date" class="form-control" name='data' required/>
                             </div>
-                        </div>
 
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">Início</div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Início</div>
+                                            </div>
+                                            <input type="time" class="form-control" name='inicio' required/>
                                         </div>
-                                        <input type="time" class="form-control" name='inicio' required/>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">Término</div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Término</div>
+                                            </div>
+                                            <input type="time" class="form-control" name='fim' required/>
                                         </div>
-                                        <input type="time" class="form-control" name='fim' required/>
                                     </div>
                                 </div>
+
                             </div>
 
-                        </div>
+                            <div class='form-group'>
+                                <button type="submit" class="btn btn-info"><span class="fa fa-save"></span> Reservar</button>         
+                            </div>
 
-                        <div class='form-group'>
-                            <button type="submit" class="btn btn-info"><span class="fa fa-save"></span> Reservar</button>         
-                        </div>
+                        </form>
 
-                    </form>
+                    </div>
 
                 </div>
+            </div>
 
-                <div class="col-sm-9">
-                    <table class="table table-bordered table-hover table-responsive-sm table-center">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <table class="table table-bordered table-hover table-responsive-lg table-center">
                         <thead class="bg-info">
                             <tr>
                                 <th>Condominio</th>
