@@ -40,7 +40,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
+                        <?php foreach($contas_pagar as $contas_pagar_item): ?>
+                            <tr>
+                                <td><?=$contas_pagar_item->nome;?></td>
+                                <td><?=$contas_pagar_item->categoria;?></td>
+                                <td>R$ <?=$contas_pagar_item->valor;?></td>
+                                <td><?=date('d/m/Y', strtotime($contas_pagar_item->data_vencimento));?></td>
+                                <td><?=$contas_pagar_item->pago_status;?></td>
+                                <td style="text-align:center;">
+                                    <a href="<?=$base;?>/app/contas_pagar/edit_conta_pagar/<?=$contas_pagar_item->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
+                                    <button data-toggle="modal" data-target="#del-modal-<?=$contas_pagar_item->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+
+                            <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="del-modal-<?=$prediosItem->id;?>">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+
+                                        <div class="modal-body" id="modal-content">
+                                            <h5>Tem certeza que deseja excluir: <?=$contas_pagar_item->nome;?>?</h5>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <a href="<?=$base;?>/app/predios/delete_prd?id=<?=$contas_pagar_item->id;?>" class="btn btn-outline-info" title="Excluir"><i></i>Sim</a>
+                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Não</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

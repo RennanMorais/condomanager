@@ -1,6 +1,7 @@
 <?php
 namespace src\controllers;
 
+use ClanCats\Hydrahon\Query\Sql\Replace;
 use \core\Controller;
 use \src\handlers\UserHandler;
 use \src\handlers\StatementHandler;
@@ -750,21 +751,27 @@ class AppController extends Controller {
     public function contasPagar() {
 
         $categorias = CondominioHandler::getCategoriaContas();
+        $contas_pagar = CondominioHandler::getContasPagar();
 
         $this->render('contas_pagar', [
             'loggedUser' => $this->loggedUser,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'contas_pagar' => $contas_pagar
         ]);
     }
 
     public function addContasPagar() {
         $nome = filter_input(INPUT_POST, 'name');
         $id_categoria = filter_input(INPUT_POST, 'categoria');
+        
         $valor = filter_input(INPUT_POST, 'valor');
+        $valor = str_replace('.', '', $valor);
+        $valor = str_replace(',', '.', $valor);
+
         $data_vencimento = filter_input(INPUT_POST, 'data_vencimento');
         $pago_status = filter_input(INPUT_POST, 'pago_status');
 
-        if($nome) {
+        if($nome && $valor) {
             CondominioHandler::addContaPagar($nome, $id_categoria, $valor, $data_vencimento, $pago_status);
             $this->redirect('/app/contas_pagar');
         } else {

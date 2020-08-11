@@ -2,6 +2,6 @@
 namespace src\models;
 use \core\Model;
 
-class Contas_pagar extends Model {
+class Pagar_conta extends Model {
 
 }

@@ -185,12 +185,12 @@ function popOcorrencias()
       }
 
     });
-
-    graficosDash();
     
     $(document).ready(function(){
       graficosDash(datas, countDatas);
     });
+
+    graficosDash();
 
     index = index - 1;
   }

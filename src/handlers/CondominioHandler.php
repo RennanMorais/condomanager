@@ -10,7 +10,7 @@ use \src\models\Reserva;
 use src\models\Veiculo;
 use src\models\Ocorrencia;
 use src\models\Categoria_conta;
-use src\models\Contas_pagar;
+use src\models\Pagar_conta;
 
 class CondominioHandler {
 
@@ -582,7 +582,43 @@ class CondominioHandler {
 
     //Funções da página de Contas a pagar
     public static function addContaPagar($nome, $id_categoria, $valor, $data_vencimento, $pago_status) {
-        Contas_pagar::insert([])->execute();
+        
+        $categoria = Categoria_conta::select()->where('id', $id_categoria)->one();
+
+        $nome_categoria = $categoria['nome'];
+        
+        Pagar_conta::insert([
+            'nome' => $nome,
+            'id_categoria' => $id_categoria,
+            'categoria' => $nome_categoria,
+            'valor' => $valor,
+            'data_vencimento' => $data_vencimento,
+            'pago_status' => $pago_status
+        ])->execute();
+
+        return true;
+    }
+
+    public static function getContasPagar() {
+        $contas_pagar_list = Pagar_conta::select()->get();
+        $contas_pagar = [];
+
+        foreach($contas_pagar_list as $contas_pagar_item) {
+            $newContasPagar = new Pagar_conta();
+            $newContasPagar->id = $contas_pagar_item['id'];
+            $newContasPagar->nome = $contas_pagar_item['nome'];
+            $newContasPagar->id_categoria = $contas_pagar_item['id_categoria'];
+            $newContasPagar->categoria = $contas_pagar_item['categoria'];
+
+            $valor = str_replace('.', ',', $contas_pagar_item['valor']);
+            $newContasPagar->valor = $valor;
+            
+            $newContasPagar->data_vencimento = $contas_pagar_item['data_vencimento'];
+            $newContasPagar->pago_status = $contas_pagar_item['pago_status'];
+            $contas_pagar[] = $newContasPagar;
+        }
+
+        return $contas_pagar;
     }
 
 }
