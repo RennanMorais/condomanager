@@ -113,9 +113,9 @@ $router->get('/app/categoria_contas/delete_cat', 'AppController@deleteCategoriaC
 //Contas a pagar
 $router->get('/app/contas_pagar', 'AppController@contasPagar');
 $router->post('/app/contas_pagar/add_contas_pagar', 'AppController@addContasPagar');
-$router->get('/app/categoria_contas/edit_categoria_conta/{id}', 'AppController@editCategoriaConta');
-$router->post('/app/categoria_contas/edit_categoria_conta/save', 'AppController@saveCategoriaConta');
-$router->get('/app/categoria_contas/delete_cat', 'AppController@deleteCategoriaConta');
+$router->get('/app/contas_pagar/edit_conta_pagar/{id}', 'AppController@editContasPagar');
+$router->post('/app/contas_pagar/edit_conta_pagar/save', 'AppController@saveContasPagar');
+$router->get('/app/contas_pagar/delete_conta_pagar', 'AppController@deleteContasPagar');
 
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');

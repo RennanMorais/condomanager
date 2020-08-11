@@ -778,4 +778,46 @@ class AppController extends Controller {
             $this->redirect('/app/contas_pagar');
         }
     }
+
+    public function editContasPagar($atts) {
+        $conta_pagar_item = CondominioHandler::getContaItem($atts['id']);
+        $categorias = CondominioHandler::getCategoriaContas();
+
+        $this->render('edit_contas_pagar', [
+            'loggedUser' => $this->loggedUser,
+            'categorias' => $categorias,
+            'conta_pagar_item' => $conta_pagar_item
+        ]);
+    }
+
+    public function saveContasPagar() {
+        $id_conta = filter_input(INPUT_POST, 'id');
+        $nome = filter_input(INPUT_POST, 'name');
+        $id_categoria = filter_input(INPUT_POST, 'categoria');
+        
+        $valor = filter_input(INPUT_POST, 'valor');
+        $valor = str_replace('.', '', $valor);
+        $valor = str_replace(',', '.', $valor);
+
+        $data_vencimento = filter_input(INPUT_POST, 'data_vencimento');
+        $pago_status = filter_input(INPUT_POST, 'pago_status');
+
+        if($nome && $valor) {
+            CondominioHandler::saveContaPagar($id_conta, $nome, $id_categoria, $valor, $data_vencimento, $pago_status);
+            $this->redirect('/app/contas_pagar');
+        } else {
+            $this->redirect('/app/contas_pagar');
+        }
+    }
+
+    public function deleteContasPagar() {
+        $id = filter_input(INPUT_GET, 'id');
+
+        if($id) {
+            CondominioHandler::deleteContasPagar($id);
+            $this->redirect('/app/contas_pagar');
+        } else {
+            $this->redirect('/app/contas_pagar');
+        }
+    }
 }

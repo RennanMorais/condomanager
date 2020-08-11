@@ -144,6 +144,58 @@ function graficosDash(datas, countDatas)
 
 }
 
+function carrega_predios()
+{
+    var valCond = $('#combo-condominio').val();
+
+    $.ajax({
+        url: "http://localhost/condosoftware/public/app/request/getpredios",
+        method: "POST",
+        data: {id_cond: valCond},
+        dataType: "json",
+        success: function (data)
+        {
+            
+            //console(data);
+            var html = '';
+            for (var count = 0; count < data.length; count++){
+                html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
+            }
+            
+            $('#combo-morador').html('<option value="">Selecionar...</option>');
+            $('#combo-predio').append(html);
+
+        }
+    });
+}
+
+function carrega_prediosOnChange() {
+    $('#combo-condominio').on('change', function()
+    {
+        var valCond = $('#combo-condominio').val();
+
+        $.ajax({
+            url: "http://localhost/condosoftware/public/app/request/getpredios",
+            method: "POST",
+            data: {id_cond: valCond},
+            dataType: "json",
+            success: function (data)
+            {
+                
+                //console(data);
+                var html = '';
+                for (var count = 0; count < data.length; count++){
+                    html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
+                }
+                
+                $('#combo-morador').html('<option value="">Selecionar...</option>');
+                $('#combo-predio').html(html);
+
+            }
+        });
+    });
+}
+
 //Modal condominio Add
 $('#add').on('click', function () {
     $('#condominio-modal').show('fade');
@@ -157,7 +209,7 @@ $('#cnpj-field').mask('00.000.000/0000-00');
 $('#rg-field').mask('00.000.000-0');
 $('#cpf-field').mask('000.000.000-00');
 $('#phone-field').mask('(00) 00000-0000');
-$('#field-valor').mask('000.000.000.000.000,00', {reverse: true});
+$('#field-valor').mask('000.000.000,00', {reverse: true});
 
 //Selectpicker
 $('select').select2();

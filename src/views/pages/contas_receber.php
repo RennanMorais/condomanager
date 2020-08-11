@@ -8,7 +8,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Contas a Pagar</h1>
+                <h1 class="m-0 text-dark">Contas a Receber</h1>
             </div>
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->

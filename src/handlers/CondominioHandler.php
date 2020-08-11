@@ -621,4 +621,31 @@ class CondominioHandler {
         return $contas_pagar;
     }
 
+    public static function getContaItem($id) {
+        $contas_pagar_item = Pagar_conta::select()->where('id', $id)->one();
+        return $contas_pagar_item;
+    }
+
+    public static function saveContaPagar($id_conta, $nome, $id_categoria, $valor, $data_vencimento, $pago_status) {
+        
+        $categoria = Categoria_conta::select()->where('id', $id_categoria)->one();
+
+        $nome_categoria = $categoria['nome'];
+
+        Pagar_conta::update()
+        ->set('nome', $nome)
+        ->set('id_categoria', $id_categoria)
+        ->set('categoria', $nome_categoria)
+        ->set('valor', $valor)
+        ->set('data_vencimento', $data_vencimento)
+        ->set('pago_status', $pago_status)->where('id', $id_conta)->execute();      
+
+        return true;
+    }
+
+    public static function deleteContasPagar($id) {
+        Pagar_conta::delete()->where('id', $id)->execute();
+        return true;
+    }
+
 }
