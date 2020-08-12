@@ -820,4 +820,20 @@ class AppController extends Controller {
             $this->redirect('/app/contas_pagar');
         }
     }
+
+
+    //Pagina Contas a receber
+    public function contasReceber() {
+
+        $categorias = CondominioHandler::getCategoriaContas();
+        $condominiosList = CondominioHandler::getCond();
+        $contas_receber = CondominioHandler::getContasReceberList();
+
+        $this->render('contas_receber', [
+            'loggedUser' => $this->loggedUser,
+            'categorias' => $categorias,
+            'condominios' => $condominiosList,
+            'contas_receber' => $contas_receber
+        ]);
+    }
 }

@@ -48,7 +48,7 @@ function popGraphsOcorrencias()
     $(document).ready(function()
     {
 
-         graficosDash(datas, countDatas);
+        graficosDash(datas, countDatas);
 
     });
     

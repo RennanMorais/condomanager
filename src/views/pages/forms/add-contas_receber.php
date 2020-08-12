@@ -1,6 +1,6 @@
 <form action="<?=$base;?>/app/contas_pagar/add_contas_pagar" method="POST">
 
-<h6>Nova Conta a Pagar</h6>
+<h6>Nova Conta a Receber</h6>
 
 <div class="form-group">
     <div class="input-group">
@@ -40,6 +40,20 @@
             <div class="input-group-text">Data de Vencimento</div>
         </div>
         <input type="date" class="form-control" id="field-valor" name='data_vencimento' required/>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">Condomínio</div>
+        </div>
+        <select class="form-control" name="categoria">
+            <option value="">Selecionar...</option>
+            <?php foreach($condominios as $condominiosItem):?>
+            <option value="<?=$condominiosItem->id;?>"><?=$condominiosItem->nome;?></option>
+            <?php endforeach;?>
+        </select>
     </div>
 </div>
 

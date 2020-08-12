@@ -117,6 +117,13 @@ $router->get('/app/contas_pagar/edit_conta_pagar/{id}', 'AppController@editConta
 $router->post('/app/contas_pagar/edit_conta_pagar/save', 'AppController@saveContasPagar');
 $router->get('/app/contas_pagar/delete_conta_pagar', 'AppController@deleteContasPagar');
 
+//Contas a receber
+$router->get('/app/contas_receber', 'AppController@contasReceber');
+$router->post('/app/contas_pagar/add_contas_pagar', 'AppController@addContasPagar');
+$router->get('/app/contas_pagar/edit_conta_pagar/{id}', 'AppController@editContasPagar');
+$router->post('/app/contas_pagar/edit_conta_pagar/save', 'AppController@saveContasPagar');
+$router->get('/app/contas_pagar/delete_conta_pagar', 'AppController@deleteContasPagar');
+
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');
 $router->get('/registro', 'LoginController@getRegistroForm');

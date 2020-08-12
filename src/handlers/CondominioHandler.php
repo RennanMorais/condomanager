@@ -11,6 +11,7 @@ use src\models\Veiculo;
 use src\models\Ocorrencia;
 use src\models\Categoria_conta;
 use src\models\Pagar_conta;
+use src\models\Receber_conta;
 
 class CondominioHandler {
 
@@ -646,6 +647,28 @@ class CondominioHandler {
     public static function deleteContasPagar($id) {
         Pagar_conta::delete()->where('id', $id)->execute();
         return true;
+    }
+
+
+    //Funções da pagina Contas a receber
+
+    public static function getContasReceberList() {
+        $contasReceberList = Receber_conta::select()->get();
+        $contasReceber = [];
+
+        foreach($contasReceberList as $contaReceberItem) {
+            $newContaReceber = new Receber_conta();
+            $newContaReceber->id = $contaReceberItem['id'];
+            $newContaReceber->nome = $contaReceberItem['nome'];
+            $newContaReceber->categoria = $contaReceberItem['categoria'];
+            $newContaReceber->data_vencimento = $contaReceberItem['data_vencimento'];
+            $newContaReceber->valor = $contaReceberItem['valor'];
+            $newContaReceber->condominio = $contaReceberItem['condominio'];
+            $newContaReceber->pago_status = $contaReceberItem['pago_status'];
+            $contasReceber[] = $newContaReceber;
+        }
+
+        return $contasReceber;
     }
 
 }
