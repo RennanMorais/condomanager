@@ -1,60 +1,59 @@
 function popGraphsOcorrencias()
 {
-  var
-  quantidade = 1,
-  datas = [],
-  countDatas = [],
-  index = 7;
+    var
+    datas = [],
+    datasBD = [],
+    countDatas = [],
+    index = 7;
 
-  while (index >= quantidade) 
-  {
-    dt = new Date();
+    while (index >= 1) 
+    {
+        dt = new Date();
 
-    if(index > 1) {
-        dt.setDate(dt.getDate() - (index - 1));
+        if(index > 1) {
+            dt.setDate(dt.getDate() - (index - 1));
+        }
+
+        var day = dt.getDate() < 10 ? '0' + dt.getDate() : '' + dt.getDate();
+        var month = dt.getMonth() < 10 ? '0' + (dt.getMonth() + 1) : '' + dt.getMonth();
+
+        fotmatDate = day+"/"+month+"/"+dt.getFullYear();
+
+        datas.push(fotmatDate);
+
+        formatDateBD = dt.getFullYear()+"-"+month+"-"+day;
+
+        datasBD.push(formatDateBD);
+        
+        index = index - 1;
+
     }
 
-    var day = dt.getDate() < 10 ? '0' + dt.getDate() : '' + dt.getDate();
-    var month = dt.getMonth() < 10 ? '0' + (dt.getMonth() + 1) : '' + dt.getMonth();
+    var indexDate = 0;
 
-    fotmatDate = day+"/"+month+"/"+dt.getFullYear();
+    while(indexDate <= 6) {
 
-    datas.push(fotmatDate);
-
-    var day_bd = dt.getDate() < 10 ? '0' + dt.getDate() : '' + dt.getDate();
-    var month_bd = dt.getMonth() < 10 ? '0' + (dt.getMonth() + 1) : '' + dt.getMonth();
-
-    fotmatDateBD = dt.getFullYear()+"-"+month_bd+"-"+day_bd;
-
-    $.ajax(
-    {
-      url: "http://localhost/condosoftware/public/app/request/countocorrencias",
-      method: "POST",
-      data:{date: fotmatDateBD},
-      success: function (data)
-      {
-        
-        for(i = 0; i < data.length; i++)
+        $.ajax(
         {
-          countDatas.push(data[i]);
-        }  
-        
-      }
+            url: "http://localhost/condosoftware/public/app/request/countocorrencias",
+            method: "POST",
+            data:{date: datasBD[indexDate]},
+            success: function (data)
+            {
+            
+                countDatas.push(data);
+                graficosDash(datas, countDatas);
+            
+            }
 
-    });
-
-    graficosDash();
-
-    $(document).ready(function()
-    {
+        });
 
         graficosDash(datas, countDatas);
 
-    });
-    
-    index = index - 1;
+        indexDate = indexDate + 1;
 
-  }
+    }
+
 }
 
 function graficosDash(datas, countDatas)

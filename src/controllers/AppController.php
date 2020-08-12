@@ -836,4 +836,69 @@ class AppController extends Controller {
             'contas_receber' => $contas_receber
         ]);
     }
+
+    public function addContasReceber() {
+        $nome = filter_input(INPUT_POST, 'name');
+        $id_categoria = filter_input(INPUT_POST, 'categoria');
+        
+        $valor = filter_input(INPUT_POST, 'valor');
+        $valor = str_replace('.', '', $valor);
+        $valor = str_replace(',', '.', $valor);
+
+        $data_vencimento = filter_input(INPUT_POST, 'data_vencimento');
+        $id_condominio = filter_input(INPUT_POST, 'condominio');
+        $pago_status = filter_input(INPUT_POST, 'pago_status');
+
+        if($nome && $valor) {
+            CondominioHandler::addContaReceber($nome, $id_categoria, $valor, $data_vencimento, $id_condominio, $pago_status);
+            $this->redirect('/app/contas_receber');
+        } else {
+            $this->redirect('/app/contas_receber');
+        }
+    }
+
+    public function editContasReceber($atts) {
+        $conta_receber_item = CondominioHandler::getContaReceberItem($atts['id']);
+        $categorias = CondominioHandler::getCategoriaContas();
+        $condominiosList = CondominioHandler::getCond();
+
+        $this->render('edit_contas_receber', [
+            'loggedUser' => $this->loggedUser,
+            'categorias' => $categorias,
+            'condominios' => $condominiosList,
+            'conta_receber_item' => $conta_receber_item
+        ]);
+    }
+
+    public function saveContasReceber() {
+        $id_conta = filter_input(INPUT_POST, 'id');
+        $nome = filter_input(INPUT_POST, 'name');
+        $id_categoria = filter_input(INPUT_POST, 'categoria');
+        
+        $valor = filter_input(INPUT_POST, 'valor');
+        $valor = str_replace('.', '', $valor);
+        $valor = str_replace(',', '.', $valor);
+
+        $data_vencimento = filter_input(INPUT_POST, 'data_vencimento');
+        $id_condominio = filter_input(INPUT_POST, 'condominio');
+        $pago_status = filter_input(INPUT_POST, 'pago_status');
+
+        if($nome && $valor) {
+            CondominioHandler::saveContaReceber($id_conta, $nome, $id_categoria, $valor, $data_vencimento, $id_condominio, $pago_status);
+            $this->redirect('/app/contas_receber');
+        } else {
+            $this->redirect('/app/contas_receber');
+        }
+    }
+
+    public function deleteContasReceber() {
+        $id = filter_input(INPUT_GET, 'id');
+
+        if($id) {
+            CondominioHandler::deleteContasReceber($id);
+            $this->redirect('/app/contas_receber');
+        } else {
+            $this->redirect('/app/contas_receber');
+        }
+    }
 }

@@ -1,5 +1,5 @@
 <?php $render('header'); ?>
-<?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'contas_pagar', 'activeMasterMenu' => 'financeiro']); ?>
+<?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'contas_receber', 'activeMasterMenu' => 'financeiro']); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -49,9 +49,10 @@
                                 <td><?=$contas_receber_item->categoria;?></td>
                                 <td>R$ <?=$contas_receber_item->valor;?></td>
                                 <td><?=date('d/m/Y', strtotime($contas_receber_item->data_vencimento));?></td>
-                                <td><?=$contas_pagar_item->pago_status;?></td>
+                                <td><?=$contas_receber_item->condominio;?></td>
+                                <td><?=$contas_receber_item->pago_status;?></td>
                                 <td style="text-align:center;">
-                                    <a href="<?=$base;?>/app/contas_pagar/edit_conta_pagar/<?=$contas_receber_item->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
+                                    <a href="<?=$base;?>/app/contas_receber/edit_conta_receber/<?=$contas_receber_item->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
                                     <button data-toggle="modal" data-target="#del-modal-<?=$contas_receber_item->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
@@ -65,7 +66,7 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <a href="<?=$base;?>/app/contas_pagar/delete_conta_pagar?id=<?=$contas_receber_item->id;?>" class="btn btn-outline-info" title="Excluir"><i></i>Sim</a>
+                                            <a href="<?=$base;?>/app/contas_receber/delete_conta_receber?id=<?=$contas_receber_item->id;?>" class="btn btn-outline-info" title="Excluir"><i></i>Sim</a>
                                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Não</button>
                                         </div>
 

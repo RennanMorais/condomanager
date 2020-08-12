@@ -87,6 +87,12 @@ class CondominioHandler {
         Assembleia::update()
         ->set('local_condominio', $nome)->where('local', $id)->execute();
 
+        Ocorrencia::update()
+        ->set('condominio', $nome)->where('id_condominio', $id)->execute();
+
+        Receber_conta::update()
+        ->set('condominio', $nome)->where('id_condominio', $id)->execute();
+
         return true;
     }
 
@@ -651,6 +657,27 @@ class CondominioHandler {
 
 
     //Funções da pagina Contas a receber
+    public static function addContaReceber($nome, $id_categoria, $valor, $data_vencimento, $id_condominio, $pago_status) {
+        
+        $categoria = Categoria_conta::select()->where('id', $id_categoria)->one();
+        $condominio = Condominio::select()->where('id', $id_condominio)->one();
+
+        $nome_categoria = $categoria['nome'];
+        $nome_condominio = $condominio['nome'];
+        
+        Receber_conta::insert([
+            'nome' => $nome,
+            'id_categoria' => $id_categoria,
+            'categoria' => $nome_categoria,
+            'valor' => $valor,
+            'data_vencimento' => $data_vencimento,
+            'id_condominio' => $id_condominio,
+            'condominio' => $nome_condominio,
+            'pago_status' => $pago_status
+        ])->execute();
+
+        return true;
+    }
 
     public static function getContasReceberList() {
         $contasReceberList = Receber_conta::select()->get();
@@ -669,6 +696,37 @@ class CondominioHandler {
         }
 
         return $contasReceber;
+    }
+
+    public static function getContaReceberItem($id) {
+        $contas_receber_item = Receber_conta::select()->where('id', $id)->one();
+        return $contas_receber_item;
+    }
+
+    public static function saveContaReceber($id_conta, $nome, $id_categoria, $valor, $data_vencimento, $id_condominio, $pago_status) {
+        
+        $categoria = Categoria_conta::select()->where('id', $id_categoria)->one();
+        $condominio = Condominio::select()->where('id', $id_condominio)->one();
+
+        $nome_categoria = $categoria['nome'];
+        $nome_condominio = $condominio['nome'];
+
+        Receber_conta::update()
+        ->set('nome', $nome)
+        ->set('id_categoria', $id_categoria)
+        ->set('categoria', $nome_categoria)
+        ->set('valor', $valor)
+        ->set('data_vencimento', $data_vencimento)
+        ->set('id_condominio', $id_condominio)
+        ->set('condominio', $nome_condominio)
+        ->set('pago_status', $pago_status)->where('id', $id_conta)->execute();      
+
+        return true;
+    }
+
+    public static function deleteContasReceber($id) {
+        Receber_conta::delete()->where('id', $id)->execute();
+        return true;
     }
 
 }

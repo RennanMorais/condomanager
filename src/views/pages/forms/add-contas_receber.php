@@ -1,4 +1,4 @@
-<form action="<?=$base;?>/app/contas_pagar/add_contas_pagar" method="POST">
+<form action="<?=$base;?>/app/contas_receber/add_contas_receber" method="POST">
 
 <h6>Nova Conta a Receber</h6>
 
@@ -48,7 +48,7 @@
         <div class="input-group-prepend">
             <div class="input-group-text">Condomínio</div>
         </div>
-        <select class="form-control" name="categoria">
+        <select class="form-control" name="condominio">
             <option value="">Selecionar...</option>
             <?php foreach($condominios as $condominiosItem):?>
             <option value="<?=$condominiosItem->id;?>"><?=$condominiosItem->nome;?></option>
