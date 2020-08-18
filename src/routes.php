@@ -124,6 +124,13 @@ $router->get('/app/contas_receber/edit_conta_receber/{id}', 'AppController@editC
 $router->post('/app/contas_receber/edit_conta_receber/save', 'AppController@saveContasReceber');
 $router->get('/app/contas_receber/delete_conta_receber', 'AppController@deleteContasReceber');
 
+//Fornecedores
+$router->get('/app/fornecedores', 'AppController@fornecedores');
+$router->post('/app/contas_receber/add_contas_receber', 'AppController@addContasReceber');
+$router->get('/app/contas_receber/edit_conta_receber/{id}', 'AppController@editContasReceber');
+$router->post('/app/contas_receber/edit_conta_receber/save', 'AppController@saveContasReceber');
+$router->get('/app/contas_receber/delete_conta_receber', 'AppController@deleteContasReceber');
+
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');
 $router->get('/registro', 'LoginController@getRegistroForm');

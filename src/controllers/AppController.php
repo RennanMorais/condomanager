@@ -901,4 +901,12 @@ class AppController extends Controller {
             $this->redirect('/app/contas_receber');
         }
     }
+
+
+    //Pagina de fornecedores
+    public function fornecedores() {
+        $this->render('fornecedores', [
+            'loggedUser' => $this->loggedUser
+        ]);
+    }
 }
