@@ -47,7 +47,8 @@ class AppController extends Controller {
 
     }
 
-    //Funções menu Condominios
+
+
     //Requisições Ajax para os campos select
     public function getMoradorPhoneField() {
         $id_morador = filter_input(INPUT_POST, 'id_morador');
@@ -85,7 +86,8 @@ class AppController extends Controller {
         echo $count_ocorrencia;
     }
 
-    
+
+    //Funções menu Condominios
     //Funções da pagina de condominio
     public function condominio() {
         $condominiosList = CondominioHandler::getCond();
@@ -905,8 +907,75 @@ class AppController extends Controller {
 
     //Pagina de fornecedores
     public function fornecedores() {
+        $fornecedoresList = CondominioHandler::getFornecedores();
         $this->render('fornecedores', [
-            'loggedUser' => $this->loggedUser
+            'loggedUser' => $this->loggedUser,
+            'fornecedores' => $fornecedoresList
+        ]);
+    }
+
+    public function addFornecedor() {
+        $nome = filter_input(INPUT_POST, 'name');
+        $cnpj = filter_input(INPUT_POST, 'cnpj');
+        $email = filter_input(INPUT_POST, 'email');
+        $site = filter_input(INPUT_POST, 'site');
+        $endereco = filter_input(INPUT_POST, 'endereco');
+        $numero = filter_input(INPUT_POST, 'numero');
+        $complemento = filter_input(INPUT_POST, 'complemento');
+        $bairro = filter_input(INPUT_POST, 'bairro');  
+
+        if($nome && $email) {
+            CondominioHandler::addFornecedor($nome, $cnpj, $email, $site, $endereco, $numero, $complemento, $bairro);
+            $this->redirect('/app/Fornecedores');
+        } else {
+            $this->redirect('/app/Fornecedores');
+        }
+    }
+
+    public function editFornecedor($atts) {
+        $fornecedor = CondominioHandler::getFornecedorItem($atts['id']);
+        $this->render('edit_fornecedor', [
+            'loggedUser' => $this->loggedUser,
+            'fornecedor' => $fornecedor
+        ]);
+
+    }
+
+    public function saveFornecedor() {
+        $id = filter_input(INPUT_POST, 'id');
+        $nome = filter_input(INPUT_POST, 'name');
+        $cnpj = filter_input(INPUT_POST, 'cnpj');
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $site = filter_input(INPUT_POST, 'site');
+        $endereco = filter_input(INPUT_POST, 'endereco');
+        $numero = filter_input(INPUT_POST, 'numero');
+        $complemento = filter_input(INPUT_POST, 'complemento');
+        $bairro = filter_input(INPUT_POST, 'bairro');
+
+        if($nome && $email) {
+            CondominioHandler::saveFornecedor($id, $nome, $cnpj, $email, $site, $endereco, $numero, $complemento, $bairro);
+            $this->redirect('/app/fornecedores');
+        }
+    }
+
+    public function deleteFornecedor() {
+        $id = filter_input(INPUT_GET, 'id');
+
+        if($id) {
+            CondominioHandler::deleteFornecedor($id);
+            $this->redirect('/app/Fornecedores');
+        } else {
+            $this->redirect('/app/Fornecedores');
+        }
+    }
+
+
+    //Página de Visitantes
+    public function visitantes() {
+        $fornecedoresList = CondominioHandler::getFornecedores();
+        $this->render('visitantes', [
+            'loggedUser' => $this->loggedUser,
+            'fornecedores' => $fornecedoresList
         ]);
     }
 }

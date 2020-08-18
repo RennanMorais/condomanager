@@ -126,10 +126,17 @@ $router->get('/app/contas_receber/delete_conta_receber', 'AppController@deleteCo
 
 //Fornecedores
 $router->get('/app/fornecedores', 'AppController@fornecedores');
-$router->post('/app/contas_receber/add_contas_receber', 'AppController@addContasReceber');
-$router->get('/app/contas_receber/edit_conta_receber/{id}', 'AppController@editContasReceber');
-$router->post('/app/contas_receber/edit_conta_receber/save', 'AppController@saveContasReceber');
-$router->get('/app/contas_receber/delete_conta_receber', 'AppController@deleteContasReceber');
+$router->post('/app/fornecedores/add_fornecedor', 'AppController@addFornecedor');
+$router->get('/app/fornecedores/edit_fornecedor/{id}', 'AppController@editFornecedor');
+$router->post('/app/fornecedores/edit_fornecedor/save', 'AppController@saveFornecedor');
+$router->get('/app/fornecedores/delete_fornecedor', 'AppController@deleteFornecedor');
+
+//Visitantes
+$router->get('/app/visitantes', 'AppController@visitantes');
+$router->post('/app/fornecedores/add_fornecedor', 'AppController@addFornecedor');
+$router->get('/app/fornecedores/edit_fornecedor/{id}', 'AppController@editFornecedor');
+$router->post('/app/fornecedores/edit_fornecedor/save', 'AppController@saveFornecedor');
+$router->get('/app/fornecedores/delete_fornecedor', 'AppController@deleteFornecedor');
 
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');

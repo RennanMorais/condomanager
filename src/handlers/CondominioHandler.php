@@ -12,6 +12,7 @@ use src\models\Ocorrencia;
 use src\models\Categoria_conta;
 use src\models\Pagar_conta;
 use src\models\Receber_conta;
+use src\models\Fornecedore;
 
 class CondominioHandler {
 
@@ -726,6 +727,66 @@ class CondominioHandler {
 
     public static function deleteContasReceber($id) {
         Receber_conta::delete()->where('id', $id)->execute();
+        return true;
+    }
+
+
+    //Funções da página de Fornecedores
+    
+    public static function addFornecedor($nome, $cnpj, $email, $site, $endereco, $numero, $complemento, $bairro) {
+        Fornecedore::insert([
+            'nome' => $nome,
+            'cnpj' => $cnpj,
+            'email' => $email,
+            'site' => $site,
+            'endereco' => $endereco,
+            'numero' => $numero,
+            'complemento' => $complemento,
+            'bairro' => $bairro
+        ])->execute();
+        return true;
+    }
+
+    public static function getFornecedores() {
+        $fornecedoresList = Fornecedore::select()->get();
+        $fornecedores = [];
+        foreach($fornecedoresList as $fornecedorItem) {
+            $newFornecedor = new Fornecedore();
+            $newFornecedor->id = $fornecedorItem['id'];
+            $newFornecedor->nome = $fornecedorItem['nome'];
+            $newFornecedor->cnpj = $fornecedorItem['cnpj'];
+            $newFornecedor->email = $fornecedorItem['email'];
+            $newFornecedor->site = $fornecedorItem['site'];
+            $newFornecedor->endereco = $fornecedorItem['endereco'];
+            $newFornecedor->numero = $fornecedorItem['numero'];
+            $newFornecedor->complemento = $fornecedorItem['complemento'];
+            $newFornecedor->bairro = $fornecedorItem['bairro'];
+            $fornecedores[] = $newFornecedor;
+        }
+        return $fornecedores;
+    }
+
+    public static function getFornecedorItem($id) {
+        $fornecedorItem = Fornecedore::select()->where('id', $id)->one();
+        return $fornecedorItem;
+    }
+
+    public static function saveFornecedor($id, $nome, $cnpj, $email, $site, $endereco, $numero, $complemento, $bairro) {
+        Fornecedore::update()
+        ->set('nome', $nome)
+        ->set('cnpj', $cnpj)
+        ->set('email', $email)
+        ->set('site', $site)
+        ->set('endereco', $endereco)
+        ->set('numero', $numero)
+        ->set('complemento', $complemento)
+        ->set('bairro', $bairro)->where('id', $id)->execute();
+
+        return true;
+    }
+
+    public static function deleteFornecedor($id) {
+        Fornecedore::delete()->where('id', $id)->execute();
         return true;
     }
 

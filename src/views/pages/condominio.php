@@ -32,14 +32,14 @@
                         <thead class="bg-info">
                             <tr>
                                 <th>Nome</th>
-                                    <th>CNPJ</th>
-                                    <th>Email</th>
-                                    <th>Endereço</th>
-                                    <th>Número</th>
-                                    <th>Complemento</th>
-                                    <th>Bairro</th>
-                                    <th>Ação</th>
-                                </tr>
+                                <th>CNPJ</th>
+                                <th>Email</th>
+                                <th>Endereço</th>
+                                <th>Número</th>
+                                <th>Complemento</th>
+                                <th>Bairro</th>
+                                <th>Ação</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <?php foreach($condominios as $condominiosItem): ?>
