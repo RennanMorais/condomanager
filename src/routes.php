@@ -17,6 +17,7 @@ $router->post('/app/request/getmoradorbypredio', 'AppController@getMoradorPredio
 $router->post('/app/request/getpredios', 'AppController@getPredioField');
 $router->post('/app/request/getdatas', 'AppController@getDatasOcorrencias');
 $router->post('/app/request/countocorrencias', 'AppController@countOcorrencias');
+$router->post('/app/request/countvisitantes', 'AppController@countVisitantesGraph');
 
 
 
@@ -131,12 +132,14 @@ $router->get('/app/fornecedores/edit_fornecedor/{id}', 'AppController@editFornec
 $router->post('/app/fornecedores/edit_fornecedor/save', 'AppController@saveFornecedor');
 $router->get('/app/fornecedores/delete_fornecedor', 'AppController@deleteFornecedor');
 
+
+//Menu Portaria
 //Visitantes
 $router->get('/app/visitantes', 'AppController@visitantes');
-$router->post('/app/fornecedores/add_fornecedor', 'AppController@addFornecedor');
-$router->get('/app/fornecedores/edit_fornecedor/{id}', 'AppController@editFornecedor');
-$router->post('/app/fornecedores/edit_fornecedor/save', 'AppController@saveFornecedor');
-$router->get('/app/fornecedores/delete_fornecedor', 'AppController@deleteFornecedor');
+$router->post('/app/visitantes/add_visitante', 'AppController@addVisitante');
+$router->get('/app/visitantes/edit_visitante/{id}', 'AppController@editVisitante');
+$router->post('/app/visitantes/edit_visitante/save', 'AppController@saveVisitante');
+$router->get('/app/visitantes/delete_visitante', 'AppController@deleteVisitante');
 
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');

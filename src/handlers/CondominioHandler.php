@@ -13,6 +13,7 @@ use src\models\Categoria_conta;
 use src\models\Pagar_conta;
 use src\models\Receber_conta;
 use src\models\Fornecedore;
+use src\models\Visitante;
 
 class CondominioHandler {
 
@@ -21,6 +22,12 @@ class CondominioHandler {
         $count = Ocorrencia::select()->where('data', $dia)->count();
         return $count;
     }
+
+    public static function countVisitantesGraph($dia) {
+        $count = Visitante::select()->where('data_entrada', $dia)->count();
+        return $count;
+    }
+
 
 
     //Funções da pagina de condominios
@@ -731,8 +738,8 @@ class CondominioHandler {
     }
 
 
+
     //Funções da página de Fornecedores
-    
     public static function addFornecedor($nome, $cnpj, $email, $site, $endereco, $numero, $complemento, $bairro) {
         Fornecedore::insert([
             'nome' => $nome,
@@ -787,6 +794,111 @@ class CondominioHandler {
 
     public static function deleteFornecedor($id) {
         Fornecedore::delete()->where('id', $id)->execute();
+        return true;
+    }
+
+
+
+    //Funções da pagina de Visitantes
+    public static function newVisitante($nome, $tipo_documento, $documento, $id_condominio, $id_predio, $id_morador, $data_entrada, $hora_entrada, $data_saida, $hora_saida) {
+        //pegar o nome do condominio
+        $condominio = Condominio::select()->where('id', $id_condominio)->one();
+        $nome_condominio = $condominio['nome'];
+
+        //pegar o nome do predio
+        $predio = Predio::select()->where('id', $id_predio)->one();
+        $nome_predio = $predio['nome'];
+
+        //pegar o nome do morador
+        $morador = User::select()->where('id', $id_morador)->one();
+        $nome_morador = $morador['name'];
+
+        //Inserindo dados no banco de dados
+        Visitante::insert([
+            'nome' => $nome,
+            'tipo_documento' => $tipo_documento,
+            'numero_documento' => $documento,
+            'id_condominio' => $id_condominio,
+            'condominio' => $nome_condominio,
+            'id_predio' => $id_predio,
+            'predio' => $nome_predio,
+            'id_morador' => $id_morador,
+            'morador' => $nome_morador,
+            'data_entrada' => $data_entrada,
+            'hora_entrada' => $hora_entrada,
+            'data_saida' => $data_saida,
+            'hora_saida' => $hora_saida
+        ])->execute();
+
+        return true;
+    }
+
+    public static function getVisitantes() {
+        $visitantesList = Visitante::select()->get();
+        $visitantes = [];
+
+        foreach($visitantesList as $visitanteItem) {
+            $newVisitante = new Visitante();
+            $newVisitante->id = $visitanteItem['id'];
+            $newVisitante->nome = $visitanteItem['nome'];
+            $newVisitante->tipo_documento = $visitanteItem['tipo_documento'];
+            $newVisitante->numero_documento = $visitanteItem['numero_documento'];
+            $newVisitante->condominio = $visitanteItem['condominio'];
+            $newVisitante->predio = $visitanteItem['predio'];
+            $newVisitante->morador = $visitanteItem['morador'];
+            $newVisitante->data_entrada = $visitanteItem['data_entrada'];
+            $newVisitante->hora_entrada = $visitanteItem['hora_entrada'];
+            $newVisitante->data_saida = $visitanteItem['data_saida'];
+            $newVisitante->hora_saida = $visitanteItem['hora_saida'];
+            $visitantes[] = $newVisitante;
+        }
+
+        return $visitantes;
+    }
+
+    public static function getVisitanteItem($id) {
+        $visitanteItem = Visitante::select()->where('id', $id)->one();
+        return $visitanteItem;
+    }
+
+    public static function saveVisitanteItem($id, $nome, $tipo_documento, $documento, $id_condominio, $id_predio, $id_morador, $data_entrada, $hora_entrada, $data_saida, $hora_saida) {
+        //pegar o nome do condominio
+        $condominio = Condominio::select()->where('id', $id_condominio)->one();
+        $nome_condominio = $condominio['nome'];
+
+        //pegar o nome do predio
+        $predio = Predio::select()->where('id', $id_predio)->one();
+        $nome_predio = $predio['nome'];
+
+        //pegar o nome do morador
+        $morador = User::select()->where('id', $id_morador)->one();
+        $nome_morador = $morador['name'];
+
+        Visitante::update()
+        ->set('nome', $nome)
+        ->set('tipo_documento', $tipo_documento)
+        ->set('numero_documento', $documento)
+        ->set('id_condominio', $id_condominio)
+        ->set('condominio', $nome_condominio)
+        ->set('id_predio', $id_predio)
+        ->set('predio', $nome_predio)
+        ->set('id_morador', $id_morador)
+        ->set('morador', $nome_morador)
+        ->set('data_entrada', $data_entrada)
+        ->set('hora_entrada', $hora_entrada)
+        ->set('data_saida', $data_saida)
+        ->set('hora_saida', $hora_saida)->where('id', $id)->execute();
+
+        return true;
+    }
+
+    public static function countVisitantes() {
+        $count = Visitante::select()->where('data_entrada', date('Y-m-d'))->count();
+        return $count;
+    }
+
+    public static function deleteVisitante($id) {
+        Visitante::delete()->where('id', $id)->execute();
         return true;
     }
 

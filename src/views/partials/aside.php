@@ -32,10 +32,10 @@
         <!-- Sidebar Users panel -->
         <div class="Users-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="<?=$base;?>/assets/images/avatar.png" class="img-circle elevation-2" alt="Users Image">
+            <img src="<?=$base;?>/assets/images/users/<?=$loggedUser->avatar?>" class="img-circle elevation-2" alt="Users Image">
           </div>
           <div class="info">
-            <span class="d-block"><?=$loggedUser->name;?></span>
+            <span class="d-block"><b><?=$loggedUser->name;?></b></span>
           </div>
         </div>
 

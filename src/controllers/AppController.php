@@ -27,6 +27,7 @@ class AppController extends Controller {
         $countMoradores = UserHandler::countMoradores(); //Conta todos os moradores registrados
         $countReservasPendentes = CondominioHandler::countReservaPendente(); //Conta todas as reservas pendentes
         $countOcorrenciasPendentes = CondominioHandler::countOcorrenciaPendente(); //Conta todas as ocorrências pendentes
+        $countVisitantes = CondominioHandler::countVisitantes(); //Conta todas os visitantes
 
         $this->render('dash', [
             'loggedUser' => $this->loggedUser,
@@ -34,6 +35,7 @@ class AppController extends Controller {
             'countMoradores' => $countMoradores,
             'countReservas' => $countReservasPendentes,
             'countOcorrencias' => $countOcorrenciasPendentes,
+            'countVisitantes' => $countVisitantes
         ]);
     }
 
@@ -84,6 +86,12 @@ class AppController extends Controller {
         $dia = filter_input(INPUT_POST, 'date');
         $count_ocorrencia = CondominioHandler::countOcorrencias($dia);
         echo $count_ocorrencia;
+    }
+
+    public function countVisitantesGraph() {
+        $dia = filter_input(INPUT_POST, 'date');
+        $count_visitantes = CondominioHandler::countVisitantesGraph($dia);
+        echo $count_visitantes;
     }
 
 
@@ -368,11 +376,16 @@ class AppController extends Controller {
     public function editReserva($atts) {
         $reserva = CondominioHandler::getReservaItem($atts['id']);
         $condominiosList = CondominioHandler::getCond();
-        $this->render('edit_reserva', [
-            'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList,
-            'reserva' => $reserva
-        ]);
+        
+        if($reserva['status'] != "Rejeitado") {
+            $this->render('edit_reserva', [
+                'loggedUser' => $this->loggedUser,
+                'condominios' => $condominiosList,
+                'reserva' => $reserva
+            ]);
+        } else {
+            $this->redirect('/app/reservas');
+        }
     }
 
     public function saveReserva() {
@@ -963,19 +976,84 @@ class AppController extends Controller {
 
         if($id) {
             CondominioHandler::deleteFornecedor($id);
-            $this->redirect('/app/Fornecedores');
+            $this->redirect('/app/fornecedores');
         } else {
-            $this->redirect('/app/Fornecedores');
+            $this->redirect('/app/fornecedores');
         }
     }
 
 
     //Página de Visitantes
     public function visitantes() {
-        $fornecedoresList = CondominioHandler::getFornecedores();
+        $condominiosList = CondominioHandler::getCond();
+        $visitantesList = CondominioHandler::getVisitantes();
         $this->render('visitantes', [
             'loggedUser' => $this->loggedUser,
-            'fornecedores' => $fornecedoresList
+            'condominios' => $condominiosList,
+            'visitantes' => $visitantesList
         ]);
+    }
+
+    public function addVisitante() {
+        $nome = filter_input(INPUT_POST,'nome');
+        $tipo_documento = filter_input(INPUT_POST,'tipo-doc');
+        $documento = filter_input(INPUT_POST,'documento');
+        $id_condominio = filter_input(INPUT_POST, 'condominio');
+        $id_predio = filter_input(INPUT_POST, 'predio');
+        $id_morador = filter_input(INPUT_POST, 'morador');
+        $data_entrada = filter_input(INPUT_POST, 'data-entrada');
+        $hora_entrada = filter_input(INPUT_POST, 'hora-entrada');
+        $data_saida = filter_input(INPUT_POST, 'data-saida');
+        $hora_saida = filter_input(INPUT_POST, 'hora-saida');
+
+        if($nome && $documento) {
+            CondominioHandler::newVisitante($nome, $tipo_documento, $documento, $id_condominio, $id_predio, $id_morador, $data_entrada, $hora_entrada, $data_saida, $hora_saida);
+            $this->redirect('/app/visitantes');
+        } else {
+            $this->redirect('/app/visitantes');
+        }
+    }
+
+    public function editVisitante($atts) {
+        $visitante = CondominioHandler::getVisitanteItem($atts['id']);
+        $condominiosList = CondominioHandler::getCond();
+        $this->render('edit_visitante', [
+            'loggedUser' => $this->loggedUser,
+            'visitante' => $visitante,
+            'condominios' => $condominiosList
+        ]);
+
+    }
+
+    public function saveVisitante() {
+        $id = filter_input(INPUT_POST, 'id'); 
+        $nome = filter_input(INPUT_POST,'nome');
+        $tipo_documento = filter_input(INPUT_POST,'tipo-doc');
+        $documento = filter_input(INPUT_POST,'documento');
+        $id_condominio = filter_input(INPUT_POST, 'condominio');
+        $id_predio = filter_input(INPUT_POST, 'predio');
+        $id_morador = filter_input(INPUT_POST, 'morador');
+        $data_entrada = filter_input(INPUT_POST, 'data-entrada');
+        $hora_entrada = filter_input(INPUT_POST, 'hora-entrada');
+        $data_saida = filter_input(INPUT_POST, 'data-saida');
+        $hora_saida = filter_input(INPUT_POST, 'hora-saida');
+
+        if($nome && $documento) {
+            CondominioHandler::saveVisitanteItem($id, $nome, $tipo_documento, $documento, $id_condominio, $id_predio, $id_morador, $data_entrada, $hora_entrada, $data_saida, $hora_saida);
+            $this->redirect('/app/visitantes');
+        } else {
+            $this->redirect('/app/visitantes');
+        }
+    }
+
+    public function deleteVisitante() {
+        $id = filter_input(INPUT_GET, 'id');
+
+        if($id) {
+            CondominioHandler::deleteVisitante($id);
+            $this->redirect('/app/visitantes');
+        } else {
+            $this->redirect('/app/visitantes');
+        }
     }
 }

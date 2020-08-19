@@ -42,9 +42,9 @@
                     </div>
                     <select class="form-control" name="condominio" id="select-cond">
                       <option value="<?=$prdItem['condominio'];?>"><?=$prdItem['condominio'];?></option>
-                        <?php foreach($condominios as $condominiosItem):?>
-                        <option value="<?=$condominiosItem->id;?>"><?=$condominiosItem->nome;?></option>
-                        <?php endforeach;?>
+                      <?php foreach($condominios as $condominiosItem):?>
+                      <option value="<?=$condominiosItem->id;?>"><?=$condominiosItem->nome;?></option>
+                      <?php endforeach;?>
                     </select>
                 </div>
             </div>
