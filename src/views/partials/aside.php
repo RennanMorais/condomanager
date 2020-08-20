@@ -32,7 +32,7 @@
         <!-- Sidebar Users panel -->
         <div class="Users-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="<?=$base;?>/assets/images/users/<?=$loggedUser->avatar?>" class="img-circle elevation-2" alt="Users Image">
+            <img src="<?=$base;?>/media/avatars/<?=$loggedUser->avatar?>" class="img-circle elevation-2" alt="Users Image">
           </div>
           <div class="info">
             <span class="d-block"><b><?=$loggedUser->name;?></b></span>
@@ -225,7 +225,7 @@
               <ul class="nav nav-treeview">
 
                 <li class="nav-item">
-                  <a href="<?=$base;?>/app/usuarios" class="nav-link <?= ($activeMenu == 'altsenha') ? 'active':''; ?>">
+                  <a href="<?=$base;?>/app/perfil" class="nav-link <?= ($activeMenu == 'perfil') ? 'active':''; ?>">
                     <i class="fa fa-user-circle nav-icon"></i>
                     <p>Perfil</p>
                   </a>

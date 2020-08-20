@@ -141,6 +141,12 @@ $router->get('/app/visitantes/edit_visitante/{id}', 'AppController@editVisitante
 $router->post('/app/visitantes/edit_visitante/save', 'AppController@saveVisitante');
 $router->get('/app/visitantes/delete_visitante', 'AppController@deleteVisitante');
 
+
+//Menu Configurações
+//Perfil
+$router->get('/app/perfil', 'AppController@perfil');
+$router->post('/app/perfil/save', 'AppController@savePerfil');
+
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');
 $router->get('/registro', 'LoginController@getRegistroForm');

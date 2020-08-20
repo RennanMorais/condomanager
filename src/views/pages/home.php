@@ -328,10 +328,10 @@
                         <h4>Contatos</h4>
                         <ul class="list-unstyled li-space-lg">
                             <li>
-                                <a class="white" href="">(11) 5678-1234</a>
+                                <a class="white" href="#">(11) 5678-1234</a>
                             </li>
                             <li>
-                               <a class="white" href="">(11) 98765-4321</a>
+                               <a class="white" href="#">(11) 98765-4321</a>
                             </li>
                         </ul>
                     </div> <!-- end of text-container -->
@@ -342,7 +342,7 @@
                         <h4>Onde ficamos</h4>
                         <ul class="list-unstyled li-space-lg">
                             <li>
-                                <a class="white" href="">Av. Paulista, 1578 - Bela Vista - São Paulo/SP</a>
+                                <a class="white" href="#">Av. Paulista, 1578 - Bela Vista - São Paulo/SP</a>
                             </li>
                         </ul>
                     </div> <!-- end of text-container -->
@@ -358,7 +358,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="p-small">Copyright © 2020 <a href="https://inovatik.com">CondoSoftware</a></p>
+                    <p class="p-small">Copyright © 2020 <a href="<?=$base;?>">CondoSoftware</a></p>
                 </div> <!-- end of col -->
             </div> <!-- enf of row -->
         </div> <!-- end of container -->

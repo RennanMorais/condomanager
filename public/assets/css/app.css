@@ -13,7 +13,8 @@
 #form {
     border: 2px solid #46B191;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px 10px 10px 10px;
+    background-color: #ddd;
 }
 
 #form-new {
@@ -49,4 +50,15 @@
 .error-content h4 {
     font-size: 20px;
     font-weight: bold;
+}
+
+/* Avatar da pagina de perfil */
+.avatar-content{
+    text-align: center;
+}
+
+.perfil-img {
+    width: 200px;
+    border-radius: 100px;
+    border: 5px solid #fff;
 }

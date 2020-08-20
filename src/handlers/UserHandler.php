@@ -20,6 +20,9 @@ class UserHandler {
                 $loggedUser = new User;
                 $loggedUser->id = $data['id'];
                 $loggedUser->name = $data['name'];
+                $loggedUser->email = $data['email'];
+                $loggedUser->condominio = $data['condominio'];
+                $loggedUser->predio = $data['predio'];
                 $loggedUser->access = $data['access'];
                 $loggedUser->avatar = $data['avatar'];
                 return $loggedUser;
@@ -263,6 +266,11 @@ class UserHandler {
 
     public static function deleteVeiculo($id) {
         Veiculo::delete()->where('id', $id)->execute();
+        return true;
+    }
+
+    public static function updateAvatar($avatar, $id) {
+        User::update()->set('avatar', $avatar)->where('id', $id)->execute();
         return true;
     }
 
