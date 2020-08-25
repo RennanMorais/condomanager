@@ -1,4 +1,4 @@
-<?php $render('header'); ?>
+<?php $render('header', ['title' => 'Categoria de Contas']); ?>
 <?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'categoria_contas', 'activeMasterMenu' => 'financeiro']); ?>
 
     <!-- Content Wrapper. Contains page content -->

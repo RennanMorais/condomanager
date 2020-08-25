@@ -1,4 +1,4 @@
-<?php $render('header'); ?>
+<?php $render('header', ['title' => 'Fornecedores']); ?>
 <?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'fornecedores', 'activeMasterMenu' => 'financeiro']); ?>
 
     <!-- Content Wrapper. Contains page content -->

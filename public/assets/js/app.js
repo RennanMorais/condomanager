@@ -64,6 +64,8 @@ function Graphs()
 
         });
 
+        graficosDash(datas, countDatas, countVisitantes);
+
         indexDate = indexDate + 1;
 
     }

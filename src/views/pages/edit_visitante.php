@@ -1,4 +1,4 @@
-<?php $render('header'); ?>
+<?php $render('header', ['title' => 'Visitantes']); ?>
 <?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'visitantes', 'activeMasterMenu' => 'portaria']); ?>
 
     <!-- Content Wrapper. Contains page content -->

@@ -1,4 +1,4 @@
-<?php $render('header'); ?>
+<?php $render('header', ['title' => 'Assembleias']); ?>
 <?php $render('aside', ['loggedUser' => $loggedUser]); ?>
 
     <!-- Content Wrapper. Contains page content -->

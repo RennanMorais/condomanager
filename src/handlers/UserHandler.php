@@ -148,6 +148,7 @@ class UserHandler {
             $newUser->condominio = $userItem['condominio'];
             $newUser->predio = $userItem['predio'];
             $newUser->apto = $userItem['apto'];
+            $newUser->id_access = $userItem['id_access'];
             $newUser->nome_access = $userItem['nome_access'];
             $user[] = $newUser;
         }

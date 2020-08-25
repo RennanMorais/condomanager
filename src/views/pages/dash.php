@@ -1,4 +1,4 @@
-<?php $render('header'); ?>
+<?php $render('header', ['title' => 'Dashboard']); ?>
 <?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'dash']); ?>
 
     <!-- Content Wrapper. Contains page content -->

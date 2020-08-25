@@ -1,4 +1,4 @@
-<?php $render('header'); ?>
+<?php $render('header', ['title' => 'Áreas Comuns']); ?>
 <?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'area_comum', 'activeMasterMenu' => 'condominio']); ?>
 
     <!-- Content Wrapper. Contains page content -->

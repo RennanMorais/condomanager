@@ -1,4 +1,4 @@
-<?php $render('header'); ?>
+<?php $render('header', ['title' => 'Reservas']); ?>
 <?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'reserva_area', 'activeMasterMenu' => 'condominio']); ?>
 
     <!-- Content Wrapper. Contains page content -->

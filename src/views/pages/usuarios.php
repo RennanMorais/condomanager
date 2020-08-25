@@ -1,4 +1,4 @@
-<?php $render('header'); ?>
+<?php $render('header', ['title' => 'Usuários']); ?>
 <?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'usuarios', 'activeMasterMenu' => 'config']); ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -57,7 +57,9 @@
                                     <td><?=$userItem->nome_access;?></td>
                                     <td style="text-align:center;">
                                         <a href="<?=$base;?>/app/usuarios/edit_usuario/<?=$userItem->id;?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a> 
+                                        <?php if($userItem->id_access != '4'): ?>
                                         <button data-toggle="modal" data-target="#del-modal-<?=$userItem->id;?>" class="btn btn-outline-danger btn-sm" title="Desabilitar"><i class="fa fa-user"></i></button>
+                                        <?php endif;?>
                                     </td>
                                 </tr>
 

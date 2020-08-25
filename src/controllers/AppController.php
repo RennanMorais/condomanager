@@ -1074,6 +1074,8 @@ class AppController extends Controller {
         //Verifica a imagem enviada
         $avatar = '';
         
+        //print_r($_FILES);exit;
+
         if(isset($_FILES['avatar']) && !empty($_FILES['avatar']['tmp_name'])) {
             $newAvatar = $_FILES['avatar'];         
 
@@ -1081,6 +1083,9 @@ class AppController extends Controller {
                 $avatarName = $this->cutImage($newAvatar, 200, 200, 'media/avatars');
                 $avatar = $avatarName;
             }
+        } else {
+            UserHandler::updateAvatar('default.jpg', $this->loggedUser->id);
+            $this->redirect('/app/perfil');
         }
 
         //Alterar avatar no Banco de Dados

@@ -1,4 +1,4 @@
-<?php $render('header'); ?>
+<?php $render('header', ['title' => 'Contas a Receber']); ?>
 <?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'contas_receber', 'activeMasterMenu' => 'financeiro']); ?>
 
     <!-- Content Wrapper. Contains page content -->

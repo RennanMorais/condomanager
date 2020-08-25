@@ -1,4 +1,4 @@
-<?php $render('header'); ?>
+<?php $render('header', ['title' => 'Condomínios']); ?>
 <?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'condominio', 'activeMasterMenu' => 'condominio']); ?>
 
     <!-- Content Wrapper. Contains page content -->

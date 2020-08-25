@@ -1,4 +1,4 @@
-<?php $render('header'); ?>
+<?php $render('header', ['title' => 'Perfil']); ?>
 <?php $render('aside', ['loggedUser' => $loggedUser, 'activeMenu' => 'perfil', 'activeMasterMenu' => 'config']); ?>
 
     <!-- Content Wrapper. Contains page content -->
