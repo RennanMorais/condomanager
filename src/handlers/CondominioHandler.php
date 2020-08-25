@@ -171,7 +171,7 @@ class CondominioHandler {
 
     //Funções Moradores
     public static function getMorador() {
-        $moradorList = User::select()->where('access', '3')->get();
+        $moradorList = User::select()->where('id_access', '3')->get();
         $morador = [];
         foreach($moradorList as $moradorItem) {
             $newMorador = new User();
@@ -185,7 +185,8 @@ class CondominioHandler {
             $newMorador->condominio = $moradorItem['condominio'];
             $newMorador->predio = $moradorItem['predio'];
             $newMorador->apto = $moradorItem['apto'];
-            $newMorador->access = $moradorItem['access'];
+            $newMorador->id_access = $moradorItem['id_access'];
+            $newMorador->nome_access = $moradorItem['nome_access'];
             $morador[] = $newMorador;
         }
         return $morador;

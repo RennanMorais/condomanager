@@ -23,7 +23,7 @@
     <aside class="main-sidebar sidebar-light-secondary elevation-4">
       <!-- Brand Logo -->
       <a href="<?=$base;?>/app" class="brand-link">
-        <img src="<?=$base;?>/assets/images/logo_condo.png" alt="Condo System" width="100px" style='max-width: 50%;min-width: 60px;'>
+        <img src="<?=$base;?>/assets/images/logo_condo.png" alt="Condo System" width="100px" style='max-width: 50%;min-width: 50px;'>
         <span class="brand-text font-weight-light"></span>
       </a>
 

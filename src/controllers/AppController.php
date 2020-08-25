@@ -1129,4 +1129,82 @@ class AppController extends Controller {
         return $fileName;
 
     }
+
+
+    //Funções da página de moradores
+    public function usuarios() {
+        $prediosList = CondominioHandler::getPredios();
+        $condominiosList = CondominioHandler::getCond();
+        $usersList = UserHandler::getUsers();
+        $accessList = UserHandler::getAccess();
+        $this->render('usuarios', [
+            'loggedUser' => $this->loggedUser,
+            'condominios' => $condominiosList,
+            'predios' => $prediosList,
+            'users' => $usersList,
+            'access' => $accessList
+        ]);
+    }
+
+    public function addUsuario() {
+        $nome = filter_input(INPUT_POST, 'name');
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $rg = filter_input(INPUT_POST, 'rg');
+        $cpf = filter_input(INPUT_POST, 'cpf');
+        $phone = filter_input(INPUT_POST, 'phone');
+        $tipo = filter_input(INPUT_POST, 'tipo');
+        $condominio = filter_input(INPUT_POST, 'condominio');
+        $predio = filter_input(INPUT_POST, 'predio');
+        $apto = filter_input(INPUT_POST, 'apto');
+        $access = filter_input(INPUT_POST, 'access');
+
+        if($nome && $email) {
+            UserHandler::addUserFromConfig($nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto, $access);
+            $this->redirect('/app/usuarios');
+        }
+    }
+
+    public function editUsuario($atts) {
+        $usersItem = UserHandler::getUserItem($atts['id']);
+        $condominiosList = CondominioHandler::getCond();
+        $prediosList = CondominioHandler::getPredios();
+        $accessList = UserHandler::getAccess();
+        $this->render('edit_usuario', [
+            'loggedUser' => $this->loggedUser,
+            'user' => $usersItem,
+            'condominios' => $condominiosList,
+            'predios' => $prediosList,
+            'access' => $accessList
+        ]);
+    }
+
+    public function saveUsuario() {
+        $id = filter_input(INPUT_POST, 'id');
+        $nome = filter_input(INPUT_POST, 'name');
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $rg = filter_input(INPUT_POST, 'rg');
+        $cpf = filter_input(INPUT_POST, 'cpf');
+        $phone = filter_input(INPUT_POST, 'phone');
+        $tipo = filter_input(INPUT_POST, 'tipo');
+        $condominio = filter_input(INPUT_POST, 'condominio');
+        $predio = filter_input(INPUT_POST, 'predio');
+        $apto = filter_input(INPUT_POST, 'apto');
+        $access = filter_input(INPUT_POST, 'access');
+
+
+        if($id && $nome) {
+            UserHandler::saveUser($id, $nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto, $access);
+            $this->redirect('/app/usuarios');
+        }
+    }
+
+    public function disableUser() {
+        $moradorId = filter_input(INPUT_GET, 'id');
+        if(!empty($moradorId)) {
+            UserHandler::disableUser($moradorId);
+            $this->redirect('/app/usuarios');
+        } else {
+            $this->redirect('/app/usuarios');
+        }
+    }
 }

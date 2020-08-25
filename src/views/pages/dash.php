@@ -90,12 +90,12 @@
 
           <div class="row">
               <div class="col-sm-6">
-                <h3>Gráfico de Visitantes</h3>
+                <h3>Visitantes</h3>
                 <canvas id="visitor-chart" width="100%"></canvas>
               </div>
 
               <div class="col-sm-6">
-                <h3>Gráfico de Ocorrências</h3>
+                <h3>Ocorrências</h3>
                 <canvas id="occurrence-chart" width="100%"></canvas>
               </div>
           </div>
@@ -135,7 +135,7 @@
 $(document).ready(function()
 {
    
-  popGraphsOcorrencias();
+  Graphs();
   
 });
 </script>

@@ -1,4 +1,4 @@
-function popGraphsOcorrencias()
+function Graphs()
 {
     var
     datas = [],
@@ -29,6 +29,7 @@ function popGraphsOcorrencias()
         index = index - 1;
 
     }
+    
 
     var indexDate = 0;
 
@@ -43,7 +44,6 @@ function popGraphsOcorrencias()
             {
             
                 countDatas.push(data);
-                graficosDash(datas, countDatas);
             
             }
 
@@ -64,8 +64,6 @@ function popGraphsOcorrencias()
 
         });
 
-        graficosDash(datas, countDatas, countVisitantes);
-
         indexDate = indexDate + 1;
 
     }
@@ -78,19 +76,31 @@ function graficosDash(datas, countDatas, countVisitantes)
     var ctx = document.getElementById('visitor-chart').getContext('2d');
     var visitorChart = new Chart(ctx, {
 
-        type: 'line',
+        type: 'bar',
         data: {
             labels: datas,
             datasets: [{
                 label: 'Visitantes',
                 data: countVisitantes,
                 backgroundColor: [
-                    '#17A2B8'
+                    '#b2f4ff',
+                    '#b2f4ff',
+                    '#b2f4ff',
+                    '#b2f4ff',
+                    '#b2f4ff',
+                    '#b2f4ff',
+                    '#b2f4ff'
                 ],
                 borderColor: [
-                    '#148A9D' 
+                    '#17A2B8',
+                    '#17A2B8',
+                    '#17A2B8',
+                    '#17A2B8',
+                    '#17A2B8',
+                    '#17A2B8',
+                    '#17A2B8'
                 ],
-                borderWidth: 1
+                borderWidth: 2
             }]
         },
         options: {
@@ -107,16 +117,28 @@ function graficosDash(datas, countDatas, countVisitantes)
     var ctx = document.getElementById('occurrence-chart').getContext('2d');
     var occurrenceChart = new Chart(ctx, {
 
-        type: 'line',
+        type: 'bar',
         data: {
             labels: datas,
             datasets: [{
                 label: 'Ocorrências',
                 data: countDatas,
                 backgroundColor: [
-                    '#DC3545'
+                    '#ff8989',
+                    '#ff8989',
+                    '#ff8989',
+                    '#ff8989',
+                    '#ff8989',
+                    '#ff8989',
+                    '#ff8989'
                 ],
                 borderColor: [
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
+                    '#DC3545',
                     '#DC3545'
                 ],
                 borderWidth: 1

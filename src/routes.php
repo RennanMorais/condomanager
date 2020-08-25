@@ -142,6 +142,14 @@ $router->post('/app/visitantes/edit_visitante/save', 'AppController@saveVisitant
 $router->get('/app/visitantes/delete_visitante', 'AppController@deleteVisitante');
 
 
+//Rotas Moradores
+$router->get('/app/usuarios', 'AppController@usuarios');
+$router->post('/app/usuarios/add_usuario', 'AppController@addUsuario');
+$router->get('/app/usuarios/edit_usuario/{id}', 'AppController@editUsuario');
+$router->post('/app/usuarios/edit_usuario/save', 'AppController@saveUsuario');
+$router->get('/app/usuarios/disable', 'AppController@disableUser');
+
+
 //Menu Configurações
 //Perfil
 $router->get('/app/perfil', 'AppController@perfil');

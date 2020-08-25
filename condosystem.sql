@@ -11,6 +11,15 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+-- Copiando dados para a tabela condosystem.access: ~3 rows (aproximadamente)
+/*!40000 ALTER TABLE `access` DISABLE KEYS */;
+INSERT INTO `access` (`id`, `access`) VALUES
+	(1, 'Administrador'),
+	(2, 'Porteiro'),
+	(3, 'Morador'),
+	(4, 'Desativado');
+/*!40000 ALTER TABLE `access` ENABLE KEYS */;
+
 -- Copiando dados para a tabela condosystem.areascomums: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `areascomums` DISABLE KEYS */;
 INSERT INTO `areascomums` (`id`, `nome`, `id_condominio`, `condominio`) VALUES
@@ -52,7 +61,7 @@ INSERT INTO `fornecedores` (`id`, `nome`, `cnpj`, `email`, `site`, `endereco`, `
 -- Copiando dados para a tabela condosystem.ocorrencias: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `ocorrencias` DISABLE KEYS */;
 INSERT INTO `ocorrencias` (`id`, `data`, `descricao`, `id_condominio`, `condominio`, `id_morador`, `morador`, `contato`, `status`, `feedback`) VALUES
-	(25, '2020-08-19', 'asdasdasdasdasdadasd', 18, 'Condominio 1', 13, 'Chamir dos Santos Melo', '(11) 97488-8011', 'Pendente', NULL);
+	(25, '2020-08-20', 'asdasdasdasdasdadasd', 18, 'Condominio 1', 13, 'Chamir dos Santos Melo', '(11) 97488-8011', 'Finalizado', 'Ocorrência solucionada');
 /*!40000 ALTER TABLE `ocorrencias` ENABLE KEYS */;
 
 -- Copiando dados para a tabela condosystem.pagar_contas: ~2 rows (aproximadamente)
@@ -109,12 +118,13 @@ INSERT INTO `statements` (`id`, `name`, `text`, `date`) VALUES
 
 -- Copiando dados para a tabela condosystem.users: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `rg`, `cpf`, `phone`, `tipo`, `id_condominio`, `condominio`, `id_predio`, `predio`, `apto`, `access`, `token`, `avatar`) VALUES
-	(1, 'Rennan Morais', 'rennan.morais@outlook.com', '$2y$10$FwAFKY3D7BFq2FDQoEVKa.ATeC6vRNx4JqaovzE6nlkvvcoB86sOy', '', NULL, '11971833250', NULL, NULL, 'Admin', NULL, 'Admin', NULL, 1, '69eaaa04f7966a012309668b9fcb452b', '060f9deb6e58272d7f3a4ea1a44b1eb6.jpg'),
-	(13, 'Chamir dos Santos Melo', 'chamirrmelo@gmail.com', '$2y$10$WxYtXpIfI/DDPWmZN1ljyebMP0hEDkuzQ7tAhhNbJXwEs83ZYzU3m', '49.318.169-6', '409.124.518-82', '(11) 97488-8011', 'Proprietário', 18, 'Condominio 1', 23, 'Predio A', '50', 3, '9b255924e412236b9d377de2bf8e4260', 'default.jpg'),
-	(14, 'Rafaela Silva de Morais Pacheco', 'rafaela@gmail.com', '$2y$10$/TBeFgTKs2JZ/MnJ6YdnW.08Av4.lg7INT.wnYuVrg8n7oAXhd0EK', '48.789.456-2', '321.789.456-22', '(11) 97418-5296', 'Morador', 18, 'Condominio 1', 24, 'Predio B', '45', 3, NULL, 'default.jpg'),
-	(15, 'Sara Carvalho', 'saracarvalho@gmail.com', '$2y$10$QAgRypEUdG73IuUhGmvaZupswH.LAqn1l84E4qhoU5kl7LUuxZGHi', '49.318.169-6', '40912451882', '(11) 97488-8011', 'Morador', 19, 'Condominio 2', 25, 'Predio C', '35', 3, NULL, 'default.jpg'),
-	(16, 'Nilde Silva de Morais', 'nilde@gmail.com', '$2y$10$0xscMIGWXBiuovM3Rpmc9en6PES7urbPiYXAbQv9k7EQnEhFzY74q', '12.345.678-9', '98765432100', '(11) 12345-6789', 'Morador', 19, 'Condominio 2', 26, 'Predio D', '102', 3, NULL, 'default.jpg');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `rg`, `cpf`, `phone`, `tipo`, `id_condominio`, `condominio`, `id_predio`, `predio`, `apto`, `id_access`, `nome_access`, `token`, `avatar`) VALUES
+	(1, 'Rennan Morais', 'rennan.morais@outlook.com', '$2y$10$FwAFKY3D7BFq2FDQoEVKa.ATeC6vRNx4JqaovzE6nlkvvcoB86sOy', '', '', '(11) 97183-3250', '', 18, 'Condominio 1', 23, 'Predio A', '', 1, 'Administrador', '637de2e37a7a81888d6c0a4edf895853', '23cb1f5ee0618db68cb018a1b83cc487.jpg'),
+	(13, 'Chamir dos Santos Melo', 'chamirrmelo@gmail.com', '$2y$10$WxYtXpIfI/DDPWmZN1ljyebMP0hEDkuzQ7tAhhNbJXwEs83ZYzU3m', '49.318.169-6', '409.124.518-82', '(11) 97488-8011', 'Proprietário', 18, 'Condominio 1', 23, 'Predio A', '50', 3, 'Morador', '48111382c74f57874a99d0d7e3481437', 'default.jpg'),
+	(14, 'Rafaela Silva de Morais Pacheco', 'rafaela@gmail.com', '$2y$10$/TBeFgTKs2JZ/MnJ6YdnW.08Av4.lg7INT.wnYuVrg8n7oAXhd0EK', '48.789.456-2', '321.789.456-22', '(11) 97418-5296', 'Morador', 18, 'Condominio 1', 24, 'Predio B', '45', 3, 'Morador', NULL, 'default.jpg'),
+	(15, 'Sara Carvalho', 'saracarvalho@gmail.com', '$2y$10$QAgRypEUdG73IuUhGmvaZupswH.LAqn1l84E4qhoU5kl7LUuxZGHi', '49.318.169-6', '409.124.518-82', '(11) 97488-8011', 'Morador', 19, 'Condominio 2', 25, 'Predio C', '35', 3, 'Morador', NULL, 'default.jpg'),
+	(16, 'Nilde Silva de Morais', 'nilde@gmail.com', '$2y$10$0xscMIGWXBiuovM3Rpmc9en6PES7urbPiYXAbQv9k7EQnEhFzY74q', '12.345.678-9', '987.654.321-00', '(11) 12345-6789', 'Morador', 19, 'Condominio 2', 26, 'Predio D', '102', 3, 'Morador', NULL, 'default.jpg'),
+	(17, 'Fulano', 'fulano@gmail.com', '$2y$10$Z7N6VmWhI9ISO2gqjbOxruNpwnCgsFlVzKkFepJNkhM9T8Y0Sgn82', '12.345.678-9', '123.456.789-99', '(11) 97183-3250', 'Morador', 18, 'Condominio 1', 23, 'Predio A', '45', 4, 'Desativado', NULL, 'default.jpg');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Copiando dados para a tabela condosystem.veiculos: ~0 rows (aproximadamente)
@@ -123,13 +133,16 @@ INSERT INTO `veiculos` (`id`, `id_condominio`, `condominio`, `id_predio`, `predi
 	(4, 18, 'Condominio 1', 23, 'Predio A', 13, 'Chamir dos Santos Melo', 'Carro', 'Volkswagen', 'Fox', 'GUF-4321');
 /*!40000 ALTER TABLE `veiculos` ENABLE KEYS */;
 
--- Copiando dados para a tabela condosystem.visitantes: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela condosystem.visitantes: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `visitantes` DISABLE KEYS */;
 INSERT INTO `visitantes` (`id`, `nome`, `tipo_documento`, `numero_documento`, `id_condominio`, `condominio`, `id_predio`, `predio`, `id_morador`, `morador`, `data_entrada`, `hora_entrada`, `data_saida`, `hora_saida`) VALUES
-	(3, 'Fulano', 'RG', '12.345.678-9', 18, 'Condominio 1', 23, 'Predio A', 13, 'Chamir dos Santos Melo', '2020-08-19', '10:21:00', '2020-08-19', '18:00:00'),
-	(4, 'Ciclano', 'CPF', '123.456.789-12', 19, 'Condominio 2', 25, 'Predio C', 15, 'Sara Carvalho', '2020-08-19', '10:22:00', '2020-08-19', '17:00:00'),
-	(6, 'Fulano teste', 'RG', '12.312.312-3', 18, 'Condominio 1', 24, 'Predio B', 14, 'Rafaela Silva de Morais Pacheco', '2020-08-18', '12:00:00', '2020-08-18', '18:00:00'),
-	(7, 'Fulano 2', 'RG', '12.312.312-3', 18, 'Condominio 1', 23, 'Predio A', 13, 'Chamir dos Santos Melo', '2020-08-20', '17:00:00', '2020-08-20', '22:00:00');
+	(3, 'Fulano', 'RG', '12.345.678-9', 18, 'Condominio 1', 23, 'Predio A', 13, 'Chamir dos Santos Melo', '2020-08-20', '10:21:00', '2020-08-20', '18:00:00'),
+	(4, 'Ciclano', 'CPF', '123.456.789-12', 19, 'Condominio 2', 25, 'Predio C', 15, 'Sara Carvalho', '2020-08-20', '10:22:00', '2020-08-20', '17:00:00'),
+	(6, 'Fulano teste', 'RG', '12.312.312-3', 18, 'Condominio 1', 24, 'Predio B', 14, 'Rafaela Silva de Morais Pacheco', '2020-08-21', '12:00:00', '2020-08-21', '18:00:00'),
+	(7, 'Fulano 2', 'RG', '12.312.312-3', 18, 'Condominio 1', 23, 'Predio A', 13, 'Chamir dos Santos Melo', '2020-08-22', '17:00:00', '2020-08-22', '22:00:00'),
+	(8, 'Fulano teste', 'RG', '12.312.312-3', 18, 'Condominio 1', 23, 'Predio A', 13, 'Chamir dos Santos Melo', '2020-08-25', '13:00:00', '2020-08-25', '18:00:00'),
+	(9, 'Allyson Luiz de Cayres Lino', 'RG', '11.231.231-2', 18, 'Condominio 1', 24, 'Predio B', 14, 'Rafaela Silva de Morais Pacheco', '2020-08-25', '17:10:00', '2020-08-25', '18:00:00'),
+	(10, 'Fulano 2', 'RG', '12.313.123-1', 18, 'Condominio 1', 24, 'Predio B', 14, 'Rafaela Silva de Morais Pacheco', '2020-08-25', '09:55:00', '2020-08-25', '14:00:00');
 /*!40000 ALTER TABLE `visitantes` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

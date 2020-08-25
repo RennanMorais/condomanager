@@ -23,12 +23,12 @@
           <div id="form" class="row">
 
               <div class="col-sm-6 avatar-content">
-                  <img class="perfil-img" src="<?=$base;?>/media/avatars/<?=($loggedUser->avatar != '') ? $loggedUser->avatar:'default.jpg';?>">
+                    <img class="perfil-img" src="<?=$base;?>/media/avatars/<?=($loggedUser->avatar != '') ? $loggedUser->avatar:'default.jpg';?>"><br><br>
               </div>  
 
               <div class="col-sm-6">
 
-                <h6>Meus Dados</h6>
+                <h6><b>Meus Dados</b></h6>
 
                 <div class="form-group">
                     <div class="input-group">
@@ -68,18 +68,18 @@
 
                 <form action="<?=$base;?>/app/perfil/save?id=<?=$loggedUser->id;?>" method="POST" enctype="multipart/form-data">
 
-                  <div class="form-group">
-                      <div class="input-group">
-                          <div class="input-group-prepend">
-                              <div class="input-group-text">Alterar Foto</div>
-                          </div>
-                          <input type="file" class="form-control" name='avatar'/>
-                      </div>
-                  </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Selecione uma foto</div>
+                            </div>
+                            <input type="file" class="form-control" name='avatar'/>
+                        </div>
+                    </div>
 
-                  <div class='form-group'>
-                      <button type="submit" class="btn btn-info"><span class="fa fa-save"></span> Salvar</button>         
-                  </div>
+                    <div class='form-group'>
+                        <button type="submit" class="btn btn-info"><span class="fa fa-save"></span> Alterar Foto</button>         
+                    </div>
 
                 </form>
 

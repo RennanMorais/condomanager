@@ -6,6 +6,7 @@ use \src\models\Predio;
 use \src\models\User;
 use \src\models\Pet;
 use \src\models\Veiculo;
+use \src\models\Acces;
 
 class UserHandler {
 
@@ -23,7 +24,7 @@ class UserHandler {
                 $loggedUser->email = $data['email'];
                 $loggedUser->condominio = $data['condominio'];
                 $loggedUser->predio = $data['predio'];
-                $loggedUser->access = $data['access'];
+                $loggedUser->id_access = $data['id_access'];
                 $loggedUser->avatar = $data['avatar'];
                 return $loggedUser;
             }
@@ -66,7 +67,7 @@ class UserHandler {
     }
 
 
-    // Funções de usuários
+    // Funções de Usuários
     public static function addUserFromMorador($nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto) {
         $cond = Condominio::select()->where('id', $condominio)->one();
         $prd = Predio::select()->where('id', $predio)->one();
@@ -77,6 +78,7 @@ class UserHandler {
         $password = password_hash($cpf, PASSWORD_DEFAULT);
 
         $access = '3';
+        $access_name = 'Morador';
 
         User::insert([
             'name' => $nome,
@@ -91,14 +93,106 @@ class UserHandler {
             'id_predio' => $predio,
             'predio' => $prd['nome'],
             'apto' => $apto,
-            'access' => $access
+            'id_access' => $access,
+            'nome_access' => $access_name
         ])->execute();
         return true;
     }
 
+    public static function addUserFromConfig($nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto, $access) {
+        $cond = Condominio::select()->where('id', $condominio)->one();
+        $prd = Predio::select()->where('id', $predio)->one();
+
+        $accessList = Acces::select()->where('id', $access)->one();
+        $nome_access = $accessList['access'];
+        
+        //Remover pontos e traço do CPF
+        $cpf = str_replace('.', '', $cpf);
+        $cpf = str_replace('-', '', $cpf);
+        $password = password_hash($cpf, PASSWORD_DEFAULT);
+
+        
+
+        User::insert([
+            'name' => $nome,
+            'email' => $email,
+            'password' => $password,
+            'rg' => $rg,
+            'cpf' => $cpf,
+            'phone' => $phone,
+            'tipo' => $tipo,
+            'id_condominio' => $condominio,
+            'condominio' => $cond['nome'],
+            'id_predio' => $predio,
+            'predio' => $prd['nome'],
+            'apto' => $apto,
+            'id_access' => $access,
+            'nome_access' => $nome_access
+        ])->execute();
+
+        return true;
+    }
+
+    public static function getUsers() {
+        $usersList = User::select()->get();
+        $user = [];
+        foreach($usersList as $userItem) {
+            $newUser = new User();
+            $newUser->id = $userItem['id'];
+            $newUser->name = $userItem['name'];
+            $newUser->email = $userItem['email'];
+            $newUser->rg = $userItem['rg'];
+            $newUser->cpf = $userItem['cpf'];
+            $newUser->phone = $userItem['phone'];
+            $newUser->tipo = $userItem['tipo'];
+            $newUser->condominio = $userItem['condominio'];
+            $newUser->predio = $userItem['predio'];
+            $newUser->apto = $userItem['apto'];
+            $newUser->nome_access = $userItem['nome_access'];
+            $user[] = $newUser;
+        }
+        return $user;
+    }
+
+    public static function getUserItem($id) {
+        $userItem = User::select()->where('id', $id)->one();
+        return $userItem;
+    }
+
+    public static function saveUser($id, $nome, $email, $rg, $cpf, $phone, $tipo, $condominio, $predio, $apto, $access) {
+        $cond = Condominio::select()->where('id', $condominio)->one();
+        $nome_condominio = $cond['nome'];
+        
+        $prd = Predio::select()->where('id', $predio)->one();
+        $nome_predio = $prd['nome'];
+
+        $accessList = Acces::select()->where('id', $access)->one();
+        $nome_access = $accessList['access'];
+
+        User::update()
+        ->set('name', $nome)
+        ->set('email', $email)
+        ->set('rg', $rg)
+        ->set('cpf', $cpf)
+        ->set('phone', $phone)
+        ->set('tipo', $tipo)
+        ->set('id_condominio', $condominio)
+        ->set('condominio', $nome_condominio)
+        ->set('id_predio', $predio)
+        ->set('predio', $nome_predio)
+        ->set('apto', $apto)
+        ->set('id_access', $access)
+        ->set('nome_access', $nome_access)->where('id', $id)->execute();
+
+        return true;
+    }
+
     public static function disableUser($id) {
-        $access = '4';
-        User::update()->set('access', $access)->where('id', $id)->execute();
+        $access = Acces::select()->where('id', '4')->one();
+        User::update()
+        ->set('id_access', $access['id'])
+        ->set('nome_access', $access['access'])->where('id', $id)->execute();
+
         return true;
     }
 
@@ -121,6 +215,20 @@ class UserHandler {
         $morador_phone = User::select('phone')->where('id', $id)->one();
         return $morador_phone;
     }
+
+    public static function getAccess() {
+        $accessList = Acces::select()->get();
+        $access = [];
+
+        foreach($accessList as $accessItem) {
+            $newAccess = new Acces();
+            $newAccess->id = $accessItem['id'];
+            $newAccess->access = $accessItem['access'];
+            $access[] = $newAccess;
+        }
+
+        return $access;
+    } 
 
 
     // Funções de pets
