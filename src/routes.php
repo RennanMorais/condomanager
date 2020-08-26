@@ -154,6 +154,8 @@ $router->get('/app/usuarios/disable', 'AppController@disableUser');
 //Perfil
 $router->get('/app/perfil', 'AppController@perfil');
 $router->post('/app/perfil/save', 'AppController@savePerfil');
+$router->post('/app/perfil/reset_pass', 'AppController@resetSenha');
+
 
 //Rotas formularios Login
 $router->get('/forgot', 'LoginController@getForgotForm');

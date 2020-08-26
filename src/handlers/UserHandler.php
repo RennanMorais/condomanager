@@ -191,6 +191,12 @@ class UserHandler {
         return true;
     }
 
+    public static function resetPass($id, $senha) {
+        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+        User::update()->set('password', $senha_hash)->where('id', $id)->execute();
+        return true;
+    }
+
     public static function disableUser($id) {
         $access = Acces::select()->where('id', '4')->one();
         User::update()

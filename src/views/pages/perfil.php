@@ -24,6 +24,18 @@
 
               <div class="col-sm-6 avatar-content">
                     <img class="perfil-img" src="<?=$base;?>/media/avatars/<?=($loggedUser->avatar != '') ? $loggedUser->avatar:'default.jpg';?>"><br><br>
+                    <form action="<?=$base;?>/app/perfil/save?id=<?=$loggedUser->id;?>" method="POST" id="change-avatar-form" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="file" class="form-control" name='avatar'/>
+                                <div class="input-group-append">
+                                    <button type="submit" id="btn-alt-ft" class="btn btn-sm btn-info"><span class="fa fa-save"></span> Salvar Foto</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
               </div>  
 
               <div class="col-sm-6">
@@ -66,19 +78,19 @@
                     </div>
                 </div>
 
-                <form action="<?=$base;?>/app/perfil/save?id=<?=$loggedUser->id;?>" method="POST" enctype="multipart/form-data">
+                <form action="<?=$base;?>/app/perfil/reset_pass" method="POST">
 
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <div class="input-group-text">Selecione uma foto</div>
+                                <div class="input-group-text">Nova senha</div>
                             </div>
-                            <input type="file" class="form-control" name='avatar'/>
+                            <input type="password" class="form-control" name='senha' id="senha"/>
                         </div>
                     </div>
 
-                    <div class='form-group'>
-                        <button type="submit" class="btn btn-info"><span class="fa fa-save"></span> Alterar Foto</button>         
+                    <div class="text-right">
+                        <button type="submit" id="btn-save-pass" class="btn btn-info"><span class="fa fa-lock"></span> Alterar Senha</button>
                     </div>
 
                 </form>

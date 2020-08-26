@@ -54,7 +54,7 @@
 
 /* Avatar da pagina de perfil */
 .avatar-content{
-    text-align: center;
+    text-align:center;
 }
 
 .perfil-img {
@@ -65,4 +65,13 @@
 
 #img-user {
     margin-top: 10px;
+}
+
+#btn-alt-ft {
+    margin-top: 1px;
+    height: 32px;
+}
+
+#btn-save-pass {
+    float: right;
 }

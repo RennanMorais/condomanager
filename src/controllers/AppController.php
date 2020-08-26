@@ -1171,7 +1171,7 @@ class AppController extends Controller {
         
         $this->render('perfil', [
             'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList,
+            'condominios' => $condominiosList
         ]);
     }
 
@@ -1240,8 +1240,22 @@ class AppController extends Controller {
 
     }
 
+    public function resetSenha($atts) {
+        
+        $id_user = $this->loggedUser->id;
+        $senha = filter_input(INPUT_POST, 'senha');
 
-    //Funções da página de moradores
+        if($senha) {
+            UserHandler::resetPass($id_user, $senha);
+            $this->redirect('/app/perfil');
+        } else {
+            $this->redirect('/app/perfil');
+        }
+
+    }
+
+
+    //Funções da página de Usuarios
     public function usuarios() {
         $prediosList = CondominioHandler::getPredios();
         $condominiosList = CondominioHandler::getCond();
