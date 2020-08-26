@@ -25,6 +25,7 @@ class UserHandler {
                 $loggedUser->condominio = $data['condominio'];
                 $loggedUser->predio = $data['predio'];
                 $loggedUser->id_access = $data['id_access'];
+                $loggedUser->nome_access = $data['nome_access'];
                 $loggedUser->avatar = $data['avatar'];
                 return $loggedUser;
             }
@@ -53,13 +54,15 @@ class UserHandler {
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $token = md5(time().rand(0, 9999).time());
         $access = '1';
+        $access_name = 'Administrador';
 
         User::insert([
             'name' => $name,
             'email' => $email,
             'phone' => $phone,
             'password' => $hash,
-            'access' => $access,
+            'id_access' => $access,
+            'nome_access' => $access_name,
             'token' => $token
         ])->execute();
         
@@ -203,7 +206,7 @@ class UserHandler {
     }
 
     public static function getMoradorField($id) {
-        $moradorList = User::select()->where('id_condominio', $id)->get();
+        $moradorList = User::select()->where('id_condominio', $id)->where('id_access', '3')->get();
         return $moradorList;
     }
 

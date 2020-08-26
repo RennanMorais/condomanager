@@ -114,7 +114,7 @@
             <h3 style="margin-top: 10px;">Comunicados</h3>
           </div>
 
-          <?php if($loggedUser->id_access != '3'): ?>
+          <?php if($loggedUser->id_access != '3' && $loggedUser->id_access != '2'): ?>
           <div class="row">
               <form action="<?=$base;?>/app/send_statement" method="POST" class="form container">
                   <textarea name="text-statement" class="form-control" id="text-statement" cols="50" rows="5" placeholder="Novo Comunicado"></textarea><br>
@@ -147,7 +147,8 @@
 $(document).ready(function()
 {
    
-  Graphs();
+  GraphDataVisitantes();
+  GraphDataOcorrencias();
   
 });
 </script>

@@ -122,7 +122,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div><br>
 
             <div class="row">
 
@@ -138,7 +138,9 @@
                                 <th>Início</th>
                                 <th>Término</th>
                                 <th>Status</th>
+                                <?php if($loggedUser->id_access === '1'):?>
                                 <th>Ação</th>
+                                <?php endif; ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -153,12 +155,14 @@
                                 <td><?=date('H:i', strtotime($reservaItem->termino));?></td>
                                 <td><?=$reservaItem->status;?></td>
                                 <td style="text-align:center;">
-                                    <?php if($reservaItem->status != 'Rejeitado'):?>
+                                    <?php if($reservaItem->status != 'Rejeitado' && $loggedUser->id_access === '1'):?>
                                     <a href="<?=$base;?>/app/reservas/aprovar?id=<?=$reservaItem->id;?>" class="btn btn-outline-success btn-sm" title="Aprovar"><i class="fa fa-check-square"></i></a>
                                     <a href="<?=$base;?>/app/reservas/rejeitar?id=<?=$reservaItem->id;?>" class="btn btn-outline-danger btn-sm" title="Rejeitar"><i class="fa fa-window-close"></i></a>
                                     <a href="<?=$base;?>/app/reservas/edit_reserva/<?=$reservaItem->id;?>" class="btn btn-outline-warning btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
                                     <?php endif; ?>
+                                    <?php if($loggedUser->id_access === '1'):?>
                                     <button data-toggle="modal" data-target="#del-modal-<?=$reservaItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
   
@@ -201,106 +205,13 @@
     </div>
     <!-- /.content-wrapper -->
 
-<script src="<?=$base;?>/assets/js/jquery-3.5.1.min.js"></script>
+<?php $render('footer'); ?>
 <script type="text/javascript">
     
 $(document).ready(function()
 {
-    carrega_areas();
+    carrega_morador();
     carrega_areasOnChange();
 });
 
-function carrega_areas() 
-{
-    var valCond = $('#combo-condominio').val();
-    $.ajax({
-        url: "<?=$base;?>/app/request/getmorador",
-        method: "POST",
-        data: {id_cond: valCond},
-        dataType: "json",
-        success: function (data)
-        {
-            
-            //console(data);
-            var html = '';
-            for (var count = 0; count < data.length; count++){
-                html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
-            }
-            
-            $('#combo-morador').html('<option value="">Selecionar...</option>');
-            $('#combo-morador').append(html);
-
-        }
-    });
-    
-    $.ajax({
-        url: "<?=$base;?>/app/request/getarea",
-        method: "POST",
-        data: {id_cond: valCond},
-        dataType: "json",
-        success: function (data)
-        {
-            
-            //console(data);
-            var html = '';
-            for (var count = 0; count < data.length; count++){
-                html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
-            }
-            
-            $('#combo-area').html('<option value="">Selecionar...</option>');
-            $('#combo-area').append(html);
-
-        }
-    });
-}
-
-function carrega_areasOnChange() 
-{
-    $('#combo-condominio').on('change', function()
-    {
-        var valCond = $('#combo-condominio').val();
-
-        $.ajax({
-            url: "<?=$base;?>/app/request/getmorador",
-            method: "POST",
-            data: {id_cond: valCond},
-            dataType: "json",
-            success: function (data)
-            {
-                
-                //console(data);
-                var html = '';
-                for (var count = 0; count < data.length; count++){
-                    html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
-                }
-                
-                $('#combo-morador').html('<option value="">Selecionar...</option>');
-                $('#combo-morador').append(html);
-
-            }
-        });
-        
-        $.ajax({
-            url: "<?=$base;?>/app/request/getarea",
-            method: "POST",
-            data: {id_cond: valCond},
-            dataType: "json",
-            success: function (data)
-            {
-                
-                //console(data);
-                var html = '';
-                for (var count = 0; count < data.length; count++){
-                    html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
-                }
-                
-                $('#combo-area').html('<option value="">Selecionar...</option>');
-                $('#combo-area').append(html);
-
-            }
-        });
-    });
-}
-
 </script>
-<?php $render('footer'); ?>

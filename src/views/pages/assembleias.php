@@ -20,11 +20,13 @@
 
         <div class="container-fluid">
           
+            <?php if($loggedUser->id_access === '1'):?>
             <div class="row">
                 <div class="col-sm-12">
                     <button id="add" class="btn btn-outline-success" style="margin-bottom:10px">Adicionar Novo</button>
                 </div>
             </div>
+            <?php endif; ?>
 
             <div class="row">
                 <div class="col-sm-12">
@@ -37,7 +39,9 @@
                                 <th>Hora</th>
                                 <th>Local</th>
                                 <th>Descrição do Local</th>
+                                <?php if($loggedUser->id_access === '1'):?>
                                 <th>Ação</th>
+                                <?php endif; ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,8 +54,10 @@
                                     <td><?=$assembleiasItem->local_condominio?></td>
                                     <td><?=$assembleiasItem->descricao_local?></td>
                                     <td style="text-align:center;">
+                                        <?php if($loggedUser->id_access === '1'):?>
                                         <a href="<?=$base;?>/app/assembleias/edit_assembleia/<?=$assembleiasItem->id?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
                                         <button data-toggle="modal" data-target="#del-modal-<?=$assembleiasItem->id?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
 

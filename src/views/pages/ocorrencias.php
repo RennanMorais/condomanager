@@ -52,14 +52,30 @@
                         <td><?=$ocorrenciaItem->status;?></td>
                         <td><?=$ocorrenciaItem->feedback;?></td>
                         <td style="text-align:center;">
-                            <?php if($ocorrenciaItem->status == 'Em Andamento'): ?>
+                            <!--Permissoes para porteiro administrador-->
+                            <?php if($ocorrenciaItem->status == 'Em Andamento' && $loggedUser->id_access === '1'): ?>
                             <button data-toggle="modal" data-target="#finalizar-modal-<?=$ocorrenciaItem->id;?>" class="btn btn-outline-success btn-sm" title="Finalizar"><i class="fa fa-check-double"></i></button>
                             <?php endif; ?>
-                            <?php if($ocorrenciaItem->status == 'Pendente'):?>
+
+                            <?php if($ocorrenciaItem->status == 'Pendente' && $loggedUser->id_access == '1'): ?>
                             <a href="<?=$base;?>/app/ocorrencias/aceitar?id=<?=$ocorrenciaItem->id;?>" class="btn btn-outline-primary btn-sm" title="Aceitar"><i class="fa fa-check"></i></a>
                             <?php endif; ?>
+
+                            <!--Permissoes para porteiro-->
+                            <?php if($ocorrenciaItem->status == 'Em Andamento' && $loggedUser->id_access === '2'): ?>
+                            <button data-toggle="modal" data-target="#finalizar-modal-<?=$ocorrenciaItem->id;?>" class="btn btn-outline-success btn-sm" title="Finalizar"><i class="fa fa-check-double"></i></button>
+                            <?php endif; ?>
+
+                            <?php if($ocorrenciaItem->status == 'Pendente' && $loggedUser->id_access == '2'): ?>
+                            <a href="<?=$base;?>/app/ocorrencias/aceitar?id=<?=$ocorrenciaItem->id;?>" class="btn btn-outline-primary btn-sm" title="Aceitar"><i class="fa fa-check"></i></a>
+                            <?php endif; ?>
+
                             <a href="<?=$base;?>/app/ocorrencias/edit_ocorrencia/<?=$ocorrenciaItem->id;?>" class="btn btn-outline-warning btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
+                            
+                            <!--Permissoes para porteiro administrador-->
+                            <?php if($loggedUser->id_access === '1'):?>
                             <button data-toggle="modal" data-target="#del-modal-<?=$ocorrenciaItem->id;?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
+                            <?php endif; ?>
                         </td>
                     </tr>
 

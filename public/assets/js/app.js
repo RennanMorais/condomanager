@@ -1,10 +1,66 @@
-function Graphs()
+function GraphDataVisitantes()
 {
     var
     datas = [],
     datasBD = [],
-    countDatas = [],
     countVisitantes = [], 
+    index = 7;
+
+    while (index >= 1) 
+    {
+        dt = new Date();
+
+        if(index > 1) {
+            dt.setDate(dt.getDate() - (index - 1));
+        }
+
+        var day = dt.getDate() < 10 ? '0' + dt.getDate() : '' + dt.getDate();
+        var month = dt.getMonth() < 10 ? '0' + (dt.getMonth() + 1) : '' + dt.getMonth();
+
+        fotmatDate = day+"/"+month+"/"+dt.getFullYear();
+
+        datas.push(fotmatDate);
+
+        formatDateBD = dt.getFullYear()+"-"+month+"-"+day;
+
+        datasBD.push(formatDateBD);
+        
+        index = index - 1;
+
+    }
+    
+
+    var indexDate = 0;
+
+    while(indexDate <= 6) {
+
+        $.ajax(
+        {
+            url: "http://localhost/condosoftware/public/app/request/countvisitantes",
+            method: "POST",
+            data:{date: datasBD[indexDate]},
+            success: function (data)
+            {
+            
+                countVisitantes.push(data);
+                graficoVisitantes(datas, countVisitantes);
+            
+            }
+
+        });
+
+        indexDate = indexDate + 1;
+        graficoVisitantes(datas, countVisitantes);
+
+    }
+}
+
+function GraphDataOcorrencias()
+{
+    var
+    datas = [],
+    datasBD = [],
+    countOcorrencias = [], 
     index = 7;
 
     while (index >= 1) 
@@ -43,36 +99,19 @@ function Graphs()
             success: function (data)
             {
             
-                countDatas.push(data);
-            
+                countOcorrencias.push(data);
+                graficoOcorrencias(datas, countOcorrencias);
             }
 
         });
-
-        $.ajax(
-        {
-            url: "http://localhost/condosoftware/public/app/request/countvisitantes",
-            method: "POST",
-            data:{date: datasBD[indexDate]},
-            success: function (data)
-            {
-            
-                countVisitantes.push(data);
-                graficosDash(datas, countDatas, countVisitantes);
-            
-            }
-
-        });
-
-        graficosDash(datas, countDatas, countVisitantes);
 
         indexDate = indexDate + 1;
+        graficoOcorrencias(datas, countOcorrencias);
 
     }
-
 }
 
-function graficosDash(datas, countDatas, countVisitantes)
+function graficoVisitantes(datas, countVisitantes)
 {
     
     var ctx = document.getElementById('visitor-chart').getContext('2d');
@@ -116,6 +155,9 @@ function graficosDash(datas, countDatas, countVisitantes)
         }
     });
 
+}
+
+function graficoOcorrencias(datas, countOcorrencias) {
     var ctx = document.getElementById('occurrence-chart').getContext('2d');
     var occurrenceChart = new Chart(ctx, {
 
@@ -124,7 +166,7 @@ function graficosDash(datas, countDatas, countVisitantes)
             labels: datas,
             datasets: [{
                 label: 'Ocorrências',
-                data: countDatas,
+                data: countOcorrencias,
                 backgroundColor: [
                     '#ff8989',
                     '#ff8989',
@@ -156,7 +198,6 @@ function graficosDash(datas, countDatas, countVisitantes)
             }
         }
   });
-
 }
 
 //Carrega predios por condominio
@@ -266,6 +307,79 @@ function carrega_moradoresPorPredioCondominio()
 
             }
         });
+    });
+}
+
+//Carrega Areas
+function carrega_areasOnChange() 
+{
+    $('#combo-condominio').on('change', function()
+    {
+        var valCond = $('#combo-condominio').val();
+
+        $.ajax({
+            url: "http://localhost/condosoftware/public/app/request/getmorador",
+            method: "POST",
+            data: {id_cond: valCond},
+            dataType: "json",
+            success: function (data)
+            {
+                
+                //console(data);
+                var html = '';
+                for (var count = 0; count < data.length; count++){
+                    html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
+                }
+                
+                $('#combo-morador').html('<option value="">Selecionar...</option>');
+                $('#combo-morador').append(html);
+
+            }
+        });
+        
+        $.ajax({
+            url: "http://localhost/condosoftware/public/app/request/getarea",
+            method: "POST",
+            data: {id_cond: valCond},
+            dataType: "json",
+            success: function (data)
+            {
+                
+                //console(data);
+                var html = '';
+                for (var count = 0; count < data.length; count++){
+                    html += '<option value="' + data[count].id + '">' + data[count].nome + '</option>';
+                }
+                
+                $('#combo-area').html('<option value="">Selecionar...</option>');
+                $('#combo-area').append(html);
+
+            }
+        });
+    });
+}
+
+function carrega_morador() 
+{
+    var valCond = $('#combo-condominio').val();
+    $.ajax({
+        url: "http://localhost/condosoftware/public/app/request/getmorador",
+        method: "POST",
+        data: {id_cond: valCond},
+        dataType: "json",
+        success: function (data)
+        {
+            
+            //console(data);
+            var html = '';
+            for (var count = 0; count < data.length; count++){
+                html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
+            }
+            
+            $('#combo-morador').html('<option value="">Selecionar...</option>');
+            $('#combo-morador').append(html);
+
+        }
     });
 }
 

@@ -60,7 +60,9 @@
                                     <td><?=date('H:i', strtotime($visitanteItem->hora_saida))?></td>
                                     <td style="text-align:center;">
                                         <a href="<?=$base;?>/app/visitantes/edit_visitante/<?=$visitanteItem->id?>" class="btn btn-outline-success btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
+                                        <?php if($loggedUser->id_access === '1'):?>
                                         <button data-toggle="modal" data-target="#del-modal-<?=$visitanteItem->id?>" class="btn btn-outline-danger btn-sm" title="Excluir"><i class="fa fa-trash"></i></button>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
 

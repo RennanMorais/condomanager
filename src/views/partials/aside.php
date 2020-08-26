@@ -31,11 +31,12 @@
       <div class="sidebar">
         <!-- Sidebar Users panel -->
         <div class="Users-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
+          <div class="image" id="img-user">
             <img src="<?=$base;?>/media/avatars/<?=$loggedUser->avatar?>" class="img-circle elevation-2" alt="Users Image">
           </div>
           <div class="info">
             <span class="d-block"><b><?=$loggedUser->name;?></b></span>
+            <span class="d-block">(<?=$loggedUser->nome_access;?>)</span>
           </div>
         </div>
 
@@ -63,7 +64,7 @@
                 </p>
               </a>
               
-              <?php if($loggedUser->id_access != '3'): ?>
+              <?php if($loggedUser->id_access != '2' && $loggedUser->id_access != '3'): ?>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/condominios" class="nav-link <?= ($activeMenu == 'condominio') ? 'active':''; ?>">
@@ -110,7 +111,7 @@
                 </li>
               </ul>
               
-              <?php if($loggedUser->id_access != '3'): ?>
+              <?php if($loggedUser->id_access != '2' && $loggedUser->id_access != '3'): ?>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/pets" class="nav-link <?= ($activeMenu == 'pets') ? 'active':''; ?>">
@@ -130,6 +131,7 @@
               </ul>
               <?php endif; ?>
 
+              <?php if($loggedUser->id_access != '2'): ?>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/assembleias" class="nav-link <?= ($activeMenu == 'assembleia') ? 'active':''; ?>">
@@ -138,6 +140,7 @@
                   </a>
                 </li>
               </ul>
+              <?php endif; ?>
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
@@ -150,7 +153,7 @@
 
             </li>
 
-            <?php if($loggedUser->id_access != '3'): ?>
+            <?php if($loggedUser->id_access != '2' && $loggedUser->id_access != '3'): ?>
             <li class="nav-item has-treeview <?= ($activeMasterMenu == 'financeiro') ? 'menu-open':''; ?>">
               <a href="" class="nav-link <?= ($activeMasterMenu == 'financeiro') ? 'active':''; ?>">
                 <i class="nav-icon fa fa-dollar-sign"></i>
@@ -197,7 +200,9 @@
               </ul>
 
             </li>
+            <?php endif; ?>
 
+            <?php if($loggedUser->id_access != '3'): ?>
             <li class="nav-item has-treeview <?= ($activeMenu == 'visitantes') ? 'menu-open':''; ?>">
               <a href="" class="nav-link <?= ($activeMenu == 'visitantes') ? 'active':''; ?>">
                 <i class="nav-icon fa fa-door-closed"></i>
@@ -215,9 +220,9 @@
                   </a>
                 </li>
               </ul>
-
             </li>
             <?php endif; ?>
+            
 
             <li class="nav-item has-treeview <?= ($activeMasterMenu == 'config') ? 'menu-open':''; ?>">
               <a href="<?=$base;?>/app/config" class="nav-link <?= ($activeMasterMenu == 'config') ? 'active':''; ?>">
@@ -237,7 +242,7 @@
                   </a>
                 </li>
 
-                <?php if($loggedUser->id_access != '3'): ?>
+                <?php if($loggedUser->id_access != '2' && $loggedUser->id_access != '3'): ?>
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/usuarios" class="nav-link <?= ($activeMenu == 'usuarios') ? 'active':''; ?>">
                     <i class="fa fa-users nav-icon"></i>
