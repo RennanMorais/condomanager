@@ -21,6 +21,8 @@
         <div class="container-fluid">
           
           <div class="row">
+
+            <?php if($loggedUser->id_access != '3'): ?>
             
             <div class="col-lg-3 col-3">
               <!-- small box -->
@@ -38,6 +40,8 @@
             </div>
             <!-- ./col -->
 
+            <?php endif; ?>
+
             <div class="col-lg-3 col-3">
               <!-- small box -->
               <div class="small-box bg-success">
@@ -54,6 +58,8 @@
             </div>
             <!-- ./col -->
 
+            <?php if($loggedUser->id_access != '3'): ?>
+
             <div class="col-lg-3 col-3">
               <!-- small box -->
               <div class="small-box bg-warning">
@@ -69,6 +75,8 @@
               </div>
             </div>
             <!-- ./col -->
+
+            <?php endif; ?>
 
             <div class="col-lg-3 col-3">
               <!-- small box -->
@@ -87,29 +95,33 @@
             <!-- ./col -->
 
           </div>
-
+          
+          <?php if($loggedUser->id_access != '3'): ?>
           <div class="row">
               <div class="col-sm-6">
-                <h3>Visitantes</h3>
+                <h4>Visitantes</h4>
                 <canvas id="visitor-chart" width="100%"></canvas>
               </div>
 
               <div class="col-sm-6">
-                <h3>Ocorrências</h3>
+                <h4>Ocorrências</h4>
                 <canvas id="occurrence-chart" width="100%"></canvas>
               </div>
           </div>
+          <?php endif; ?>
 
           <div class="row">
             <h3 style="margin-top: 10px;">Comunicados</h3>
           </div>
 
+          <?php if($loggedUser->id_access != '3'): ?>
           <div class="row">
               <form action="<?=$base;?>/app/send_statement" method="POST" class="form container">
                   <textarea name="text-statement" class="form-control" id="text-statement" cols="50" rows="5" placeholder="Novo Comunicado"></textarea><br>
                   <input type="submit" class="btn btn-info" value="Publicar">
               </form>
           </div>
+          <?php endif; ?>
 
           <div class="container">
             <?php foreach($statementsFeed as $statementsFeedItem):?>

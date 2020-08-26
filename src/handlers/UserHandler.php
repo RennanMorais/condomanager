@@ -198,7 +198,7 @@ class UserHandler {
     }
 
     public static function countMoradores() {
-        $countUsers = User::select()->where('access', '3')->count();
+        $countUsers = User::select()->where('id_access', '3')->count();
         return $countUsers;
     }
 

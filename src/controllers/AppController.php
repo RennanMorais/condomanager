@@ -99,10 +99,16 @@ class AppController extends Controller {
     //Funções da pagina de condominio
     public function condominio() {
         $condominiosList = CondominioHandler::getCond();
-        $this->render('condominio', [
-            'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList
-        ]);
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('condominio', [
+                'loggedUser' => $this->loggedUser,
+                'condominios' => $condominiosList
+            ]);
+        } else {
+            $this->render('404');
+        }
+        
     }
 
     public function addCondominio() {
@@ -123,10 +129,15 @@ class AppController extends Controller {
 
     public function editCondominio($atts) {
         $condItem = CondominioHandler::getCondItem($atts['id']);
-        $this->render('edit_cond', [
-            'loggedUser' => $this->loggedUser,
-            'condItem' => $condItem
-        ]);
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_cond', [
+                'loggedUser' => $this->loggedUser,
+                'condItem' => $condItem
+            ]);
+        } else {
+            $this->render('404');
+        }
 
     }
 
@@ -160,11 +171,16 @@ class AppController extends Controller {
     public function predio() {
         $prediosList = CondominioHandler::getPredios();
         $condominiosList = CondominioHandler::getCond();
-        $this->render('predio', [
-            'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList,
-            'prediosList' => $prediosList
-        ]);
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('predio', [
+                'loggedUser' => $this->loggedUser,
+                'condominios' => $condominiosList,
+                'prediosList' => $prediosList
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function addPredio() {
@@ -180,11 +196,16 @@ class AppController extends Controller {
     public function editPredio($atts) {
         $prdItem = CondominioHandler::getPrdItem($atts['id']);
         $condominiosList = CondominioHandler::getCond();
-        $this->render('edit_prd', [
-            'loggedUser' => $this->loggedUser,
-            'prdItem' => $prdItem,
-            'condominios' => $condominiosList
-        ]);
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_prd', [
+                'loggedUser' => $this->loggedUser,
+                'prdItem' => $prdItem,
+                'condominios' => $condominiosList
+            ]);
+        } else {
+            $this->render('404');
+        }
 
     }
 
@@ -214,12 +235,17 @@ class AppController extends Controller {
         $prediosList = CondominioHandler::getPredios();
         $condominiosList = CondominioHandler::getCond();
         $moradorList = CondominioHandler::getMorador();
-        $this->render('morador', [
-            'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList,
-            'predios' => $prediosList,
-            'moradores' => $moradorList
-        ]);
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('morador', [
+                'loggedUser' => $this->loggedUser,
+                'condominios' => $condominiosList,
+                'predios' => $prediosList,
+                'moradores' => $moradorList
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function addMorador() {
@@ -243,12 +269,17 @@ class AppController extends Controller {
         $moradorItem = CondominioHandler::getMoradorItem($atts['id']);
         $condominiosList = CondominioHandler::getCond();
         $prediosList = CondominioHandler::getPredios();
-        $this->render('edit_morador', [
-            'loggedUser' => $this->loggedUser,
-            'morador' => $moradorItem,
-            'condominios' => $condominiosList,
-            'predios' => $prediosList
-        ]);
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_morador', [
+                'loggedUser' => $this->loggedUser,
+                'morador' => $moradorItem,
+                'condominios' => $condominiosList,
+                'predios' => $prediosList
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function saveMorador() {
@@ -284,11 +315,16 @@ class AppController extends Controller {
     public function areas() {
         $areasList = CondominioHandler::getAreas();
         $condominiosList = CondominioHandler::getCond();
-        $this->render('areacomum', [
-            'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList,
-            'areas' => $areasList
-        ]);
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('areacomum', [
+                'loggedUser' => $this->loggedUser,
+                'condominios' => $condominiosList,
+                'areas' => $areasList
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function addArea() {
@@ -304,11 +340,16 @@ class AppController extends Controller {
     public function editArea($atts) {
         $areaComumItem = CondominioHandler::getAreaItem($atts['id']);
         $condominiosList = CondominioHandler::getCond();
-        $this->render('edit_area', [
-            'loggedUser' => $this->loggedUser,
-            'areaComumItem' => $areaComumItem,
-            'condominios' => $condominiosList
-        ]);
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_area', [
+                'loggedUser' => $this->loggedUser,
+                'areaComumItem' => $areaComumItem,
+                'condominios' => $condominiosList
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function saveArea() {
@@ -439,11 +480,15 @@ class AppController extends Controller {
             $_SESSION['flashDateCheck'] = '';
         }
 
-        $this->render('pets', [
-            'loggedUser' => $this->loggedUser,
-            'moradores' => $moradorList,
-            'petsList' => $petsList 
-        ]);
+        if($this->loggedUser->id_access != '3') {
+            $this->render('pets', [
+                'loggedUser' => $this->loggedUser,
+                'moradores' => $moradorList,
+                'petsList' => $petsList 
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function addPet() {
@@ -464,11 +509,16 @@ class AppController extends Controller {
     public function editPet($atts) {
         $petItem = UserHandler::getPetItem($atts['id']);
         $moradorList = CondominioHandler::getMorador();
-        $this->render('edit_pet', [
-            'loggedUser' => $this->loggedUser,
-            'moradores' => $moradorList,
-            'petItem' => $petItem
-        ]);
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_pet', [
+                'loggedUser' => $this->loggedUser,
+                'moradores' => $moradorList,
+                'petItem' => $petItem
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function savePet() {
@@ -500,11 +550,16 @@ class AppController extends Controller {
     public function veiculos() {
         $veiculosList = UserHandler::getVeiculos();
         $condominiosList = CondominioHandler::getCond();
-        $this->render('veiculo', [
-            'loggedUser' => $this->loggedUser,
-            'veiculos' => $veiculosList,
-            'condominios' => $condominiosList
-        ]);
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('veiculo', [
+                'loggedUser' => $this->loggedUser,
+                'veiculos' => $veiculosList,
+                'condominios' => $condominiosList
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function addVeiculo() {
@@ -526,12 +581,17 @@ class AppController extends Controller {
 
     public function editVeiculo($atts) {
         $condominiosList = CondominioHandler::getCond();
-        $veiculoItem = UserHandler::getVeiculoItem($atts['id']);
-        $this->render('edit_veiculo', [
-            'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList,
-            'veiculo' => $veiculoItem
-        ]);
+        $veiculoItem = UserHandler::getVeiculoItem($atts['id']); 
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_veiculo', [
+                'loggedUser' => $this->loggedUser,
+                'condominios' => $condominiosList,
+                'veiculo' => $veiculoItem
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function saveVeiculo() {
@@ -713,10 +773,14 @@ class AppController extends Controller {
     public function categoriaContas() {
         $categoria_contas = CondominioHandler::getCategoriaContas();
 
-        $this->render('categoria_contas', [
-            'loggedUser' => $this->loggedUser,
-            'categoria_contas' => $categoria_contas
-        ]);
+        if($this->loggedUser->id_access != '3') {
+            $this->render('categoria_contas', [
+                'loggedUser' => $this->loggedUser,
+                'categoria_contas' => $categoria_contas
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function addCategoriaContas() {
@@ -732,10 +796,14 @@ class AppController extends Controller {
     public function editCategoriaConta($atts) {
         $categoria_conta_item = CondominioHandler::getCatContaItem($atts['id']);
 
-        $this->render('edit_categoria_conta',[
-            'loggedUser' => $this->loggedUser,
-            'categoria_conta_item' => $categoria_conta_item
-        ]);
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_categoria_conta',[
+                'loggedUser' => $this->loggedUser,
+                'categoria_conta_item' => $categoria_conta_item
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function saveCategoriaConta() {
@@ -768,11 +836,15 @@ class AppController extends Controller {
         $categorias = CondominioHandler::getCategoriaContas();
         $contas_pagar = CondominioHandler::getContasPagar();
 
-        $this->render('contas_pagar', [
-            'loggedUser' => $this->loggedUser,
-            'categorias' => $categorias,
-            'contas_pagar' => $contas_pagar
-        ]);
+        if($this->loggedUser->id_access != '3') {
+            $this->render('contas_pagar', [
+                'loggedUser' => $this->loggedUser,
+                'categorias' => $categorias,
+                'contas_pagar' => $contas_pagar
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function addContasPagar() {
@@ -798,11 +870,15 @@ class AppController extends Controller {
         $conta_pagar_item = CondominioHandler::getContaItem($atts['id']);
         $categorias = CondominioHandler::getCategoriaContas();
 
-        $this->render('edit_contas_pagar', [
-            'loggedUser' => $this->loggedUser,
-            'categorias' => $categorias,
-            'conta_pagar_item' => $conta_pagar_item
-        ]);
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_contas_pagar', [
+                'loggedUser' => $this->loggedUser,
+                'categorias' => $categorias,
+                'conta_pagar_item' => $conta_pagar_item
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function saveContasPagar() {
@@ -842,14 +918,18 @@ class AppController extends Controller {
 
         $categorias = CondominioHandler::getCategoriaContas();
         $condominiosList = CondominioHandler::getCond();
-        $contas_receber = CondominioHandler::getContasReceberList();
+        $contas_receber = CondominioHandler::getContasReceberList(); 
 
-        $this->render('contas_receber', [
-            'loggedUser' => $this->loggedUser,
-            'categorias' => $categorias,
-            'condominios' => $condominiosList,
-            'contas_receber' => $contas_receber
-        ]);
+        if($this->loggedUser->id_access != '3') {
+            $this->render('contas_receber', [
+                'loggedUser' => $this->loggedUser,
+                'categorias' => $categorias,
+                'condominios' => $condominiosList,
+                'contas_receber' => $contas_receber
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function addContasReceber() {
@@ -877,12 +957,16 @@ class AppController extends Controller {
         $categorias = CondominioHandler::getCategoriaContas();
         $condominiosList = CondominioHandler::getCond();
 
-        $this->render('edit_contas_receber', [
-            'loggedUser' => $this->loggedUser,
-            'categorias' => $categorias,
-            'condominios' => $condominiosList,
-            'conta_receber_item' => $conta_receber_item
-        ]);
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_contas_receber', [
+                'loggedUser' => $this->loggedUser,
+                'categorias' => $categorias,
+                'condominios' => $condominiosList,
+                'conta_receber_item' => $conta_receber_item
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function saveContasReceber() {
@@ -920,11 +1004,17 @@ class AppController extends Controller {
 
     //Pagina de fornecedores
     public function fornecedores() {
-        $fornecedoresList = CondominioHandler::getFornecedores();
-        $this->render('fornecedores', [
-            'loggedUser' => $this->loggedUser,
-            'fornecedores' => $fornecedoresList
-        ]);
+        $fornecedoresList = CondominioHandler::getFornecedores();  
+        
+        if($this->loggedUser->id_access != '3') {
+            $this->render('fornecedores', [
+                'loggedUser' => $this->loggedUser,
+                'fornecedores' => $fornecedoresList
+            ]);
+        } else {
+            $this->render('404');
+        }
+        
     }
 
     public function addFornecedor() {
@@ -947,10 +1037,15 @@ class AppController extends Controller {
 
     public function editFornecedor($atts) {
         $fornecedor = CondominioHandler::getFornecedorItem($atts['id']);
-        $this->render('edit_fornecedor', [
-            'loggedUser' => $this->loggedUser,
-            'fornecedor' => $fornecedor
-        ]);
+        
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_fornecedor', [
+                'loggedUser' => $this->loggedUser,
+                'fornecedor' => $fornecedor
+            ]);
+        } else {
+            $this->render('404');
+        }
 
     }
 
@@ -987,11 +1082,16 @@ class AppController extends Controller {
     public function visitantes() {
         $condominiosList = CondominioHandler::getCond();
         $visitantesList = CondominioHandler::getVisitantes();
-        $this->render('visitantes', [
-            'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList,
-            'visitantes' => $visitantesList
-        ]);
+        
+        if($this->loggedUser->id_access != '3') {
+            $this->render('visitantes', [
+                'loggedUser' => $this->loggedUser,
+                'condominios' => $condominiosList,
+                'visitantes' => $visitantesList
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function addVisitante() {
@@ -1017,11 +1117,16 @@ class AppController extends Controller {
     public function editVisitante($atts) {
         $visitante = CondominioHandler::getVisitanteItem($atts['id']);
         $condominiosList = CondominioHandler::getCond();
-        $this->render('edit_visitante', [
-            'loggedUser' => $this->loggedUser,
-            'visitante' => $visitante,
-            'condominios' => $condominiosList
-        ]);
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_visitante', [
+                'loggedUser' => $this->loggedUser,
+                'visitante' => $visitante,
+                'condominios' => $condominiosList
+            ]);
+        } else {
+            $this->render('404');
+        }
 
     }
 
@@ -1141,14 +1246,19 @@ class AppController extends Controller {
         $prediosList = CondominioHandler::getPredios();
         $condominiosList = CondominioHandler::getCond();
         $usersList = UserHandler::getUsers();
-        $accessList = UserHandler::getAccess();
-        $this->render('usuarios', [
-            'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList,
-            'predios' => $prediosList,
-            'users' => $usersList,
-            'access' => $accessList
-        ]);
+        $accessList = UserHandler::getAccess(); 
+
+        if($this->loggedUser->id_access != '3') {
+            $this->render('usuarios', [
+                'loggedUser' => $this->loggedUser,
+                'condominios' => $condominiosList,
+                'predios' => $prediosList,
+                'users' => $usersList,
+                'access' => $accessList
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function addUsuario() {
@@ -1174,13 +1284,18 @@ class AppController extends Controller {
         $condominiosList = CondominioHandler::getCond();
         $prediosList = CondominioHandler::getPredios();
         $accessList = UserHandler::getAccess();
-        $this->render('edit_usuario', [
-            'loggedUser' => $this->loggedUser,
-            'user' => $usersItem,
-            'condominios' => $condominiosList,
-            'predios' => $prediosList,
-            'access' => $accessList
-        ]);
+        
+        if($this->loggedUser->id_access != '3') {
+            $this->render('edit_usuario', [
+                'loggedUser' => $this->loggedUser,
+                'user' => $usersItem,
+                'condominios' => $condominiosList,
+                'predios' => $prediosList,
+                'access' => $accessList
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function saveUsuario() {

@@ -62,7 +62,8 @@
                   <i class="right fas fa-angle-right"></i>
                 </p>
               </a>
-
+              
+              <?php if($loggedUser->id_access != '3'): ?>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/condominios" class="nav-link <?= ($activeMenu == 'condominio') ? 'active':''; ?>">
@@ -98,6 +99,7 @@
                   </a>
                 </li>
               </ul>
+              <?php endif; ?>
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
@@ -107,7 +109,8 @@
                   </a>
                 </li>
               </ul>
-
+              
+              <?php if($loggedUser->id_access != '3'): ?>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/pets" class="nav-link <?= ($activeMenu == 'pets') ? 'active':''; ?>">
@@ -125,6 +128,7 @@
                   </a>
                 </li>
               </ul>
+              <?php endif; ?>
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
@@ -146,6 +150,7 @@
 
             </li>
 
+            <?php if($loggedUser->id_access != '3'): ?>
             <li class="nav-item has-treeview <?= ($activeMasterMenu == 'financeiro') ? 'menu-open':''; ?>">
               <a href="" class="nav-link <?= ($activeMasterMenu == 'financeiro') ? 'active':''; ?>">
                 <i class="nav-icon fa fa-dollar-sign"></i>
@@ -212,6 +217,7 @@
               </ul>
 
             </li>
+            <?php endif; ?>
 
             <li class="nav-item has-treeview <?= ($activeMasterMenu == 'config') ? 'menu-open':''; ?>">
               <a href="<?=$base;?>/app/config" class="nav-link <?= ($activeMasterMenu == 'config') ? 'active':''; ?>">
@@ -231,12 +237,14 @@
                   </a>
                 </li>
 
+                <?php if($loggedUser->id_access != '3'): ?>
                 <li class="nav-item">
                   <a href="<?=$base;?>/app/usuarios" class="nav-link <?= ($activeMenu == 'usuarios') ? 'active':''; ?>">
                     <i class="fa fa-users nav-icon"></i>
                     <p>Usuários</p>
                   </a>
                 </li>
+                <?php endif; ?>
 
               </ul>
 
