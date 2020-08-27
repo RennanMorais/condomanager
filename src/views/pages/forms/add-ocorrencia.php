@@ -62,61 +62,11 @@
 
 <script src="<?=$base;?>/assets/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-    
+
 $(document).ready(function()
 {
-    carrega_areasOnChange();
+    carrega_moradorOnChange();
+    carrega_phone();
 });
-
-function carrega_areasOnChange() 
-{
-    $('#combo-condominio').on('change', function()
-    {
-        var valCond = $('#combo-condominio').val();
-
-        $.ajax({
-            url: "<?=$base;?>/app/request/getmorador",
-            method: "POST",
-            data: {id_cond: valCond},
-            dataType: "json",
-            success: function (data)
-            {
-                
-                //console(data);
-                var html = '';
-                for (var count = 0; count < data.length; count++){
-                    html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
-                }
-                
-                $('#combo-morador').html('<option value="">Selecionar...</option>');
-                $('#combo-morador').append(html);
-
-            }
-        });
-
-    });
-
-    $('#combo-morador').on('change', function()
-    {
-        var valMorador = $('#combo-morador').val();
-
-        $.ajax({
-            url: "<?=$base;?>/app/request/getphone",
-            method: "POST",
-            data: {id_morador: valMorador},
-            dataType: "json",
-            success: function (data)
-            {
-                
-                //console(data);
-                var phone = data.phone;
-                
-                //alert(phone);
-                $('#phone-field').val(phone);
-
-            }
-        });
-    });
-}
 
 </script>

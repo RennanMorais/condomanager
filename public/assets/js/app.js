@@ -310,6 +310,59 @@ function carrega_moradoresPorPredioCondominio()
     });
 }
 
+//Carrega morador por condominio e preenche o campo de telefone
+function carrega_moradorOnChange() 
+{
+    $('#combo-condominio').on('change', function()
+    {
+        var condominio = $('#combo-condominio').val();
+
+        $.ajax({
+            url: "http://localhost/condosoftware/public/app/request/getmorador",
+            method: "POST",
+            data: {id_cond: condominio},
+            dataType: "json",
+            success: function (data)
+            {
+                
+                //console(data);
+                var html = '';
+                for (var count = 0; count < data.length; count++){
+                    html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
+                }
+                
+                $('#combo-morador').html('<option value="">Selecionar...</option>');
+                $('#combo-morador').append(html);
+
+            }
+        });
+
+    });
+}
+
+function carrega_phone() 
+{
+    $('#combo-morador').on('change', function()
+    {
+        var morador = $('#combo-morador').val();
+
+        $.ajax({
+            url: "http://localhost/condosoftware/public/app/request/getphone",
+            method: "POST",
+            data: {id_morador: morador},
+            dataType: "json",
+            success: function (data)
+            {
+                
+                //alert(data);
+                $('#phone-field').val(data.phone);
+
+            }
+        });
+
+    });
+}
+
 //Carrega Areas
 function carrega_areasOnChange() 
 {

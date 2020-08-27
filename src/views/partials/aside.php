@@ -12,10 +12,10 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="<?=$base;?>/sair" role="button" title="Sair"><i
-              class="fa fa-power-off"></i></a>
+          <a class="nav-link btn btn-light" href="<?=$base;?>/sair" role="button" title="Sair"><span class="fa fa-power-off"></span> Sair</a>
         </li>
       </ul>
+
     </nav>
     <!-- /.navbar -->
 

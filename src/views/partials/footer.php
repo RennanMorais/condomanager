@@ -5,7 +5,7 @@
         CondoSoftware
       </div>
       <!-- Default to the left -->
-      <strong>Copyright &copy; 2020 <a href="https://condosoftware.com.br">CondoSystem</a>.</strong> All rights reserved.
+      <strong>Copyright &copy; 2020 <a href="<?=$base;?>">CondoSoftware</a>.</strong> Todos os direiros reservados.
     </footer>
 
   </div>

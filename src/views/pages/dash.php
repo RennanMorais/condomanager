@@ -123,6 +123,12 @@
           </div>
           <?php endif; ?>
 
+          <?php if(empty($statementsFeed)): ?>
+              <div class="container alert alert-secondary msg-alert">
+                  <h5>Não há nenhum comunicado da Administração.</h5>
+              </div>
+          <?php endif; ?>
+
           <div class="container">
             <?php foreach($statementsFeed as $statementsFeedItem):?>
             <div class="statement-card">

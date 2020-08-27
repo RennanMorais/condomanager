@@ -75,3 +75,8 @@
 #btn-save-pass {
     float: right;
 }
+
+.msg-alert {
+    margin-top: 20px;
+    text-align: center;
+}

@@ -100,7 +100,7 @@ class AppController extends Controller {
     public function condominio() {
         $condominiosList = CondominioHandler::getCond();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('condominio', [
                 'loggedUser' => $this->loggedUser,
                 'condominios' => $condominiosList
@@ -130,7 +130,7 @@ class AppController extends Controller {
     public function editCondominio($atts) {
         $condItem = CondominioHandler::getCondItem($atts['id']);
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('edit_cond', [
                 'loggedUser' => $this->loggedUser,
                 'condItem' => $condItem
@@ -172,7 +172,7 @@ class AppController extends Controller {
         $prediosList = CondominioHandler::getPredios();
         $condominiosList = CondominioHandler::getCond();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('predio', [
                 'loggedUser' => $this->loggedUser,
                 'condominios' => $condominiosList,
@@ -197,7 +197,7 @@ class AppController extends Controller {
         $prdItem = CondominioHandler::getPrdItem($atts['id']);
         $condominiosList = CondominioHandler::getCond();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('edit_prd', [
                 'loggedUser' => $this->loggedUser,
                 'prdItem' => $prdItem,
@@ -236,7 +236,7 @@ class AppController extends Controller {
         $condominiosList = CondominioHandler::getCond();
         $moradorList = CondominioHandler::getMorador();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('morador', [
                 'loggedUser' => $this->loggedUser,
                 'condominios' => $condominiosList,
@@ -270,7 +270,7 @@ class AppController extends Controller {
         $condominiosList = CondominioHandler::getCond();
         $prediosList = CondominioHandler::getPredios();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('edit_morador', [
                 'loggedUser' => $this->loggedUser,
                 'morador' => $moradorItem,
@@ -316,7 +316,7 @@ class AppController extends Controller {
         $areasList = CondominioHandler::getAreas();
         $condominiosList = CondominioHandler::getCond();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('areacomum', [
                 'loggedUser' => $this->loggedUser,
                 'condominios' => $condominiosList,
@@ -341,7 +341,7 @@ class AppController extends Controller {
         $areaComumItem = CondominioHandler::getAreaItem($atts['id']);
         $condominiosList = CondominioHandler::getCond();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('edit_area', [
                 'loggedUser' => $this->loggedUser,
                 'areaComumItem' => $areaComumItem,
@@ -417,15 +417,19 @@ class AppController extends Controller {
     public function editReserva($atts) {
         $reserva = CondominioHandler::getReservaItem($atts['id']);
         $condominiosList = CondominioHandler::getCond();
-        
-        if($reserva['status'] != "Rejeitado") {
-            $this->render('edit_reserva', [
-                'loggedUser' => $this->loggedUser,
-                'condominios' => $condominiosList,
-                'reserva' => $reserva
-            ]);
+
+        if($this->loggedUser->id_access != '2') {
+            if($reserva['status'] != "Rejeitado") {
+                $this->render('edit_reserva', [
+                    'loggedUser' => $this->loggedUser,
+                    'condominios' => $condominiosList,
+                    'reserva' => $reserva
+                ]);
+            } else {
+                $this->redirect('/app/reservas');
+            }
         } else {
-            $this->redirect('/app/reservas');
+            $this->render('404');
         }
     }
 
@@ -480,7 +484,7 @@ class AppController extends Controller {
             $_SESSION['flashDateCheck'] = '';
         }
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('pets', [
                 'loggedUser' => $this->loggedUser,
                 'moradores' => $moradorList,
@@ -510,7 +514,7 @@ class AppController extends Controller {
         $petItem = UserHandler::getPetItem($atts['id']);
         $moradorList = CondominioHandler::getMorador();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('edit_pet', [
                 'loggedUser' => $this->loggedUser,
                 'moradores' => $moradorList,
@@ -551,7 +555,7 @@ class AppController extends Controller {
         $veiculosList = UserHandler::getVeiculos();
         $condominiosList = CondominioHandler::getCond();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('veiculo', [
                 'loggedUser' => $this->loggedUser,
                 'veiculos' => $veiculosList,
@@ -583,7 +587,7 @@ class AppController extends Controller {
         $condominiosList = CondominioHandler::getCond();
         $veiculoItem = UserHandler::getVeiculoItem($atts['id']); 
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('edit_veiculo', [
                 'loggedUser' => $this->loggedUser,
                 'condominios' => $condominiosList,
@@ -626,11 +630,15 @@ class AppController extends Controller {
         $condominiosList = CondominioHandler::getCond();
         $assembleiasList = CondominioHandler::getAssembleias();
 
-        $this->render('assembleias', [
-            'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList,
-            'assembleias' => $assembleiasList
-        ]);
+        if($this->loggedUser->id_access != '2') {
+            $this->render('assembleias', [
+                'loggedUser' => $this->loggedUser,
+                'condominios' => $condominiosList,
+                'assembleias' => $assembleiasList
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function addAssembleia() {
@@ -650,11 +658,16 @@ class AppController extends Controller {
     public function editAssembleia($atts) {
         $condominiosList = CondominioHandler::getCond();
         $assembleiaItem = CondominioHandler::getAssembleiaItem($atts['id']);
-        $this->render('edit_assembleia', [
-            'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList,
-            'assembleia' => $assembleiaItem
-        ]);
+
+        if($this->loggedUser->id_access != '2') {
+            $this->render('edit_assembleia', [
+                'loggedUser' => $this->loggedUser,
+                'condominios' => $condominiosList,
+                'assembleia' => $assembleiaItem
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function saveAssembleia() {
@@ -773,7 +786,7 @@ class AppController extends Controller {
     public function categoriaContas() {
         $categoria_contas = CondominioHandler::getCategoriaContas();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('categoria_contas', [
                 'loggedUser' => $this->loggedUser,
                 'categoria_contas' => $categoria_contas
@@ -796,7 +809,7 @@ class AppController extends Controller {
     public function editCategoriaConta($atts) {
         $categoria_conta_item = CondominioHandler::getCatContaItem($atts['id']);
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('edit_categoria_conta',[
                 'loggedUser' => $this->loggedUser,
                 'categoria_conta_item' => $categoria_conta_item
@@ -836,7 +849,7 @@ class AppController extends Controller {
         $categorias = CondominioHandler::getCategoriaContas();
         $contas_pagar = CondominioHandler::getContasPagar();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('contas_pagar', [
                 'loggedUser' => $this->loggedUser,
                 'categorias' => $categorias,
@@ -870,7 +883,7 @@ class AppController extends Controller {
         $conta_pagar_item = CondominioHandler::getContaItem($atts['id']);
         $categorias = CondominioHandler::getCategoriaContas();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('edit_contas_pagar', [
                 'loggedUser' => $this->loggedUser,
                 'categorias' => $categorias,
@@ -920,7 +933,7 @@ class AppController extends Controller {
         $condominiosList = CondominioHandler::getCond();
         $contas_receber = CondominioHandler::getContasReceberList(); 
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('contas_receber', [
                 'loggedUser' => $this->loggedUser,
                 'categorias' => $categorias,
@@ -957,7 +970,7 @@ class AppController extends Controller {
         $categorias = CondominioHandler::getCategoriaContas();
         $condominiosList = CondominioHandler::getCond();
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('edit_contas_receber', [
                 'loggedUser' => $this->loggedUser,
                 'categorias' => $categorias,
@@ -1006,7 +1019,7 @@ class AppController extends Controller {
     public function fornecedores() {
         $fornecedoresList = CondominioHandler::getFornecedores();  
         
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('fornecedores', [
                 'loggedUser' => $this->loggedUser,
                 'fornecedores' => $fornecedoresList
@@ -1038,7 +1051,7 @@ class AppController extends Controller {
     public function editFornecedor($atts) {
         $fornecedor = CondominioHandler::getFornecedorItem($atts['id']);
         
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('edit_fornecedor', [
                 'loggedUser' => $this->loggedUser,
                 'fornecedor' => $fornecedor
@@ -1262,7 +1275,7 @@ class AppController extends Controller {
         $usersList = UserHandler::getUsers();
         $accessList = UserHandler::getAccess(); 
 
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('usuarios', [
                 'loggedUser' => $this->loggedUser,
                 'condominios' => $condominiosList,
@@ -1299,7 +1312,7 @@ class AppController extends Controller {
         $prediosList = CondominioHandler::getPredios();
         $accessList = UserHandler::getAccess();
         
-        if($this->loggedUser->id_access != '3') {
+        if($this->loggedUser->id_access != '3' and $this->loggedUser->id_access != '2') {
             $this->render('edit_usuario', [
                 'loggedUser' => $this->loggedUser,
                 'user' => $usersItem,
