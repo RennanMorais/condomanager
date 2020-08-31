@@ -1,3 +1,5 @@
+base = $('body').attr('base');
+
 function GraphDataVisitantes()
 {
     var
@@ -36,7 +38,7 @@ function GraphDataVisitantes()
 
         $.ajax(
         {
-            url: "http://localhost/condosoftware/public/app/request/countvisitantes",
+            url: base+"/app/request/countvisitantes",
             method: "POST",
             data:{date: datasBD[indexDate]},
             success: function (data)
@@ -93,7 +95,7 @@ function GraphDataOcorrencias()
 
         $.ajax(
         {
-            url: "http://localhost/condosoftware/public/app/request/countocorrencias",
+            url: base+"/app/request/countocorrencias",
             method: "POST",
             data:{date: datasBD[indexDate]},
             success: function (data)
@@ -206,7 +208,7 @@ function carrega_predios()
     var valCond = $('#combo-condominio').val();
 
     $.ajax({
-        url: "http://localhost/condosoftware/public/app/request/getpredios",
+        url: base+"/app/request/getpredios",
         method: "POST",
         data: {id_cond: valCond},
         dataType: "json",
@@ -232,7 +234,7 @@ function carrega_prediosOnChange() {
         var valCond = $('#combo-condominio').val();
 
         $.ajax({
-            url: "http://localhost/condosoftware/public/app/request/getpredios",
+            url: base+"/app/request/getpredios",
             method: "POST",
             data: {id_cond: valCond},
             dataType: "json",
@@ -262,7 +264,7 @@ function carrega_moradoresPorPredioCondominio()
         var valCond = $('#combo-condominio').val();
 
         $.ajax({
-            url: "http://localhost/condosoftware/public/app/request/getpredios",
+            url: base+"/app/request/getpredios",
             method: "POST",
             data: {id_cond: valCond},
             dataType: "json",
@@ -289,7 +291,7 @@ function carrega_moradoresPorPredioCondominio()
         var val_predio = $('#combo-predio').val();
         
         $.ajax({
-            url: "http://localhost/condosoftware/public/app/request/getmoradorbypredio",
+            url: base+"/app/request/getmoradorbypredio",
             method: "POST",
             data: {id_predio: val_predio},
             dataType: "json",
@@ -318,7 +320,7 @@ function carrega_moradorOnChange()
         var condominio = $('#combo-condominio').val();
 
         $.ajax({
-            url: "http://localhost/condosoftware/public/app/request/getmorador",
+            url: base+"/app/request/getmorador",
             method: "POST",
             data: {id_cond: condominio},
             dataType: "json",
@@ -347,7 +349,7 @@ function carrega_phone()
         var morador = $('#combo-morador').val();
 
         $.ajax({
-            url: "http://localhost/condosoftware/public/app/request/getphone",
+            url: base+"/app/request/getphone",
             method: "POST",
             data: {id_morador: morador},
             dataType: "json",
@@ -371,7 +373,7 @@ function carrega_areasOnChange()
         var valCond = $('#combo-condominio').val();
 
         $.ajax({
-            url: "http://localhost/condosoftware/public/app/request/getmorador",
+            url: base+"/app/request/getmorador",
             method: "POST",
             data: {id_cond: valCond},
             dataType: "json",
@@ -391,7 +393,7 @@ function carrega_areasOnChange()
         });
         
         $.ajax({
-            url: "http://localhost/condosoftware/public/app/request/getarea",
+            url: base+"/app/request/getarea",
             method: "POST",
             data: {id_cond: valCond},
             dataType: "json",
@@ -416,7 +418,7 @@ function carrega_morador()
 {
     var valCond = $('#combo-condominio').val();
     $.ajax({
-        url: "http://localhost/condosoftware/public/app/request/getmorador",
+        url: base+"/app/request/getmorador",
         method: "POST",
         data: {id_cond: valCond},
         dataType: "json",

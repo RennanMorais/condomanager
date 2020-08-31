@@ -155,7 +155,7 @@
                                 <td><?=date('H:i', strtotime($reservaItem->termino));?></td>
                                 <td><?=$reservaItem->status;?></td>
                                 <td style="text-align:center;">
-                                    <?php if($reservaItem->status != 'Rejeitado' && $loggedUser->id_access === '1'):?>
+                                    <?php if($reservaItem->status != 'Rejeitado' && $reservaItem->status != 'Aprovado' && $loggedUser->id_access === '1'):?>
                                     <a href="<?=$base;?>/app/reservas/aprovar?id=<?=$reservaItem->id;?>" class="btn btn-outline-success btn-sm" title="Aprovar"><i class="fa fa-check-square"></i></a>
                                     <a href="<?=$base;?>/app/reservas/rejeitar?id=<?=$reservaItem->id;?>" class="btn btn-outline-danger btn-sm" title="Rejeitar"><i class="fa fa-window-close"></i></a>
                                     <a href="<?=$base;?>/app/reservas/edit_reserva/<?=$reservaItem->id;?>" class="btn btn-outline-warning btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
