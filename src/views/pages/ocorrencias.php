@@ -26,7 +26,7 @@
                 </div>
             </div>
           
-            <table class="table table-bordered table-hover table-responsive-lg table-center">
+            <table class="table table-bordered table-hover table-responsive-sm">
                 <thead class="bg-info">
                     <tr>
                         <th>Id</th>
@@ -45,7 +45,7 @@
                     <tr>
                         <td><?=$ocorrenciaItem->id;?></td>
                         <td><?=date('d/m/Y', strtotime($ocorrenciaItem->data));?></td>
-                        <td><?=$ocorrenciaItem->descricao;?></td>
+                        <td><?=nl2br($ocorrenciaItem->descricao);?></td>
                         <td><?=$ocorrenciaItem->condominio;?></td>
                         <td><?=$ocorrenciaItem->morador;?></td>
                         <td><?=$ocorrenciaItem->contato;?></td>
@@ -70,7 +70,9 @@
                             <a href="<?=$base;?>/app/ocorrencias/aceitar?id=<?=$ocorrenciaItem->id;?>" class="btn btn-outline-primary btn-sm" title="Aceitar"><i class="fa fa-check"></i></a>
                             <?php endif; ?>
 
+                            <?php if($ocorrenciaItem->id_morador === $loggedUser->id or $loggedUser->id_access != '3'): ?>
                             <a href="<?=$base;?>/app/ocorrencias/edit_ocorrencia/<?=$ocorrenciaItem->id;?>" class="btn btn-outline-warning btn-sm" title="Editar Dados"><i class="fa fa-pen"></i></a>
+                            <?php endif; ?>
                             
                             <!--Permissoes para porteiro administrador-->
                             <?php if($loggedUser->id_access === '1'):?>

@@ -1,5 +1,7 @@
+//Link pricipal
 base = $('body').attr('base');
 
+//Pega os dados do grafico de visitantes
 function GraphDataVisitantes()
 {
     var
@@ -57,6 +59,7 @@ function GraphDataVisitantes()
     }
 }
 
+//Pega os dados do grafico de ocorrencias
 function GraphDataOcorrencias()
 {
     var
@@ -431,7 +434,6 @@ function carrega_morador()
                 html += '<option value="' + data[count].id + '">' + data[count].name + '</option>';
             }
             
-            $('#combo-morador').html('<option value="">Selecionar...</option>');
             $('#combo-morador').append(html);
 
         }

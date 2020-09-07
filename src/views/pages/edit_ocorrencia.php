@@ -40,7 +40,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">Descrição</div>
                     </div>
-                    <textarea class="form-control" name='descricao' required><?=$ocorrencia['descricao']?></textarea>
+                    <textarea class="form-control" name='descricao' cols="10" rows="5" required><?=$ocorrencia['descricao']?></textarea>
                 </div>
             </div>
 
