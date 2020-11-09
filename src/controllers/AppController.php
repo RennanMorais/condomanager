@@ -723,11 +723,15 @@ class AppController extends Controller {
         $condominiosList = CondominioHandler::getCond();
         $ocorrenciaItem = CondominioHandler::getOcorrenciaItem($atts['id']); 
 
-        $this->render('edit_ocorrencia', [
-            'loggedUser' => $this->loggedUser,
-            'condominios' => $condominiosList,
-            'ocorrencia' => $ocorrenciaItem
-        ]);
+        if($this->loggedUser->id_access === '1' or $this->loggedUser->id_access === '2') {
+            $this->render('edit_ocorrencia', [
+                'loggedUser' => $this->loggedUser,
+                'condominios' => $condominiosList,
+                'ocorrencia' => $ocorrenciaItem
+            ]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function saveOcorrencia() {

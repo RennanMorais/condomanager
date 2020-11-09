@@ -20,7 +20,8 @@
 
         <div class="login-logo">
           <a href="<?=$base;?>">
-              <img title='CondoSystem' src='<?=$base;?>/assets/images/logo_condo.png' style='max-width: 50%;max-height:170px'/>
+              <img title='CondoSystem' src='<?=$base;?>/assets/images/logo_condo.png' style='max-width: 50%;max-height:170px'/><br>
+              <h6><span>v1.0</span></h6>
           </a>
         </div><!-- /.login-logo -->
 		
