@@ -46,7 +46,7 @@
                                 <td><?=$contas_pagar_item->id;?></td>
                                 <td><?=$contas_pagar_item->nome;?></td>
                                 <td><?=$contas_pagar_item->categoria;?></td>
-                                <td>R$ <?=$contas_pagar_item->valor;?></td>
+                                <td>R$ <?=number_format($contas_pagar_item->valor, 2, ',', '.');?></td>
                                 <td><?=date('d/m/Y', strtotime($contas_pagar_item->data_vencimento));?></td>
                                 <td><?=$contas_pagar_item->pago_status;?></td>
                                 <td style="text-align:center;">

@@ -625,9 +625,7 @@ class CondominioHandler {
             $newContasPagar->nome = $contas_pagar_item['nome'];
             $newContasPagar->id_categoria = $contas_pagar_item['id_categoria'];
             $newContasPagar->categoria = $contas_pagar_item['categoria'];
-
-            $valor = str_replace('.', ',', $contas_pagar_item['valor']);
-            $newContasPagar->valor = $valor;
+            $newContasPagar->valor = $contas_pagar_item['valor'];
             
             $newContasPagar->data_vencimento = $contas_pagar_item['data_vencimento'];
             $newContasPagar->pago_status = $contas_pagar_item['pago_status'];

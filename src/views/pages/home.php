@@ -291,7 +291,6 @@
                         <div class="form-group">
                             <select class="form-control-select" id="lselect" required>
                                 <option class="select-option" value="" disabled selected>Interesse em...</option>
-                                <option class="select-option" value="Off The Ground">Adiquirir</option>
                                 <option class="select-option" value="Accelerated Growth">Duvidas</option>
                                 <option class="select-option" value="Market Domination">Orçamento</option>
                             </select>

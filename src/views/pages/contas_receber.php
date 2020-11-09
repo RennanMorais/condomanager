@@ -47,7 +47,7 @@
                                 <td><?=$contas_receber_item->id;?></td>
                                 <td><?=$contas_receber_item->nome;?></td>
                                 <td><?=$contas_receber_item->categoria;?></td>
-                                <td>R$ <?=$contas_receber_item->valor;?></td>
+                                <td>R$ <?=number_format($contas_receber_item->valor, 2, ',', '.');?></td>
                                 <td><?=date('d/m/Y', strtotime($contas_receber_item->data_vencimento));?></td>
                                 <td><?=$contas_receber_item->condominio;?></td>
                                 <td><?=$contas_receber_item->pago_status;?></td>

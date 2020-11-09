@@ -418,8 +418,8 @@ class AppController extends Controller {
         $reserva = CondominioHandler::getReservaItem($atts['id']);
         $condominiosList = CondominioHandler::getCond();
 
-        if($this->loggedUser->id_access != '2') {
-            if($reserva['status'] != "Rejeitado") {
+        if($this->loggedUser->id_access === '1') {
+            if($reserva['status'] != "Rejeitado" && $reserva['status'] != "Aprovado") {
                 $this->render('edit_reserva', [
                     'loggedUser' => $this->loggedUser,
                     'condominios' => $condominiosList,
