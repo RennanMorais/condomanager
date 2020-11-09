@@ -19,7 +19,7 @@ function GraphDataVisitantes()
         }
 
         var day = dt.getDate() < 10 ? '0' + dt.getDate() : '' + dt.getDate();
-        var month = dt.getMonth() < 10 ? '0' + (dt.getMonth() + 1) : '' + dt.getMonth();
+        var month = dt.getMonth() < 10 ? '0' + (dt.getMonth() + 1) : '' + (dt.getMonth() + 1);
 
         fotmatDate = day+"/"+month+"/"+dt.getFullYear();
 
@@ -77,7 +77,7 @@ function GraphDataOcorrencias()
         }
 
         var day = dt.getDate() < 10 ? '0' + dt.getDate() : '' + dt.getDate();
-        var month = dt.getMonth() < 10 ? '0' + (dt.getMonth() + 1) : '' + dt.getMonth();
+        var month = dt.getMonth() < 10 ? '0' + (dt.getMonth() + 1) : '' + (dt.getMonth() + 1);
 
         fotmatDate = day+"/"+month+"/"+dt.getFullYear();
 
