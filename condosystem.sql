@@ -13,8 +13,8 @@
 
 
 -- Copiando estrutura do banco de dados para condosystem
-CREATE DATABASE IF NOT EXISTS `condosystem` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE `condosystem`;
+CREATE DATABASE IF NOT EXISTS `condomanager` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `condomanager`;
 
 -- Copiando estrutura para tabela condosystem.access
 CREATE TABLE IF NOT EXISTS `access` (

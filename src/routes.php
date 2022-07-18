@@ -5,7 +5,7 @@ use src\controllers\AppController;
 $router = new Router();
 
 //Rota Landing Page
-$router->get('/', 'HomeController@index');
+$router->get('/', 'LoginController@index');
 
 
 
